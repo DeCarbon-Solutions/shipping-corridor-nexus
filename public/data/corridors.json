@@ -1,0 +1,122 @@
+[
+  {
+    "id": "SGP-RTM",
+    "name": "Singapore – Rotterdam",
+    "startPortId": "SGP-001",
+    "endPortId": "RTM-001",
+    "startLat": 1.2644,
+    "startLng": 103.8198,
+    "endLat": 51.9225,
+    "endLng": 4.4792,
+    "status": "fully_operational",
+    "launchYear": 2024
+  },
+  {
+    "id": "SHA-LAX",
+    "name": "Shanghai – Los Angeles",
+    "startPortId": "SHA-001",
+    "endPortId": "LAX-001",
+    "startLat": 31.2304,
+    "startLng": 121.4737,
+    "endLat": 33.7405,
+    "endLng": -118.2723,
+    "status": "announced",
+    "launchYear": 2025
+  },
+  {
+    "id": "TOK-PNW",
+    "name": "Tokyo Bay – Pacific Northwest",
+    "startPortId": "YOK-001",
+    "endPortId": "VAN-001",
+    "startLat": 35.4437,
+    "startLng": 139.638,
+    "endLat": 49.2827,
+    "endLng": -123.1207,
+    "status": "bunkering_available",
+    "launchYear": 2025
+  },
+  {
+    "id": "GOT-GHE",
+    "name": "Gothenburg – Ghent",
+    "startPortId": "GOT-001",
+    "endPortId": "GHE-001",
+    "startLat": 57.7089,
+    "startLng": 11.9746,
+    "endLat": 51.0543,
+    "endLng": 3.7174,
+    "status": "fully_operational",
+    "launchYear": 2024
+  },
+  {
+    "id": "KOR-AUS",
+    "name": "Korea – Australia Iron Ore",
+    "startPortId": "BUS-001",
+    "endPortId": "PAS-001",
+    "startLat": 35.1796,
+    "startLng": 129.0756,
+    "endLat": -20.6612,
+    "endLng": 116.7136,
+    "status": "announced",
+    "launchYear": 2026
+  },
+  {
+    "id": "CPT-LPA",
+    "name": "Cape Town – Canary Islands",
+    "startPortId": "CAP-001",
+    "endPortId": "LPA-001",
+    "startLat": -33.9249,
+    "startLng": 18.4241,
+    "endLat": 28.1235,
+    "endLng": -15.4363,
+    "status": "proposed",
+    "launchYear": 2027
+  },
+  {
+    "id": "SGP-SHA",
+    "name": "Singapore – Shanghai",
+    "startPortId": "SGP-001",
+    "endPortId": "SHA-001",
+    "startLat": 1.2644,
+    "startLng": 103.8198,
+    "endLat": 31.2304,
+    "endLng": 121.4737,
+    "status": "bunkering_available",
+    "launchYear": 2025
+  },
+  {
+    "id": "RTM-HOU",
+    "name": "Rotterdam – Houston",
+    "startPortId": "RTM-001",
+    "endPortId": "HOU-001",
+    "startLat": 51.9225,
+    "startLng": 4.4792,
+    "endLat": 29.7604,
+    "endLng": -95.3698,
+    "status": "announced",
+    "launchYear": 2026
+  },
+  {
+    "id": "FUJ-MUM",
+    "name": "Fujairah – Mumbai",
+    "startPortId": "FUJ-001",
+    "endPortId": "MUM-001",
+    "startLat": 25.1288,
+    "startLng": 56.3265,
+    "endLat": 18.949,
+    "endLng": 72.8467,
+    "status": "proposed",
+    "launchYear": 2027
+  },
+  {
+    "id": "ANT-GOT",
+    "name": "Antwerp – Gothenburg",
+    "startPortId": "ANT-001",
+    "endPortId": "GOT-001",
+    "startLat": 51.2194,
+    "startLng": 4.4025,
+    "endLat": 57.7089,
+    "endLng": 11.9746,
+    "status": "fully_operational",
+    "launchYear": 2025
+  }
+]
