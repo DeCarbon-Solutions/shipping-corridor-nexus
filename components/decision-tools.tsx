@@ -1,6 +1,6 @@
 "use client";
 
-import { ExternalLink, Ship, Route, Coins } from "lucide-react";
+import { ExternalLink, Ship, Route, Coins, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const tools = [
@@ -25,6 +25,13 @@ const tools = [
     url: "https://fuelstrategy.streamlit.app/",
     color: "bg-amber-600",
   },
+  {
+    icon: Globe,
+    title: "Shipping Corridor Nexus",
+    description: "Explore green shipping corridors worldwide. Map trade routes, alternative fuel readiness, and port infrastructure to identify decarbonization opportunities across global shipping lanes.",
+    url: "https://shipping-corridor-nexus.chaseji.com",
+    color: "bg-cyan-600",
+  },
 ];
 
 export function DecisionTools() {
@@ -45,7 +52,7 @@ export function DecisionTools() {
         </div>
 
         {/* Tools Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {tools.map((tool, index) => (
             <div
               key={index}
