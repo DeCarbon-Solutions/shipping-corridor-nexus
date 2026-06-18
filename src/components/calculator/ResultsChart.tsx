@@ -86,7 +86,8 @@ export default function ResultsChart({ fuelMix }: ResultsChartProps) {
                 fontSize: "11px",
                 color: "#e5e7eb",
               }}
-              formatter={(value: number) => [`${value}%`, ""]}
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              formatter={(value: any) => [`${value ?? 0}%`, ""]}
             />
           </PieChart>
         </ResponsiveContainer>

@@ -218,7 +218,8 @@ export default function FleetOverview({ vessels, onEdit, onAdd }: FleetOverviewP
                   </Pie>
                   <Tooltip
                     contentStyle={{ background: "#0A2240", border: "1px solid #1e3a5f", borderRadius: "6px", fontSize: "11px" }}
-                    formatter={(v: number) => [`${v}%`, ""]}
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    formatter={(v: any) => [`${v ?? 0}%`, ""]}
                   />
                 </PieChart>
               </ResponsiveContainer>

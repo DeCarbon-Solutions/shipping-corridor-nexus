@@ -87,7 +87,7 @@ export default function GFITrajectory({ vessels }: GFITrajectoryProps) {
 
             <Tooltip
               contentStyle={{ background: "#0A2240", border: "1px solid #1e3a5f", borderRadius: "8px", fontSize: "11px" }}
-              formatter={(v: number, name: string) => [`${v.toFixed(1)} gCO₂eq/MJ`, name]}
+              formatter={(v: any, name: any) => [`${(+v).toFixed(1)} gCO₂eq/MJ`, name]}
               labelFormatter={(yr) => `Year ${yr}`}
             />
             <Legend

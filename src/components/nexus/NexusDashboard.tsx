@@ -377,7 +377,7 @@ export default function NexusDashboard({ ports, vessels, corridors }: NexusDashb
                     background: "#0A2240", border: "1px solid #1e3a5f",
                     borderRadius: "6px", fontSize: "10px",
                   }}
-                  formatter={(v: number) => [`${v.toFixed(1)} gCO₂eq/MJ`]}
+                  formatter={(v: any) => [`${(+v).toFixed(1)} gCO₂eq/MJ`]}
                   labelFormatter={(yr) => `Year ${yr}`}
                 />
                 <Line type="monotone" dataKey="base" stroke="#22D3EE" strokeWidth={2} dot={false} name="Base Case" />
