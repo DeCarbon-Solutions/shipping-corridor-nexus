@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Shipping Corridors — CJ Energy Solution</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --deep:    #041510;
+    --navy:    #071e14;
+    --navy2:   #0a2318;
+    --navy3:   #0d2e1e;
+    --navy4:   #133825;
+    --green:   #00c87a;
+    --green2:  #00a362;
+    --green-lt:rgba(0,200,122,0.12);
+    --teal:    #00c5b0;
+    --teal-lt: rgba(0,197,176,0.12);
+    --lime:    #7ed321;
+    --lime-lt: rgba(126,211,33,0.1);
+    --amber:   #f0a500;
+    --amber-lt:rgba(240,165,0,0.12);
+    --blue:    #1a9fdb;
+    --blue-lt: rgba(26,159,219,0.12);
+    --coral:   #e05a3a;
+    --white:   #ffffff;
+    --w80:     rgba(255,255,255,0.80);
+    --w60:     rgba(255,255,255,0.60);
+    --w40:     rgba(255,255,255,0.40);
+    --w20:     rgba(255,255,255,0.20);
+    --w08:     rgba(255,255,255,0.08);
+    --border:  rgba(255,255,255,0.09);
+  }
+
+  body {
+    background: #020e08;
+    font-family: 'Barlow', sans-serif;
+    color: var(--white);
+    padding: 32px 16px;
+    line-height: 1.6;
+  }
+
+  .wrap {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--navy);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    background: #020e08;
+    padding: 8px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar span { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.06em; }
+  .topbar .left { color: var(--w40); }
+  .topbar .right { color: var(--green); text-transform:uppercase; }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    position: relative;
+    overflow: hidden;
+    padding: 36px 28px 30px;
+    border-bottom: 2px solid var(--green);
+    background: linear-gradient(140deg, #041510 0%, #082a18 55%, #051a10 100%);
+  }
+  .masthead-waves {
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 260px;
+    opacity: 0.06;
+  }
+  .masthead-inner {
+    position: relative; z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .masthead-label {
+    font-family:'DM Mono',monospace;
+    font-size:10px; letter-spacing:0.14em; text-transform:uppercase;
+    color: var(--green); margin-bottom:10px;
+  }
+  .masthead-title {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:44px; font-weight:800; line-height:0.95;
+    letter-spacing:-0.01em; text-transform:uppercase;
+  }
+  .masthead-title .hl { color: var(--green); }
+  .masthead-title .hl2 { color: var(--teal); }
+  .masthead-sub {
+    margin-top:12px; font-size:13px; font-weight:300;
+    color: var(--w40); max-width:360px; line-height:1.55;
+  }
+  .masthead-right { text-align:right; flex-shrink:0; }
+  .masthead-logo {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:13px; font-weight:700; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--green); margin-bottom:12px;
+  }
+  .masthead-logo span { color:var(--w40); font-weight:400; }
+  .masthead-date {
+    font-family:'DM Mono',monospace; font-size:10px;
+    color:var(--w40); letter-spacing:0.08em; line-height:1.9;
+  }
+  .masthead-bignum {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:72px; font-weight:800; line-height:1;
+    color:rgba(0,200,122,0.08); letter-spacing:-0.03em;
+    position:absolute; right:20px; bottom:10px;
+  }
+
+  /* ── KPI STRIP ── */
+  .kpi-strip {
+    display:grid; grid-template-columns:repeat(4,1fr);
+    background:var(--navy2); border-bottom:1px solid var(--border);
+  }
+  .kpi { padding:15px 16px; border-right:1px solid var(--border); }
+  .kpi:last-child { border-right:none; }
+  .kpi-label {
+    font-family:'DM Mono',monospace; font-size:9px;
+    letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--w40); margin-bottom:5px;
+  }
+  .kpi-val {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:26px; font-weight:700; line-height:1; color:var(--white);
+  }
+  .kpi-val.green  { color:var(--green); }
+  .kpi-val.teal   { color:var(--teal);  }
+  .kpi-val.amber  { color:var(--amber); }
+  .kpi-val.lime   { color:var(--lime);  }
+  .kpi-delta {
+    margin-top:4px; font-size:10.5px; font-weight:300;
+    color:var(--w40); line-height:1.3;
+  }
+  .kpi-delta .up { color:var(--green); font-weight:600; }
+
+  /* ── SECTION UTILITIES ── */
+  .sec { padding:24px 28px; border-bottom:1px solid var(--border); }
+  .sec-tag {
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'DM Mono',monospace; font-size:9.5px;
+    letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--green); margin-bottom:8px;
+  }
+  .sec-tag::before { content:''; width:16px; height:1.5px; background:var(--green); display:block; }
+  .sec-tag.teal  { color:var(--teal); }
+  .sec-tag.teal::before  { background:var(--teal); }
+  .sec-tag.amber { color:var(--amber); }
+  .sec-tag.amber::before { background:var(--amber); }
+  .sec-tag.blue  { color:var(--blue); }
+  .sec-tag.blue::before  { background:var(--blue); }
+  .sec-title {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:22px; font-weight:700; text-transform:uppercase;
+    letter-spacing:0.02em; color:var(--white); margin-bottom:6px;
+  }
+  .sec-body { font-size:13px; font-weight:300; color:var(--w80); line-height:1.65; }
+
+  /* ── EXEC BOX ── */
+  .exec-box {
+    margin-top:16px; padding:18px 20px;
+    background:var(--green-lt);
+    border:1px solid rgba(0,200,122,0.2); border-left:3px solid var(--green);
+  }
+  .exec-box p { font-size:13px; font-weight:300; color:var(--w80); line-height:1.7; }
+  .exec-box p+p { margin-top:10px; }
+  .exec-box strong { font-weight:600; color:var(--white); }
+
+  /* ── GROWTH CHART ── */
+  .chart-wrap {
+    margin-top:20px;
+    background:var(--navy3);
+    border:1px solid var(--border);
+    padding:20px 20px 14px;
+  }
+  .chart-title {
+    font-family:'DM Mono',monospace; font-size:9.5px;
+    letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--w40); margin-bottom:16px;
+  }
+  .bar-chart { display:flex; align-items:flex-end; gap:6px; height:120px; }
+  .bar-group { flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .bar-outer {
+    width:100%; position:relative;
+    display:flex; flex-direction:column; justify-content:flex-end;
+  }
+  .bar-fill {
+    width:100%; border-radius:3px 3px 0 0;
+    position:relative; display:flex; align-items:flex-start;
+    justify-content:center; padding-top:6px;
+  }
+  .bar-label {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:18px; font-weight:800; color:var(--white); line-height:1;
+  }
+  .bar-year {
+    font-family:'DM Mono',monospace;
+    font-size:10px; color:var(--w60); letter-spacing:0.06em;
+  }
+  .bar-yoy {
+    font-family:'DM Mono',monospace;
+    font-size:9px; letter-spacing:0.04em;
+    padding:2px 6px; border-radius:2px;
+    margin-top:4px;
+  }
+  .bar-yoy.up { background:var(--green-lt); color:var(--green); }
+  /* Trend line overlay */
+  .chart-legend {
+    display:flex; gap:16px; margin-top:12px; padding-top:12px;
+    border-top:1px solid var(--border);
+    font-family:'DM Mono',monospace; font-size:9px; color:var(--w40);
+    letter-spacing:0.05em;
+  }
+  .legend-dot {
+    width:8px; height:8px; border-radius:50%; display:inline-block;
+    margin-right:5px; vertical-align:middle;
+  }
+
+  /* ── YEAR-BY-YEAR CARDS ── */
+  .year-cards { margin-top:16px; display:flex; flex-direction:column; gap:10px; }
+  .year-card {
+    background:var(--navy3); border:1px solid var(--border);
+    padding:16px 18px; position:relative; overflow:hidden;
+  }
+  .year-card::before {
+    content:''; position:absolute; left:0; top:0; bottom:0;
+    width:3px;
+  }
+  .year-card.y22::before { background:rgba(0,200,122,0.3); }
+  .year-card.y23::before { background:rgba(0,200,122,0.5); }
+  .year-card.y24::before { background:rgba(0,200,122,0.75); }
+  .year-card.y25::before { background:var(--green); }
+  .year-card-top {
+    display:flex; justify-content:space-between;
+    align-items:flex-start; margin-bottom:10px;
+  }
+  .year-badge {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:28px; font-weight:800; line-height:1;
+  }
+  .year-badge.y22 { color:rgba(0,200,122,0.4); }
+  .year-badge.y23 { color:rgba(0,200,122,0.6); }
+  .year-badge.y24 { color:rgba(0,200,122,0.8); }
+  .year-badge.y25 { color:var(--green); }
+  .year-count {
+    text-align:right;
+  }
+  .year-count-num {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:40px; font-weight:800; line-height:1;
+  }
+  .year-count-num.y22 { color:rgba(0,200,122,0.5); }
+  .year-count-num.y23 { color:rgba(0,200,122,0.7); }
+  .year-count-num.y24 { color:rgba(0,200,122,0.9); }
+  .year-count-num.y25 { color:var(--green); }
+  .year-count-label {
+    font-family:'DM Mono',monospace; font-size:9px;
+    color:var(--w40); letter-spacing:0.05em;
+  }
+  .year-delta {
+    display:inline-block; font-family:'DM Mono',monospace;
+    font-size:9px; padding:2px 8px; background:var(--green-lt);
+    color:var(--green); letter-spacing:0.05em; margin-bottom:8px;
+  }
+  .year-stats {
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:6px; margin-top:10px;
+  }
+  .year-stat {
+    background:var(--navy2); padding:8px 10px; border-radius:2px;
+  }
+  .year-stat-num {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:20px; font-weight:700; line-height:1; color:var(--teal);
+  }
+  .year-stat-label {
+    font-size:10.5px; font-weight:300; color:var(--w40); line-height:1.3;
+  }
+  .year-highlight {
+    font-size:12px; font-weight:300; color:var(--w60);
+    line-height:1.55; border-top:1px solid var(--border);
+    padding-top:10px; margin-top:4px;
+  }
+  .year-bg-num {
+    position:absolute; right:12px; bottom:-8px;
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:80px; font-weight:800; opacity:0.04;
+    line-height:1; pointer-events:none;
+  }
+
+  /* ── STAGE PIPELINE ── */
+  .pipeline {
+    margin-top:18px; display:flex; flex-direction:column; gap:2px;
+  }
+  .pipeline-row {
+    display:flex; align-items:center; gap:10px; padding:10px 14px;
+    background:var(--navy3); border:1px solid var(--border);
+  }
+  .pipeline-stage {
+    font-family:'DM Mono',monospace; font-size:9.5px;
+    letter-spacing:0.08em; text-transform:uppercase;
+    min-width:90px; color:var(--w60);
+  }
+  .pipeline-track {
+    flex:1; height:16px; background:var(--navy4);
+    border-radius:2px; overflow:hidden; position:relative;
+  }
+  .pipeline-fill {
+    height:100%; border-radius:2px;
+    display:flex; align-items:center; padding-left:6px;
+    font-family:'DM Mono',monospace; font-size:8px;
+    font-weight:500; color:var(--white); white-space:nowrap;
+    transition:width 0.3s;
+  }
+  .pipeline-count {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:16px; font-weight:700; min-width:32px;
+    text-align:right;
+  }
+  .pipeline-desc {
+    font-size:11px; font-weight:300; color:var(--w40);
+    min-width:130px; text-align:right;
+  }
+
+  /* ── LEADERSHIP MIX ── */
+  .donut-section {
+    display:grid; grid-template-columns:auto 1fr;
+    gap:24px; align-items:center; margin-top:16px;
+  }
+  .donut-legend { }
+  .legend-row {
+    display:flex; align-items:center; gap:8px;
+    margin-bottom:8px; font-size:12.5px;
+  }
+  .ldot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .lname { color:var(--w60); flex:1; }
+  .lval {
+    font-family:'DM Mono',monospace; font-size:11px;
+    color:var(--white); font-weight:500;
+  }
+
+  /* ── TAKEAWAY CALLOUT ── */
+  .callout-strip {
+    display:grid; grid-template-columns:repeat(3,1fr);
+    gap:1px; background:var(--border); border:1px solid var(--border);
+    margin-top:18px;
+  }
+  .callout-cell {
+    background:var(--navy3); padding:18px 16px;
+  }
+  .callout-num {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:44px; font-weight:800; line-height:1;
+    margin-bottom:4px;
+  }
+  .callout-desc {
+    font-size:11.5px; font-weight:300;
+    color:var(--w40); line-height:1.45;
+  }
+
+  /* ── TRENDLINE TABLE ── */
+  .trend-table {
+    width:100%; border-collapse:collapse;
+    font-size:12.5px; margin-top:16px;
+    border:1px solid var(--border);
+  }
+  .trend-table th {
+    background:var(--navy4); padding:9px 14px;
+    font-family:'DM Mono',monospace; font-size:9px;
+    letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--w40); text-align:left;
+    border-bottom:1px solid var(--border);
+  }
+  .trend-table td {
+    padding:10px 14px; border-bottom:1px solid var(--border);
+    vertical-align:middle; font-weight:300; color:var(--w80); line-height:1.5;
+  }
+  .trend-table tr:last-child td { border-bottom:none; }
+  .trend-table td.year-col {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:18px; font-weight:700; color:var(--green);
+  }
+  .trend-table td.count-col {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:18px; font-weight:700; color:var(--white);
+  }
+  .trend-table td.delta-col {
+    font-family:'DM Mono',monospace; font-size:11px; color:var(--green);
+  }
+  .trend-table tr:hover td { background:var(--w08); }
+
+  /* ── FEASIBILITY WALL ── */
+  .wall-box {
+    margin-top:16px; padding:20px;
+    background:var(--amber-lt);
+    border:1px solid rgba(240,165,0,0.2);
+    border-left:3px solid var(--amber);
+  }
+  .wall-title {
+    font-family:'DM Mono',monospace; font-size:9.5px;
+    letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--amber); margin-bottom:8px;
+  }
+  .wall-body {
+    font-size:13px; font-weight:300; color:var(--w80); line-height:1.65;
+  }
+  .wall-body strong { font-weight:600; color:var(--white); }
+
+  /* ── QUICK TAKEAWAYS ── */
+  .takeaway-list { margin-top:16px; }
+  .takeaway-item {
+    display:flex; gap:14px; padding:13px 0;
+    border-bottom:1px solid var(--border);
+    align-items:flex-start;
+  }
+  .takeaway-item:first-child { padding-top:0; }
+  .takeaway-item:last-child { border-bottom:none; padding-bottom:0; }
+  .t-icon {
+    width:28px; height:28px; border-radius:50%;
+    background:var(--green-lt); display:flex;
+    align-items:center; justify-content:center;
+    flex-shrink:0; font-size:13px;
+    color:var(--green); font-weight:700;
+    font-family:'Barlow Condensed',sans-serif;
+  }
+  .t-head { font-size:13.5px; font-weight:600; color:var(--white); margin-bottom:3px; }
+  .t-body { font-size:12px; font-weight:300; color:var(--w40); line-height:1.55; }
+
+  /* ── DATA NOTE ── */
+  .data-note {
+    margin-top:14px; padding:12px 16px;
+    background:var(--navy2); border:1px solid var(--border);
+    border-left:3px solid var(--w20);
+  }
+  .data-note-title {
+    font-family:'DM Mono',monospace; font-size:9px;
+    letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--w40); margin-bottom:5px;
+  }
+  .data-note-body { font-size:11.5px; font-weight:300; color:var(--w40); line-height:1.55; }
+
+  /* ── ORNAMENT / FOOTER ── */
+  .ornament {
+    text-align:center; padding:12px 0;
+    font-family:'DM Mono',monospace; font-size:10px;
+    color:rgba(255,255,255,0.1); letter-spacing:0.25em;
+    border-bottom:1px solid var(--border);
+  }
+  .footer {
+    background:#020e08; padding:20px 28px;
+    display:flex; justify-content:space-between;
+    align-items:center; gap:16px;
+  }
+  .footer-brand {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:14px; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.08em; color:var(--green);
+  }
+  .footer-brand span { color:var(--w40); font-weight:400; }
+  .footer-copy {
+    font-family:'DM Mono',monospace; font-size:9px;
+    color:var(--w20); letter-spacing:0.04em; margin-top:3px;
+  }
+  .footer-links { display:flex; gap:18px; flex-shrink:0; }
+  .footer-link {
+    font-family:'DM Mono',monospace; font-size:9.5px;
+    letter-spacing:0.06em; text-transform:uppercase;
+    color:rgba(255,255,255,0.3); text-decoration:none; cursor:default;
+  }
+  .footer-link:hover { color:var(--green); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <span class="left">View in browser &nbsp;·&nbsp; Forward to colleague</span>
+    <span class="right">CJ Energy Solution · Green Shipping · March 2026</span>
+  </div>
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <svg class="masthead-waves" viewBox="0 0 260 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMaxYMid slice">
+      <path d="M0,60 C60,40 120,80 180,60 C220,45 250,65 260,60 L260,0 L0,0 Z" fill="white"/>
+      <path d="M0,120 C50,100 110,140 170,120 C210,108 245,125 260,120 L260,60 C250,65 220,45 180,60 C120,80 60,40 0,60 Z" fill="white" opacity="0.6"/>
+      <path d="M0,180 C55,160 115,200 175,180 C215,168 248,182 260,178 L260,120 C245,125 210,108 170,120 C110,140 50,100 0,120 Z" fill="white" opacity="0.4"/>
+      <path d="M0,240 C60,220 120,260 180,240 C220,228 252,242 260,238 L260,178 C248,182 215,168 175,180 C115,200 55,160 0,180 Z" fill="white" opacity="0.25"/>
+      <path d="M0,300 L260,300 L260,238 C252,242 220,228 180,240 C120,260 60,220 0,240 Z" fill="white" opacity="0.12"/>
+    </svg>
+    <div class="masthead-inner">
+      <div>
+        <div class="masthead-label">Maritime Decarbonisation Intelligence</div>
+        <div class="masthead-title">
+          Green<br>
+          <span class="hl">Shipping</span><br>
+          <span class="hl2">Corridors</span>
+        </div>
+        <div class="masthead-sub">Tracking the global portfolio of green shipping corridor initiatives — from announcement to realisation. Data sourced from the Global Maritime Forum / Getting to Zero Coalition Annual Progress Reports.</div>
+      </div>
+      <div class="masthead-right">
+        <div class="masthead-logo">CJ Energy <span>/ Solution</span></div>
+        <div class="masthead-date">
+          MARCH 2026<br>
+          GMF/GZC DATA<br>
+          CHASEJI.COM
+        </div>
+      </div>
+    </div>
+    <div class="masthead-bignum">4×</div>
+  </div>
+
+  <!-- KPI STRIP -->
+  <div class="kpi-strip">
+    <div class="kpi">
+      <div class="kpi-label">Active Initiatives (2025)</div>
+      <div class="kpi-val green">84</div>
+      <div class="kpi-delta"><span class="up">↑ +22</span> vs 2024</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Portfolio Growth</div>
+      <div class="kpi-val teal">4×</div>
+      <div class="kpi-delta">from 21 in 2022 to 84 in 2025</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Stakeholders (2025)</div>
+      <div class="kpi-val amber">305</div>
+      <div class="kpi-delta">vs 110+ in 2022</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Realisation Stage</div>
+      <div class="kpi-val lime">4</div>
+      <div class="kpi-delta">corridors — first time ever</div>
+    </div>
+  </div>
+
+  <!-- EXEC SUMMARY -->
+  <div class="sec">
+    <div class="sec-tag">Executive Summary</div>
+    <div class="sec-title">From Announcements to Realisation</div>
+    <div class="exec-box">
+      <p>The global green shipping corridor portfolio expanded <strong>4× in three years</strong> — from 21 initiatives in 2022 to 84 active initiatives in 2025. The market moved from mostly announcements in 2022–2023 toward more structured targets and implementation planning in 2023–2024, and by 2025 the first corridors crossed into the <strong>Realisation stage</strong> — meaning actual vessels, infrastructure, and/or fuel plants were moving into construction or operation.</p>
+      <p>The biggest qualitative shift in 2025 was not the growth in count, but the fact that <strong>4 corridors reached Realisation for the first time</strong> since reporting began. The main bottleneck has shifted from project launch to crossing the so-called <strong>feasibility wall</strong> — moving beyond studies and MoUs into committed capital and physical build-out.</p>
+    </div>
+  </div>
+
+  <!-- GROWTH CHART -->
+  <div class="sec">
+    <div class="sec-tag teal">Portfolio Growth Chart</div>
+    <div class="sec-title">Global Initiative Count — 2022 to 2025</div>
+    <div class="chart-wrap">
+      <div class="chart-title">Total announced / active green shipping corridor initiatives · Source: GMF / Getting to Zero Coalition</div>
+      <div class="bar-chart">
+
+        <!-- 2022: 21 → height ~30% of 120px = 36px -->
+        <div class="bar-group">
+          <div class="bar-outer" style="height:120px;">
+            <div class="bar-fill" style="height:30%;background:rgba(0,200,122,0.25);border-radius:3px 3px 0 0;">
+              <span class="bar-label">21</span>
+            </div>
+          </div>
+          <div class="bar-year">2022</div>
+          <div class="bar-yoy" style="background:rgba(255,255,255,0.05);color:var(--w40);">Baseline</div>
+        </div>
+
+        <!-- 2023: 44 → height ~52% = 63px -->
+        <div class="bar-group">
+          <div class="bar-outer" style="height:120px;">
+            <div class="bar-fill" style="height:52%;background:rgba(0,200,122,0.45);border-radius:3px 3px 0 0;">
+              <span class="bar-label">44</span>
+            </div>
+          </div>
+          <div class="bar-year">2023</div>
+          <div class="bar-yoy up">+23 ↑</div>
+        </div>
+
+        <!-- 2024: 62 → height ~74% = 89px -->
+        <div class="bar-group">
+          <div class="bar-outer" style="height:120px;">
+            <div class="bar-fill" style="height:74%;background:rgba(0,200,122,0.65);border-radius:3px 3px 0 0;">
+              <span class="bar-label">62</span>
+            </div>
+          </div>
+          <div class="bar-year">2024</div>
+          <div class="bar-yoy up">+18 ↑</div>
+        </div>
+
+        <!-- 2025: 84 → height 100% = 120px -->
+        <div class="bar-group">
+          <div class="bar-outer" style="height:120px;">
+            <div class="bar-fill" style="height:100%;background:var(--green);border-radius:3px 3px 0 0;">
+              <span class="bar-label">84</span>
+            </div>
+          </div>
+          <div class="bar-year">2025</div>
+          <div class="bar-yoy up">+22 ↑</div>
+        </div>
+
+      </div>
+
+      <!-- SVG trend line overlay -->
+      <svg viewBox="0 0 400 120" width="100%" height="60" style="margin-top:-60px;pointer-events:none;display:block;opacity:0.7" preserveAspectRatio="none">
+        <!-- Points approx: 2022=(50,84), 2023=(150,62), 2024=(250,31), 2025=(350,0) -->
+        <polyline points="50,84 150,62 250,31 350,0"
+          fill="none" stroke="#00c5b0" stroke-width="2"
+          stroke-dasharray="5 3" opacity="0.8"/>
+        <circle cx="50"  cy="84" r="4" fill="#00c5b0"/>
+        <circle cx="150" cy="62" r="4" fill="#00c5b0"/>
+        <circle cx="250" cy="31" r="4" fill="#00c5b0"/>
+        <circle cx="350" cy="0"  r="5" fill="#00c87a" stroke="white" stroke-width="1.5"/>
+      </svg>
+
+      <div class="chart-legend">
+        <span><span class="legend-dot" style="background:var(--green);"></span>Annual initiative count</span>
+        <span><span class="legend-dot" style="background:var(--teal);width:16px;height:2px;border-radius:0;"></span>Growth trendline</span>
+        <span style="margin-left:auto;">⬤ 2025 snapshot as of edition date</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- YEAR-BY-YEAR DEEP DIVE -->
+  <div class="sec">
+    <div class="sec-tag">Year-by-Year Analysis</div>
+    <div class="sec-title">Deep Dive — Each Edition's Key Findings</div>
+    <div class="year-cards">
+
+      <!-- 2022 -->
+      <div class="year-card y22">
+        <div class="year-card-top">
+          <div>
+            <div class="year-badge y22">2022</div>
+            <div class="year-delta">Baseline Year · First Report</div>
+            <div class="sec-body" style="max-width:340px;">The inaugural edition of the Getting to Zero Coalition tracker established the baseline. Leadership was distributed across port-led, government, and public-private models.</div>
+          </div>
+          <div class="year-count">
+            <div class="year-count-num y22">21</div>
+            <div class="year-count-label">Initiatives</div>
+          </div>
+        </div>
+        <div class="year-stats">
+          <div class="year-stat">
+            <div class="year-stat-num" style="color:rgba(0,200,122,0.6);">110+</div>
+            <div class="year-stat-label">Stakeholders across value chain</div>
+          </div>
+          <div class="year-stat">
+            <div class="year-stat-num" style="color:rgba(0,200,122,0.6);">12</div>
+            <div class="year-stat-label">Initiatives with public-sector participation</div>
+          </div>
+          <div class="year-stat">
+            <div class="year-stat-num" style="color:rgba(0,200,122,0.6);">12</div>
+            <div class="year-stat-label">Short-sea corridors</div>
+          </div>
+          <div class="year-stat">
+            <div class="year-stat-num" style="color:rgba(0,200,122,0.6);">7</div>
+            <div class="year-stat-label">Deep-sea corridors</div>
+          </div>
+        </div>
+        <div class="year-highlight">
+          Leadership split: 9 port-led · 4 industry/third-sector-led · 3 government-led · 9 public-private partnerships. Two initiatives still TBD on type.
+        </div>
+        <div class="year-bg-num">21</div>
+      </div>
+
+      <!-- 2023 -->
+      <div class="year-card y23">
+        <div class="year-card-top">
+          <div>
+            <div class="year-badge y23">2023</div>
+            <div class="year-delta">+23 vs 2022 · Portfolio Roughly Doubled</div>
+            <div class="sec-body" style="max-width:340px;">Over half of tracked initiatives moved to a new development stage. Operational targets began crystallising, mostly targeting initial operations between 2024 and 2030.</div>
+          </div>
+          <div class="year-count">
+            <div class="year-count-num y23">44</div>
+            <div class="year-count-label">Initiatives</div>
+          </div>
+        </div>
+        <div class="year-stats">
+          <div class="year-stat">
+            <div class="year-stat-num" style="color:rgba(0,200,122,0.75);">15</div>
+            <div class="year-stat-label">Corridors with operational targets set</div>
+          </div>
+          <div class="year-stat">
+            <div class="year-stat-num" style="color:rgba(0,200,122,0.75);">6+</div>
+            <div class="year-stat-label">Seeking scaled deployment before 2030</div>
+          </div>
+          <div class="year-stat">
+            <div class="year-stat-num" style="color:rgba(0,200,122,0.75);">3</div>
+            <div class="year-stat-label">Implementation plans completed</div>
+          </div>
+          <div class="year-stat">
+            <div class="year-stat-num" style="color:rgba(0,200,122,0.75);">3+</div>
+            <div class="year-stat-label">More plans in advanced development</div>
+          </div>
+        </div>
+        <div class="year-highlight">
+          Key qualitative shift: over half of the 22 initiatives from the prior edition moved to a new development stage — signalling momentum beyond launch announcements.
+        </div>
+        <div class="year-bg-num">44</div>
+      </div>
+
+      <!-- 2024 -->
+      <div class="year-card y24">
+        <div class="year-card-top">
+          <div>
+            <div class="year-badge y24">2024</div>
+            <div class="year-delta">+18 vs 2023 · Snapshot: 30 October 2024</div>
+            <div class="sec-body" style="max-width:340px;">Two-fifths of existing initiatives advanced to a new phase. Real-world implementation activity emerged for the first time in a meaningful number of corridors.</div>
+          </div>
+          <div class="year-count">
+            <div class="year-count-num y24">62</div>
+            <div class="year-count-label">Initiatives</div>
+          </div>
+        </div>
+        <div class="year-stats">
+          <div class="year-stat">
+            <div class="year-stat-num">18</div>
+            <div class="year-stat-label">New initiatives emerged during year</div>
+          </div>
+          <div class="year-stat">
+            <div class="year-stat-num">17</div>
+            <div class="year-stat-label">Existing initiatives completed key activities</div>
+          </div>
+          <div class="year-stat">
+            <div class="year-stat-num">6+</div>
+            <div class="year-stat-label">Moved toward real-world implementation</div>
+          </div>
+          <div class="year-stat">
+            <div class="year-stat-num">2/5</div>
+            <div class="year-stat-label">Of existing initiatives advanced a phase</div>
+          </div>
+        </div>
+        <div class="year-highlight">
+          Important data note: this edition's count was explicitly taken as a snapshot of 30 October 2024 — not a year-end figure. Annual comparisons should treat this as a report-date snapshot.
+        </div>
+        <div class="year-bg-num">62</div>
+      </div>
+
+      <!-- 2025 -->
+      <div class="year-card y25" style="background:rgba(0,200,122,0.06);border-color:rgba(0,200,122,0.2);">
+        <div class="year-card-top">
+          <div>
+            <div class="year-badge y25">2025</div>
+            <div class="year-delta" style="background:var(--green-lt);color:var(--green);">+22 vs 2024 · REALISATION STAGE UNLOCKED</div>
+            <div class="sec-body" style="max-width:340px;">The landmark edition. For the first time since reporting began, 4 corridors reached the Realisation stage — actual vessels, infrastructure or fuel plants moving into construction or operation.</div>
+          </div>
+          <div class="year-count">
+            <div class="year-count-num y25">84</div>
+            <div class="year-count-label">Active Initiatives</div>
+          </div>
+        </div>
+        <div class="year-stats">
+          <div class="year-stat" style="background:rgba(0,200,122,0.1);">
+            <div class="year-stat-num" style="color:var(--green);">305</div>
+            <div class="year-stat-label">Stakeholders involved — up from 110+</div>
+          </div>
+          <div class="year-stat" style="background:rgba(0,200,122,0.1);">
+            <div class="year-stat-num" style="color:var(--green);">4</div>
+            <div class="year-stat-label">Corridors in Realisation stage — first ever</div>
+          </div>
+          <div class="year-stat" style="background:rgba(0,200,122,0.1);">
+            <div class="year-stat-num" style="color:var(--green);">19</div>
+            <div class="year-stat-label">Corridors advanced to new phase</div>
+          </div>
+          <div class="year-stat" style="background:rgba(0,200,122,0.1);">
+            <div class="year-stat-num" style="color:var(--green);">25</div>
+            <div class="year-stat-label">New initiatives added since prior edition</div>
+          </div>
+        </div>
+        <div class="year-highlight" style="border-color:rgba(0,200,122,0.2);">
+          The Preparation stage count doubled. The feasibility wall is now the primary challenge — not project launch. Scale and capital commitment separate the corridors that progress from those that stall.
+        </div>
+        <div class="year-bg-num" style="color:var(--green);">84</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DEVELOPMENT STAGE PIPELINE -->
+  <div class="sec">
+    <div class="sec-tag teal">Development Pipeline</div>
+    <div class="sec-title">Corridor Maturity — Stage Distribution (2025)</div>
+    <div class="sec-body">As of the 2025 edition, the portfolio spans from early exploration through to active realisation. The Preparation stage doubled, and 4 corridors reached Realisation — a first for the programme.</div>
+    <div class="pipeline">
+      <div class="pipeline-row">
+        <div class="pipeline-stage">Exploration</div>
+        <div class="pipeline-track">
+          <div class="pipeline-fill" style="width:55%;background:rgba(0,200,122,0.2);">Early-stage</div>
+        </div>
+        <div class="pipeline-count" style="color:var(--w40);">~46</div>
+        <div class="pipeline-desc">MoUs, feasibility scoping</div>
+      </div>
+      <div class="pipeline-row">
+        <div class="pipeline-stage">Preparation</div>
+        <div class="pipeline-track">
+          <div class="pipeline-fill" style="width:35%;background:rgba(0,200,122,0.4);">Doubled in 2025</div>
+        </div>
+        <div class="pipeline-count" style="color:var(--teal);">~34</div>
+        <div class="pipeline-desc">Targets set, plans developing</div>
+      </div>
+      <div class="pipeline-row">
+        <div class="pipeline-stage">Implementation</div>
+        <div class="pipeline-track">
+          <div class="pipeline-fill" style="width:10%;background:rgba(0,200,122,0.65);">Active</div>
+        </div>
+        <div class="pipeline-count" style="color:var(--green);">~4–6</div>
+        <div class="pipeline-desc">Advanced development</div>
+      </div>
+      <div class="pipeline-row" style="border:1px solid rgba(0,200,122,0.25);background:rgba(0,200,122,0.06);">
+        <div class="pipeline-stage" style="color:var(--green);">Realisation</div>
+        <div class="pipeline-track">
+          <div class="pipeline-fill" style="width:5%;background:var(--green);">New</div>
+        </div>
+        <div class="pipeline-count" style="color:var(--green);">4</div>
+        <div class="pipeline-desc" style="color:var(--green);">First ever — 2025 milestone</div>
+      </div>
+    </div>
+    <div class="data-note" style="margin-top:12px;">
+      <div class="data-note-title">Stage Breakdown Note</div>
+      <div class="data-note-body">Stage distribution figures are approximate, derived from reported advancement data across editions. The GMF/GZC reports do not publish exact per-stage counts for all years. The Realisation count of 4 is explicitly reported in the 2025 edition.</div>
+    </div>
+  </div>
+
+  <!-- 2022 LEADERSHIP BREAKDOWN + CORRIDOR TYPE -->
+  <div class="sec">
+    <div class="sec-tag">2022 Baseline Mix</div>
+    <div class="sec-title">Leadership Structure & Corridor Type — 2022 Baseline</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;">
+
+      <!-- Leadership donut -->
+      <div style="background:var(--navy3);border:1px solid var(--border);padding:16px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--w40);margin-bottom:12px;">Leadership Model (2022)</div>
+        <svg viewBox="0 0 80 80" width="72" height="72" style="float:left;margin-right:12px;flex-shrink:0;">
+          <circle cx="40" cy="40" r="30" fill="none" stroke="var(--navy4)" stroke-width="14"/>
+          <!-- Port-led: 9/25 = 36% → 226deg of 360 = stroke ~67.8, offset 50 -->
+          <circle cx="40" cy="40" r="30" fill="none" stroke="#00c87a" stroke-width="14"
+            stroke-dasharray="67.9 120.8" stroke-dashoffset="47.1" transform="rotate(-90 40 40)"/>
+          <!-- Industry: 4/25 = 16% → 30.2, offset after port -->
+          <circle cx="40" cy="40" r="30" fill="none" stroke="#00c5b0" stroke-width="14"
+            stroke-dasharray="30.2 158.5" stroke-dashoffset="-20.8" transform="rotate(-90 40 40)"/>
+          <!-- Govt: 3/25 = 12% → 22.6 -->
+          <circle cx="40" cy="40" r="30" fill="none" stroke="#f0a500" stroke-width="14"
+            stroke-dasharray="22.6 166.1" stroke-dashoffset="-51" transform="rotate(-90 40 40)"/>
+          <!-- Public-private: 9/25 = 36% → 67.9 -->
+          <circle cx="40" cy="40" r="30" fill="none" stroke="#1a9fdb" stroke-width="14"
+            stroke-dasharray="67.9 120.8" stroke-dashoffset="-73.6" transform="rotate(-90 40 40)"/>
+        </svg>
+        <div style="overflow:hidden;">
+          <div class="legend-row"><div class="ldot" style="background:#00c87a;"></div><span class="lname">Port-led</span><span class="lval">9</span></div>
+          <div class="legend-row"><div class="ldot" style="background:#00c5b0;"></div><span class="lname">Industry / 3rd sector</span><span class="lval">4</span></div>
+          <div class="legend-row"><div class="ldot" style="background:#f0a500;"></div><span class="lname">Government-led</span><span class="lval">3</span></div>
+          <div class="legend-row"><div class="ldot" style="background:#1a9fdb;"></div><span class="lname">Public-private</span><span class="lval">9</span></div>
+        </div>
+      </div>
+
+      <!-- Corridor type -->
+      <div style="background:var(--navy3);border:1px solid var(--border);padding:16px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--w40);margin-bottom:12px;">Corridor Type (2022)</div>
+        <div style="margin-bottom:14px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:12px;">
+            <span style="color:var(--w80);">Short-sea</span>
+            <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--green);">12 / 21</span>
+          </div>
+          <div style="height:6px;background:var(--navy4);border-radius:3px;overflow:hidden;">
+            <div style="width:57%;height:100%;background:var(--green);border-radius:3px;"></div>
+          </div>
+        </div>
+        <div style="margin-bottom:14px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:12px;">
+            <span style="color:var(--w80);">Deep-sea</span>
+            <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--teal);">7 / 21</span>
+          </div>
+          <div style="height:6px;background:var(--navy4);border-radius:3px;overflow:hidden;">
+            <div style="width:33%;height:100%;background:var(--teal);border-radius:3px;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:12px;">
+            <span style="color:var(--w80);">TBD / Other</span>
+            <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--w40);">2 / 21</span>
+          </div>
+          <div style="height:6px;background:var(--navy4);border-radius:3px;overflow:hidden;">
+            <div style="width:10%;height:100%;background:var(--w40);border-radius:3px;"></div>
+          </div>
+        </div>
+        <div style="margin-top:14px;padding:10px;background:var(--navy2);border-radius:2px;">
+          <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--w40);letter-spacing:0.06em;">PUBLIC SECTOR PARTICIPATION</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:var(--green);line-height:1.1;">12 <span style="font-size:14px;color:var(--w40);font-weight:400;">of 21</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TREND TABLE -->
+  <div class="sec">
+    <div class="sec-tag">Full Data Table</div>
+    <div class="sec-title">Year-by-Year Summary — All Four Editions</div>
+    <table class="trend-table">
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Count</th>
+          <th>YoY Change</th>
+          <th>Headline Finding</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="year-col">2022</td>
+          <td class="count-col">21</td>
+          <td class="delta-col" style="color:var(--w40);">Baseline</td>
+          <td>110+ stakeholders; 12 short-sea, 7 deep-sea; 12 with public-sector participation.</td>
+        </tr>
+        <tr>
+          <td class="year-col">2023</td>
+          <td class="count-col">44</td>
+          <td class="delta-col">+23 (+110%)</td>
+          <td>Portfolio doubled; 15 corridors set operational targets; 3 implementation plans complete.</td>
+        </tr>
+        <tr>
+          <td class="year-col">2024</td>
+          <td class="count-col">62</td>
+          <td class="delta-col">+18 (+41%)</td>
+          <td>18 new initiatives; 2/5 of existing advanced a phase; 6+ moved to real-world implementation.</td>
+        </tr>
+        <tr style="background:rgba(0,200,122,0.05);">
+          <td class="year-col" style="color:var(--green);">2025</td>
+          <td class="count-col" style="color:var(--green);">84</td>
+          <td class="delta-col">+22 (+35%)</td>
+          <td>305 stakeholders; 4 corridors reached Realisation for the first time; Preparation stage doubled.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FEASIBILITY WALL -->
+  <div class="sec">
+    <div class="sec-tag amber">Structural Challenge</div>
+    <div class="sec-title">The Feasibility Wall — 2025's Primary Bottleneck</div>
+    <div class="wall-box">
+      <div class="wall-title">⚠ The Feasibility Wall</div>
+      <div class="wall-body">
+        The movement added <strong>23 initiatives in 2023, 18 in 2024, and 25 in 2025</strong> — showing continued expansion even as projects became harder to advance beyond feasibility. The primary challenge in 2025 had shifted from <strong>project launch</strong> to <strong>crossing from feasibility into committed capital and physical build-out</strong>.
+        <br><br>
+        The record count of 84 active initiatives masks a concentration risk: the majority remain in Exploration or Preparation stages. Only <strong>4 corridors have crossed into Realisation</strong>. For marine fuel professionals, this means green corridor demand signals are still largely forward-looking — but the first real-world volumes are beginning to materialise.
+      </div>
+    </div>
+
+    <!-- Three callout stats -->
+    <div class="callout-strip">
+      <div class="callout-cell">
+        <div class="callout-num" style="color:var(--green);">4×</div>
+        <div class="callout-desc">Portfolio expansion 2022–2025 — from 21 to 84 active initiatives</div>
+      </div>
+      <div class="callout-cell">
+        <div class="callout-num" style="color:var(--amber);">4</div>
+        <div class="callout-desc">Corridors in Realisation stage — first crossing ever recorded</div>
+      </div>
+      <div class="callout-cell">
+        <div class="callout-num" style="color:var(--teal);">305</div>
+        <div class="callout-desc">Stakeholders in 2025 vs 110+ in 2022 — a 170%+ engagement increase</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK TAKEAWAYS -->
+  <div class="sec" style="border-bottom:none;">
+    <div class="sec-tag">Quick Takeaways</div>
+    <div class="sec-title">What This Means for Marine Fuel Professionals</div>
+    <div class="takeaway-list">
+      <div class="takeaway-item">
+        <div class="t-icon">1</div>
+        <div>
+          <div class="t-head">The 4× growth in three years signals structural momentum, not hype</div>
+          <div class="t-body">From 21 to 84 active initiatives across shipping lanes worldwide. The corridor model has become the default framework for organising green fuel demand signals at scale.</div>
+        </div>
+      </div>
+      <div class="takeaway-item">
+        <div class="t-icon">2</div>
+        <div>
+          <div class="t-head">Market shifted from announcements to structured targets in 2023–2024</div>
+          <div class="t-body">15 corridors set operational targets in 2023; 17 existing initiatives completed key activities in 2024. The pipeline is maturing — MoU-only projects are increasingly the minority.</div>
+        </div>
+      </div>
+      <div class="takeaway-item">
+        <div class="t-icon">3</div>
+        <div>
+          <div class="t-head">2025's Realisation breakthrough is the most commercially significant signal</div>
+          <div class="t-body">Four corridors entered Realisation — meaning physical assets are being built. For fuel suppliers, this is where offtake agreements and supply chain positions need to be in place.</div>
+        </div>
+      </div>
+      <div class="takeaway-item">
+        <div class="t-icon">4</div>
+        <div>
+          <div class="t-head">The feasibility wall is the next frontier — not project count</div>
+          <div class="t-body">With 84 initiatives but only 4 in Realisation, the bottleneck is capital commitment and infrastructure readiness, not ambition. Corridor partners who can bridge this gap will define the market.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="data-note">
+      <div class="data-note-title">Data Source & Methodology Note</div>
+      <div class="data-note-body">All figures sourced from Global Maritime Forum / Getting to Zero Coalition Annual Progress Reports (2022–2025). Reports do not use perfectly identical wording each year — "announced," "recorded," and "active" are not strictly interchangeable across editions. The 2024 report snapshot was taken as of 30 October 2024. Totals should be read as report-date snapshots, not exact year-end counts.</div>
+    </div>
+  </div>
+
+  <div class="ornament">· · ·</div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>
+      <div class="footer-brand">CJ Energy Solution <span>/ Chase Ji, PhD, PMP</span></div>
+      <div class="footer-copy">© 2026 CJ Energy Solution. All Rights Reserved. · chaseji.com</div>
+    </div>
+    <div class="footer-links">
+      <a class="footer-link" href="https://chaseji.com">chaseji.com</a>
+      <a class="footer-link">GMF Source</a>
+      <a class="footer-link">Contact</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

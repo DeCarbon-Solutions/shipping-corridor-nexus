@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FuelEU Pooling Workflow — CJ Energy Solution</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --deep:    #060b14;
+    --navy:    #080f1c;
+    --navy2:   #0b1526;
+    --navy3:   #101d30;
+    --navy4:   #172641;
+    --blue:    #2489ff;
+    --blue2:   #1a6fdb;
+    --blue-lt: rgba(36,137,255,0.12);
+    --green:   #00c87a;
+    --green-lt:rgba(0,200,122,0.12);
+    --teal:    #00c5b0;
+    --teal-lt: rgba(0,197,176,0.12);
+    --amber:   #f0a500;
+    --amber-lt:rgba(240,165,0,0.12);
+    --purple:  #9b6dff;
+    --purple-lt:rgba(155,109,255,0.12);
+    --coral:   #e05a3a;
+    --coral-lt:rgba(224,90,58,0.12);
+    --white:   #ffffff;
+    --w80:     rgba(255,255,255,0.80);
+    --w60:     rgba(255,255,255,0.60);
+    --w40:     rgba(255,255,255,0.40);
+    --w20:     rgba(255,255,255,0.20);
+    --w08:     rgba(255,255,255,0.08);
+    --border:  rgba(255,255,255,0.09);
+  }
+
+  body {
+    background: #030710;
+    font-family: 'Barlow', sans-serif;
+    color: var(--white);
+    padding: 32px 16px;
+    line-height: 1.6;
+  }
+
+  .wrap {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--navy);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    background: #030710;
+    padding: 8px 28px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar span { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.06em; }
+  .topbar .left { color:var(--w40); }
+  .topbar .right { color:var(--blue); text-transform:uppercase; }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    position:relative; overflow:hidden;
+    padding:36px 28px 30px;
+    border-bottom:2px solid var(--blue);
+    background:linear-gradient(140deg, #060b14 0%, #0c1d3a 55%, #08111e 100%);
+  }
+  .masthead-gear {
+    position:absolute; right:-20px; top:-20px;
+    width:220px; height:220px; opacity:0.05;
+  }
+  .masthead-inner {
+    position:relative; z-index:2;
+    display:flex; justify-content:space-between;
+    align-items:flex-start; gap:20px;
+  }
+  .masthead-label {
+    font-family:'DM Mono',monospace; font-size:10px;
+    letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--blue); margin-bottom:10px;
+  }
+  .masthead-title {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:42px; font-weight:800; line-height:0.95;
+    letter-spacing:-0.01em; text-transform:uppercase;
+  }
+  .masthead-title .hl  { color:var(--blue); }
+  .masthead-title .hl2 { color:var(--green); }
+  .masthead-sub {
+    margin-top:12px; font-size:13px; font-weight:300;
+    color:var(--w40); max-width:360px; line-height:1.55;
+  }
+  .masthead-right { text-align:right; flex-shrink:0; }
+  .masthead-logo {
+    font-family:'Barlow Condensed',sans-serif; font-size:13px;
+    font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--blue); margin-bottom:12px;
+  }
+  .masthead-logo span { color:var(--w40); font-weight:400; }
+  .masthead-date {
+    font-family:'DM Mono',monospace; font-size:10px;
+    color:var(--w40); letter-spacing:0.08em; line-height:1.9;
+  }
+
+  /* ── KPI STRIP ── */
+  .kpi-strip {
+    display:grid; grid-template-columns:repeat(4,1fr);
+    background:var(--navy2); border-bottom:1px solid var(--border);
+  }
+  .kpi { padding:15px 16px; border-right:1px solid var(--border); }
+  .kpi:last-child { border-right:none; }
+  .kpi-label {
+    font-family:'DM Mono',monospace; font-size:9px;
+    letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--w40); margin-bottom:5px;
+  }
+  .kpi-val {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:22px; font-weight:700; line-height:1.1; color:var(--white);
+  }
+  .kpi-val.blue   { color:var(--blue);   }
+  .kpi-val.green  { color:var(--green);  }
+  .kpi-val.amber  { color:var(--amber);  }
+  .kpi-val.purple { color:var(--purple); }
+  .kpi-sub { margin-top:4px; font-size:10px; font-weight:300; color:var(--w40); line-height:1.3; }
+
+  /* ── SECTION UTILITIES ── */
+  .sec { padding:22px 28px; border-bottom:1px solid var(--border); }
+  .sec-tag {
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'DM Mono',monospace; font-size:9.5px;
+    letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--blue); margin-bottom:8px;
+  }
+  .sec-tag::before { content:''; width:16px; height:1.5px; background:var(--blue); display:block; }
+  .sec-tag.green  { color:var(--green);  } .sec-tag.green::before  { background:var(--green);  }
+  .sec-tag.amber  { color:var(--amber);  } .sec-tag.amber::before  { background:var(--amber);  }
+  .sec-tag.purple { color:var(--purple); } .sec-tag.purple::before { background:var(--purple); }
+  .sec-tag.teal   { color:var(--teal);   } .sec-tag.teal::before   { background:var(--teal);   }
+  .sec-title {
+    font-family:'Barlow Condensed',sans-serif; font-size:22px;
+    font-weight:700; text-transform:uppercase; letter-spacing:0.02em;
+    color:var(--white); margin-bottom:6px;
+  }
+  .sec-body { font-size:13px; font-weight:300; color:var(--w80); line-height:1.65; }
+
+  /* ── EXEC BOX ── */
+  .exec-box {
+    margin-top:16px; padding:18px 20px;
+    background:var(--blue-lt);
+    border:1px solid rgba(36,137,255,0.2); border-left:3px solid var(--blue);
+  }
+  .exec-box p { font-size:13px; font-weight:300; color:var(--w80); line-height:1.7; }
+  .exec-box p+p { margin-top:10px; }
+  .exec-box strong { font-weight:600; color:var(--white); }
+
+  /* ── FORMULA BOX ── */
+  .formula-box {
+    margin-top:14px; padding:16px 20px;
+    background:var(--navy3); border:1px solid var(--border);
+    display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  }
+  .formula-label {
+    font-family:'DM Mono',monospace; font-size:9px;
+    letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--blue); flex-shrink:0;
+  }
+  .formula-eq {
+    font-family:'DM Mono',monospace; font-size:13px;
+    color:var(--white); background:var(--navy4);
+    padding:8px 14px; flex:1; text-align:center;
+    border:1px solid var(--border); letter-spacing:0.02em;
+  }
+  .formula-legend {
+    font-size:11px; font-weight:300; color:var(--w40);
+    line-height:1.6; width:100%; padding-top:8px;
+    border-top:1px solid var(--border); margin-top:4px;
+  }
+
+  /* ══════════════════════════════════════════
+     ANNUAL TIMELINE — horizontal scrolling phases
+  ══════════════════════════════════════════ */
+  .timeline-wrap {
+    margin-top:18px; overflow:hidden;
+  }
+  .timeline-months {
+    display:flex; gap:0; border:1px solid var(--border);
+    background:var(--navy3); overflow:hidden;
+  }
+  .month-col {
+    flex:1; border-right:1px solid var(--border); min-width:0;
+  }
+  .month-col:last-child { border-right:none; }
+  .month-header {
+    padding:5px 4px; text-align:center;
+    font-family:'DM Mono',monospace; font-size:8px;
+    letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--w40); border-bottom:1px solid var(--border);
+    background:var(--navy4);
+  }
+  .month-body { padding:4px 3px; min-height:48px; }
+  .month-event {
+    font-size:8px; font-weight:500; line-height:1.3;
+    padding:3px 4px; border-radius:2px; margin-bottom:3px;
+  }
+  /* Phase colour bands */
+  .phase-band {
+    display:flex; margin-top:8px;
+  }
+  .phase-seg {
+    padding:5px 0; text-align:center;
+    font-family:'DM Mono',monospace; font-size:8px;
+    letter-spacing:0.05em; text-transform:uppercase;
+    font-weight:500;
+  }
+
+  /* ══════════════════════════════════════════
+     PHASE CARDS — the 8 workflow phases
+  ══════════════════════════════════════════ */
+  .phase-cards { display:flex; flex-direction:column; gap:10px; margin-top:16px; }
+  .phase-card {
+    background:var(--navy3); border:1px solid var(--border);
+    overflow:hidden; position:relative;
+  }
+  .phase-card-header {
+    display:flex; align-items:center; gap:0;
+  }
+  .phase-num {
+    font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:800;
+    padding:14px 16px; line-height:1; flex-shrink:0; min-width:64px;
+    text-align:center;
+  }
+  .phase-title-block { padding:14px 16px 14px 0; flex:1; }
+  .phase-label {
+    font-family:'DM Mono',monospace; font-size:9px;
+    letter-spacing:0.1em; text-transform:uppercase; margin-bottom:3px;
+  }
+  .phase-name {
+    font-family:'Barlow Condensed',sans-serif; font-size:17px;
+    font-weight:700; text-transform:uppercase; letter-spacing:0.03em;
+    color:var(--white);
+  }
+  .phase-timing {
+    font-family:'DM Mono',monospace; font-size:9px;
+    color:var(--w40); letter-spacing:0.05em; margin-top:2px;
+  }
+  .phase-body { padding:0 16px 14px; }
+  .phase-steps { display:flex; flex-direction:column; gap:5px; }
+  .phase-step {
+    display:flex; gap:8px; font-size:12px;
+    font-weight:300; color:var(--w80); line-height:1.45;
+    align-items:flex-start;
+  }
+  .step-dot {
+    width:16px; height:16px; border-radius:50%;
+    flex-shrink:0; display:flex; align-items:center;
+    justify-content:center; font-size:8px; font-weight:700;
+    margin-top:1px;
+  }
+  .phase-tags { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .ptag {
+    font-family:'DM Mono',monospace; font-size:8.5px;
+    padding:2px 8px; letter-spacing:0.05em; border-radius:1px;
+  }
+
+  /* Phase colour themes */
+  .p0 { --pc:#9b6dff; --pc-lt:rgba(155,109,255,0.1); }
+  .p1 { --pc:#2489ff; --pc-lt:rgba(36,137,255,0.1); }
+  .p2 { --pc:#00c5b0; --pc-lt:rgba(0,197,176,0.1); }
+  .p3 { --pc:#00c87a; --pc-lt:rgba(0,200,122,0.1); }
+  .p4 { --pc:#f0a500; --pc-lt:rgba(240,165,0,0.1); }
+  .p5 { --pc:#e05a3a; --pc-lt:rgba(224,90,58,0.1); }
+  .p6 { --pc:#2489ff; --pc-lt:rgba(36,137,255,0.1); }
+  .p7 { --pc:#00c87a; --pc-lt:rgba(0,200,122,0.1); }
+
+  .phase-card { border-left:3px solid var(--pc,var(--border)); }
+  .phase-num  { color:var(--pc,var(--white)); background:var(--pc-lt,var(--navy4)); }
+  .phase-label{ color:var(--pc,var(--blue)); }
+  .step-dot   { background:var(--pc-lt,var(--navy4)); color:var(--pc,var(--w60)); }
+  .ptag       { background:var(--pc-lt,var(--navy4)); color:var(--pc,var(--w60)); }
+
+  /* ── POOL MECHANICS INFOGRAPHIC ── */
+  .pool-infographic {
+    margin-top:18px;
+    background:var(--navy3); border:1px solid var(--border);
+    padding:20px;
+  }
+  .pool-title {
+    font-family:'DM Mono',monospace; font-size:9.5px;
+    letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--w40); margin-bottom:16px;
+  }
+  .pool-diagram {
+    display:grid; grid-template-columns:1fr 40px 1fr;
+    gap:10px; align-items:center;
+  }
+  .pool-side { display:flex; flex-direction:column; gap:6px; }
+  .pool-ship {
+    padding:10px 12px; border-radius:3px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .pool-ship-icon {
+    font-size:20px; line-height:1;
+  }
+  .pool-ship-info { flex:1; }
+  .pool-ship-name {
+    font-size:11px; font-weight:600; color:var(--white);
+    margin-bottom:2px;
+  }
+  .pool-ship-type {
+    font-family:'DM Mono',monospace; font-size:8.5px; letter-spacing:0.04em;
+  }
+  .pool-cb {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:18px; font-weight:800; line-height:1;
+  }
+  .pool-ship.surplus { background:var(--green-lt); border:1px solid rgba(0,200,122,0.2); }
+  .pool-ship.surplus .pool-ship-type { color:var(--green); }
+  .pool-ship.surplus .pool-cb { color:var(--green); }
+  .pool-ship.deficit { background:var(--coral-lt); border:1px solid rgba(224,90,58,0.2); }
+  .pool-ship.deficit .pool-ship-type { color:var(--coral); }
+  .pool-ship.deficit .pool-cb { color:var(--coral); }
+  .pool-arrow {
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+  }
+  .pool-arrow-line {
+    font-size:22px; color:var(--blue); line-height:1;
+  }
+  .pool-arrow-label {
+    font-family:'DM Mono',monospace; font-size:8px;
+    color:var(--blue); letter-spacing:0.05em; text-align:center;
+  }
+  .pool-result {
+    margin-top:12px; padding:12px 14px;
+    background:var(--navy4); border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+  }
+  .pool-result-label {
+    font-family:'DM Mono',monospace; font-size:9px;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--w40);
+  }
+  .pool-result-rule {
+    font-size:12px; font-weight:300; color:var(--w80);
+  }
+  .pool-result-val {
+    font-family:'Barlow Condensed',sans-serif; font-size:22px;
+    font-weight:700; color:var(--green);
+  }
+
+  /* ── DECISION TREE ── */
+  .decision-tree { margin-top:16px; }
+  .dt-node {
+    padding:10px 14px; background:var(--navy3);
+    border:1px solid var(--border); border-left:3px solid var(--blue);
+    margin-bottom:2px;
+    display:flex; align-items:center; gap:12px;
+  }
+  .dt-q {
+    font-size:12.5px; font-weight:600; color:var(--white); flex:1;
+  }
+  .dt-answers { display:flex; gap:6px; }
+  .dt-ans {
+    font-family:'DM Mono',monospace; font-size:9px;
+    padding:3px 8px; border-radius:1px; letter-spacing:0.04em;
+  }
+  .dt-ans.yes { background:var(--green-lt); color:var(--green); }
+  .dt-ans.no  { background:var(--coral-lt); color:var(--coral); }
+  .dt-ans.maybe { background:var(--amber-lt); color:var(--amber); }
+  .dt-indent { padding-left:24px; }
+  .dt-result {
+    padding:8px 14px; font-size:11.5px; font-weight:300;
+    color:var(--w60); border-left:2px solid var(--border);
+    margin-left:14px; margin-bottom:6px;
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist { margin-top:14px; display:flex; flex-direction:column; gap:4px; }
+  .check-item {
+    display:flex; gap:10px; padding:9px 14px;
+    background:var(--navy3); border:1px solid var(--border);
+    align-items:flex-start; font-size:12.5px;
+  }
+  .check-box {
+    width:16px; height:16px; border:1.5px solid var(--border);
+    border-radius:2px; flex-shrink:0; margin-top:1px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .check-box.done { background:var(--green); border-color:var(--green); }
+  .check-box.done::after { content:'✓'; color:white; font-size:10px; font-weight:700; }
+  .check-box.warn { border-color:var(--amber); }
+  .check-box.warn::after { content:'!'; color:var(--amber); font-size:10px; font-weight:700; }
+  .check-text { font-weight:300; color:var(--w80); line-height:1.4; }
+  .check-text strong { font-weight:600; color:var(--white); }
+
+  /* ── KEY DATES TIMELINE ── */
+  .key-dates { margin-top:16px; }
+  .kd-row {
+    display:flex; gap:0; align-items:stretch;
+    border-bottom:1px solid var(--border);
+  }
+  .kd-row:first-child { border-top:1px solid var(--border); }
+  .kd-date {
+    padding:11px 16px; background:var(--navy4);
+    font-family:'Barlow Condensed',sans-serif; font-size:15px;
+    font-weight:700; line-height:1.1; flex-shrink:0; width:100px;
+    display:flex; flex-direction:column; justify-content:center;
+    border-right:1px solid var(--border);
+  }
+  .kd-year {
+    font-family:'DM Mono',monospace; font-size:8px;
+    letter-spacing:0.06em; font-weight:400;
+  }
+  .kd-dot {
+    width:8px; height:8px; border-radius:50%;
+    flex-shrink:0; align-self:center; margin:0 12px;
+  }
+  .kd-event {
+    padding:11px 12px; flex:1; font-size:12.5px;
+    font-weight:300; color:var(--w80); line-height:1.45;
+    display:flex; align-items:center;
+  }
+  .kd-event strong { font-weight:600; color:var(--white); }
+  .kd-phase-tag {
+    align-self:center; padding:11px 10px;
+    font-family:'DM Mono',monospace; font-size:8.5px;
+    letter-spacing:0.05em; color:var(--w40); white-space:nowrap;
+    flex-shrink:0;
+  }
+
+  /* ── SURPLUS / DEFICIT STRATEGY GRID ── */
+  .strategy-grid {
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:10px; margin-top:16px;
+  }
+  .strategy-card {
+    padding:16px; border:1px solid var(--border);
+  }
+  .strategy-icon {
+    font-family:'Barlow Condensed',sans-serif;
+    font-size:28px; font-weight:800; line-height:1;
+    margin-bottom:8px;
+  }
+  .strategy-title {
+    font-size:13px; font-weight:600; color:var(--white);
+    margin-bottom:6px;
+  }
+  .strategy-items { display:flex; flex-direction:column; gap:4px; }
+  .s-item {
+    font-size:11.5px; font-weight:300; color:var(--w60);
+    padding:4px 0; border-bottom:1px solid var(--border);
+    line-height:1.4;
+  }
+  .s-item:last-child { border-bottom:none; }
+  .s-item::before { content:'→ '; color:var(--w20); }
+
+  /* ── ORNAMENT / FOOTER ── */
+  .ornament {
+    text-align:center; padding:12px 0;
+    font-family:'DM Mono',monospace; font-size:10px;
+    color:rgba(255,255,255,0.1); letter-spacing:0.25em;
+    border-bottom:1px solid var(--border);
+  }
+  .footer {
+    background:#030710; padding:20px 28px;
+    display:flex; justify-content:space-between; align-items:center; gap:16px;
+  }
+  .footer-brand {
+    font-family:'Barlow Condensed',sans-serif; font-size:14px;
+    font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--blue);
+  }
+  .footer-brand span { color:var(--w40); font-weight:400; }
+  .footer-copy { font-family:'DM Mono',monospace; font-size:9px; color:var(--w20); letter-spacing:0.04em; margin-top:3px; }
+  .footer-links { display:flex; gap:18px; flex-shrink:0; }
+  .footer-link {
+    font-family:'DM Mono',monospace; font-size:9.5px; letter-spacing:0.06em;
+    text-transform:uppercase; color:rgba(255,255,255,0.3); text-decoration:none; cursor:default;
+  }
+  .footer-link:hover { color:var(--blue); }
+
+  .accent-info {
+    margin-top:14px; padding:12px 16px;
+    border:1px solid var(--border); border-left:3px solid var(--amber);
+    background:var(--amber-lt); font-size:12.5px; font-weight:300;
+    color:var(--w80); line-height:1.6;
+  }
+  .accent-info strong { font-weight:600; color:var(--white); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <span class="left">View in browser &nbsp;·&nbsp; Forward to colleague</span>
+    <span class="right">CJ Energy Solution · FuelEU Pooling · March 2026</span>
+  </div>
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <svg class="masthead-gear" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="110" cy="110" r="80" fill="none" stroke="white" stroke-width="8"/>
+      <circle cx="110" cy="110" r="55" fill="none" stroke="white" stroke-width="5"/>
+      <circle cx="110" cy="110" r="25" fill="white"/>
+      <!-- Gear teeth -->
+      <rect x="103" y="20" width="14" height="24" rx="3" fill="white"/>
+      <rect x="103" y="176" width="14" height="24" rx="3" fill="white"/>
+      <rect x="20" y="103" width="24" height="14" rx="3" fill="white"/>
+      <rect x="176" y="103" width="24" height="14" rx="3" fill="white"/>
+      <rect x="47" y="47" width="14" height="24" rx="3" fill="white" transform="rotate(45 54 59)"/>
+      <rect x="149" y="47" width="14" height="24" rx="3" fill="white" transform="rotate(-45 156 59)"/>
+      <rect x="47" y="149" width="14" height="24" rx="3" fill="white" transform="rotate(-45 54 161)"/>
+      <rect x="149" y="149" width="14" height="24" rx="3" fill="white" transform="rotate(45 156 161)"/>
+    </svg>
+    <div class="masthead-inner">
+      <div>
+        <div class="masthead-label">Maritime Compliance Operations</div>
+        <div class="masthead-title">
+          <span class="hl">FuelEU</span><br>
+          Pooling<br>
+          <span class="hl2">Playbook</span>
+        </div>
+        <div class="masthead-sub">An end-to-end workflow guide for shipowners and fleet operators — from data setup through verification, pool registration, and Document of Compliance issuance.</div>
+      </div>
+      <div class="masthead-right">
+        <div class="masthead-logo">CJ Energy <span>/ Solution</span></div>
+        <div class="masthead-date">
+          MARCH 2026<br>
+          FUELEU MARITIME<br>
+          CHASEJI.COM
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI STRIP -->
+  <div class="kpi-strip">
+    <div class="kpi">
+      <div class="kpi-label">Workflow Phases</div>
+      <div class="kpi-val blue">8</div>
+      <div class="kpi-sub">Phase 0 through Phase 7</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Report Deadline</div>
+      <div class="kpi-val green">31 Jan</div>
+      <div class="kpi-sub">Ship FuelEU reports to verifier</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Pool Verified By</div>
+      <div class="kpi-val amber">30 Apr</div>
+      <div class="kpi-sub">Pool CB recorded in THETIS</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">DOC Issued By</div>
+      <div class="kpi-val purple">30 Jun</div>
+      <div class="kpi-sub">Document of Compliance</div>
+    </div>
+  </div>
+
+  <!-- EXEC SUMMARY -->
+  <div class="sec">
+    <div class="sec-tag">Overview</div>
+    <div class="sec-title">What Is FuelEU Pooling & Why It Matters</div>
+    <div class="exec-box">
+      <p>FuelEU Maritime sets a maximum annual GHG intensity for each ship's energy use. Ships that use cleaner fuels generate a <strong>compliance surplus (positive CB)</strong>; those that don't generate a <strong>compliance deficit (negative CB)</strong>. Pooling allows surplus from greener ships to offset deficits on legacy tonnage — either within the same company (internal pool) or across companies (external pool).</p>
+      <p>Done well, pooling is a <strong>cash and compliance optimisation tool</strong>. Done poorly — wrong timing, unverified data, or mis-matched commercial agreements — it results in penalties, rejected pools, and Document of Compliance failures for individual ships.</p>
+    </div>
+
+    <!-- CB Formula -->
+    <div class="formula-box">
+      <div class="formula-label">Core Formula</div>
+      <div class="formula-eq">CB = (I<sub>target</sub> − I<sub>actual</sub>) × E<sub>total</sub> / 10<sup>6</sup></div>
+      <div class="formula-legend">
+        <strong>CB</strong> = Compliance Balance (positive = surplus, negative = deficit) &nbsp;·&nbsp;
+        <strong>I<sub>target</sub></strong> = GHG intensity target for the year (gCO₂e/MJ) &nbsp;·&nbsp;
+        <strong>I<sub>actual</sub></strong> = Ship's actual annual average WtW GHG intensity &nbsp;·&nbsp;
+        <strong>E<sub>total</sub></strong> = Total energy used on board (MJ)
+      </div>
+    </div>
+  </div>
+
+  <!-- ANNUAL TIMELINE VISUAL -->
+  <div class="sec">
+    <div class="sec-tag teal">Annual Calendar</div>
+    <div class="sec-title">The FuelEU Pooling Year — Month by Month</div>
+    <div class="sec-body">The pooling workflow spans three calendar years: preparation in year −1, the reporting year (year 0), and verification + compliance in year +1.</div>
+
+    <div class="timeline-wrap">
+      <!-- Phase band -->
+      <div style="display:flex;margin-top:14px;border:1px solid var(--border);overflow:hidden;">
+        <div style="flex:2;padding:6px 8px;background:rgba(155,109,255,0.15);border-right:1px solid var(--border);">
+          <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--purple);margin-bottom:2px;">Phase 0–1 · Year −1</div>
+          <div style="font-size:10px;font-weight:300;color:var(--w60);">Setup, forecast &amp; strategy</div>
+        </div>
+        <div style="flex:3;padding:6px 8px;background:rgba(0,197,176,0.1);border-right:1px solid var(--border);">
+          <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);margin-bottom:2px;">Phase 2 · Year 0 (Reporting Year)</div>
+          <div style="font-size:10px;font-weight:300;color:var(--w60);">Monitor, adjust &amp; lock</div>
+        </div>
+        <div style="flex:3;padding:6px 8px;background:rgba(36,137,255,0.12);">
+          <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--blue);margin-bottom:2px;">Phase 3–6 · Year +1 (Compliance Year)</div>
+          <div style="font-size:10px;font-weight:300;color:var(--w60);">Verify, pool, issue DoC</div>
+        </div>
+      </div>
+
+      <!-- Timeline event rows -->
+      <div class="key-dates" style="margin-top:0;">
+        <div class="kd-row">
+          <div class="kd-date" style="color:var(--purple);"><span class="kd-year">Year −1</span>Q3–Q4</div>
+          <div class="kd-dot" style="background:var(--purple);"></div>
+          <div class="kd-event"><strong>Phase 0–1:</strong> Build calculation engine, connect MRV data, forecast each ship's CB, design preliminary pooling strategy, draft commercial &amp; charter clauses</div>
+          <div class="kd-phase-tag">Setup</div>
+        </div>
+        <div class="kd-row">
+          <div class="kd-date" style="color:var(--teal);"><span class="kd-year">Year 0</span>Jan 1</div>
+          <div class="kd-dot" style="background:var(--teal);"></div>
+          <div class="kd-event"><strong>Reporting year begins.</strong> Phase 2 active: monitor actual vs forecast CB; update projections as real fuel consumption flows in; adjust biofuel decisions mid-year</div>
+          <div class="kd-phase-tag">Monitor</div>
+        </div>
+        <div class="kd-row">
+          <div class="kd-date" style="color:var(--teal);"><span class="kd-year">Year 0</span>Q4</div>
+          <div class="kd-dot" style="background:var(--teal);"></div>
+          <div class="kd-event">Lock internal surplus priorities before year-end. Confirm minimum surplus needed to offset own deficits. Identify external surplus available to sell. Finalise commercial pool agreements</div>
+          <div class="kd-phase-tag">Lock</div>
+        </div>
+        <div class="kd-row">
+          <div class="kd-date" style="color:var(--blue);"><span class="kd-year">Year +1</span>31 Jan</div>
+          <div class="kd-dot" style="background:var(--blue);"></div>
+          <div class="kd-event"><strong>Phase 3 deadline:</strong> Submit ship-specific FuelEU reports (using MRV data and CB calculation engine) to accredited verifiers by 31 January</div>
+          <div class="kd-phase-tag" style="color:var(--blue);">⚡ Hard deadline</div>
+        </div>
+        <div class="kd-row">
+          <div class="kd-date" style="color:var(--blue);"><span class="kd-year">Year +1</span>31 Mar</div>
+          <div class="kd-dot" style="background:var(--blue);"></div>
+          <div class="kd-event"><strong>Phase 3 complete:</strong> Verifiers calculate and record each ship's verified CB in THETIS / FuelEU database. Re-run pooling optimisation using <strong>verified (not forecast)</strong> CBs</div>
+          <div class="kd-phase-tag" style="color:var(--blue);">⚡ Hard deadline</div>
+        </div>
+        <div class="kd-row">
+          <div class="kd-date" style="color:var(--amber);"><span class="kd-year">Year +1</span>Mar–Apr</div>
+          <div class="kd-dot" style="background:var(--amber);"></div>
+          <div class="kd-event"><strong>Phase 4:</strong> Design internal pool allocations; decide on external buy/sell; draft pool(s) in FuelEU database as "starter company"; obtain multi-party electronic approvals from all ISM companies</div>
+          <div class="kd-phase-tag" style="color:var(--amber);">Pool design</div>
+        </div>
+        <div class="kd-row">
+          <div class="kd-date" style="color:var(--coral);"><span class="kd-year">Year +1</span>30 Apr</div>
+          <div class="kd-dot" style="background:var(--coral);"></div>
+          <div class="kd-event"><strong>Phase 5 deadline:</strong> Verifier records definitive pool composition and final allocated CB per ship. Pool must show positive total CB. Any banking surplus requires separate verification</div>
+          <div class="kd-phase-tag" style="color:var(--coral);">⚡ Hard deadline</div>
+        </div>
+        <div class="kd-row">
+          <div class="kd-date" style="color:var(--purple);"><span class="kd-year">Year +1</span>30 Jun</div>
+          <div class="kd-dot" style="background:var(--purple);"></div>
+          <div class="kd-event"><strong>Phase 6 deadline:</strong> Documents of Compliance issued for vessels whose deficits are fully offset. Settle financial flows internally and externally per verified CB transfers</div>
+          <div class="kd-phase-tag" style="color:var(--purple);">⚡ Hard deadline</div>
+        </div>
+        <div class="kd-row" style="border-bottom:none;">
+          <div class="kd-date" style="color:var(--green);"><span class="kd-year">Ongoing</span>Year +1</div>
+          <div class="kd-dot" style="background:var(--green);"></div>
+          <div class="kd-event"><strong>Phase 7:</strong> Back-test forecast vs verified CBs; refine model assumptions; update charterparty wording; scale tooling toward automated forecast–invoice–pool systems</div>
+          <div class="kd-phase-tag" style="color:var(--green);">Improve</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POOL MECHANICS INFOGRAPHIC -->
+  <div class="sec">
+    <div class="sec-tag green">Pool Mechanics</div>
+    <div class="sec-title">How Surplus Offsets Deficit — The Pool Diagram</div>
+    <div class="sec-body">A pool groups ships so that the aggregate CB ≥ 0. Surplus ships transfer compliance balance to deficit ships. Three rules must hold: total pool CB ≥ 0, no ship's deficit worsens, no surplus ship ends with a deficit.</div>
+
+    <div class="pool-infographic">
+      <div class="pool-title">Illustrative internal pool · 4 ships · aggregate CB must be ≥ 0</div>
+      <div class="pool-diagram">
+        <!-- Surplus side -->
+        <div class="pool-side">
+          <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--green);margin-bottom:6px;text-align:center;">SURPLUS SHIPS</div>
+          <div class="pool-ship surplus">
+            <div class="pool-ship-icon">🚢</div>
+            <div class="pool-ship-info">
+              <div class="pool-ship-name">Vessel Alpha</div>
+              <div class="pool-ship-type">Biofuel-powered · Low intensity</div>
+            </div>
+            <div class="pool-cb">+420</div>
+          </div>
+          <div class="pool-ship surplus">
+            <div class="pool-ship-icon">⛴</div>
+            <div class="pool-ship-info">
+              <div class="pool-ship-name">Vessel Beta</div>
+              <div class="pool-ship-type">Efficient · E-methanol blend</div>
+            </div>
+            <div class="pool-cb">+185</div>
+          </div>
+          <div style="text-align:center;margin-top:8px;padding:8px;background:rgba(0,200,122,0.08);border:1px solid rgba(0,200,122,0.15);">
+            <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--green);letter-spacing:0.06em;">TOTAL SURPLUS</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:800;color:var(--green);">+605</div>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div class="pool-arrow">
+          <div class="pool-arrow-line">→</div>
+          <div class="pool-arrow-label">CB<br>transfer</div>
+          <div class="pool-arrow-line">→</div>
+        </div>
+
+        <!-- Deficit side -->
+        <div class="pool-side">
+          <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.08em;text-transform:uppercase;color:var(--coral);margin-bottom:6px;text-align:center;">DEFICIT SHIPS</div>
+          <div class="pool-ship deficit">
+            <div class="pool-ship-icon">🚢</div>
+            <div class="pool-ship-info">
+              <div class="pool-ship-name">Vessel Gamma</div>
+              <div class="pool-ship-type">VLSFO · Older tonnage</div>
+            </div>
+            <div class="pool-cb">−310</div>
+          </div>
+          <div class="pool-ship deficit">
+            <div class="pool-ship-icon">⛴</div>
+            <div class="pool-ship-info">
+              <div class="pool-ship-name">Vessel Delta</div>
+              <div class="pool-ship-type">HFO · Long-haul bulk</div>
+            </div>
+            <div class="pool-cb">−220</div>
+          </div>
+          <div style="text-align:center;margin-top:8px;padding:8px;background:rgba(224,90,58,0.08);border:1px solid rgba(224,90,58,0.15);">
+            <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--coral);letter-spacing:0.06em;">TOTAL DEFICIT</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:800;color:var(--coral);">−530</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pool result -->
+      <div class="pool-result">
+        <div>
+          <div class="pool-result-label">Pool Aggregate CB</div>
+          <div class="pool-result-rule">+605 surplus − 530 deficit = +75 net surplus ✓</div>
+        </div>
+        <div class="pool-result-val">+75 ✓</div>
+      </div>
+      <div style="margin-top:8px;padding:10px 14px;background:var(--navy4);border:1px solid var(--border);font-size:11.5px;font-weight:300;color:var(--w60);line-height:1.55;">
+        <strong style="color:var(--white);">Three regulatory conditions that must all hold:</strong><br>
+        1. Aggregate pool CB ≥ 0 &nbsp;·&nbsp; 2. No ship's deficit worsens post-pool &nbsp;·&nbsp; 3. No surplus ship ends with a deficit
+      </div>
+    </div>
+  </div>
+
+  <!-- 8 PHASE CARDS -->
+  <div class="sec">
+    <div class="sec-tag">Full Workflow</div>
+    <div class="sec-title">8-Phase End-to-End Workflow</div>
+    <div class="phase-cards">
+
+      <!-- Phase 0 -->
+      <div class="phase-card p0">
+        <div class="phase-card-header">
+          <div class="phase-num">0</div>
+          <div class="phase-title-block">
+            <div class="phase-label">Foundation</div>
+            <div class="phase-name">Set Up Data & Modelling Capability</div>
+            <div class="phase-timing">Year −1 · Ongoing prerequisite</div>
+          </div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-steps">
+            <div class="phase-step"><div class="step-dot">A</div>Implement Annex II LCV and default emission factors; handle RED/PoS-based actual factors for biofuels and RFNBOs</div>
+            <div class="phase-step"><div class="step-dot">B</div>Build the CB formula engine: CB = (I<sub>target</sub> − I<sub>actual</sub>) × E<sub>total</sub> / 10<sup>6</sup></div>
+            <div class="phase-step"><div class="step-dot">C</div>Connect to MRV / operational data: annual fuel consumption by type, voyage-level energy use, consistent with EU MRV</div>
+            <div class="phase-step"><div class="step-dot">D</div>Define internal data checks so the FuelEU dataset is "pool-ready" before it reaches the verifier</div>
+          </div>
+          <div class="phase-tags">
+            <span class="ptag">THETIS integration</span>
+            <span class="ptag">MRV data pipeline</span>
+            <span class="ptag">LCV / EF library</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 1 -->
+      <div class="phase-card p1">
+        <div class="phase-card-header">
+          <div class="phase-num">1</div>
+          <div class="phase-title-block">
+            <div class="phase-label">Pre-Reporting</div>
+            <div class="phase-name">Forecast, Scenario & Preliminary Strategy</div>
+            <div class="phase-timing">Year −1 → Year 0 · Before reporting year starts</div>
+          </div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-steps">
+            <div class="phase-step"><div class="step-dot">A</div>Forecast each vessel's annual GHG intensity and indicative CB using planned deployment, fuels, and trades</div>
+            <div class="phase-step"><div class="step-dot">B</div>Tag ships as <strong style="color:var(--green);">surplus generators</strong> (bio/e-fuel, efficient) or <strong style="color:var(--coral);">deficit receivers</strong> (older fossil tonnage)</div>
+            <div class="phase-step"><div class="step-dot">C</div>Model internal pool scenarios: check aggregate CB ≥ 0 and vessel-level rules; estimate external surplus to buy/sell and price thresholds</div>
+            <div class="phase-step"><div class="step-dot">D</div>Choose preliminary pooling strategy: no pool / internal only / internal + external. Start commercial discussions and draft pooling/charter clauses</div>
+          </div>
+          <div class="phase-tags">
+            <span class="ptag">CB forecasting</span>
+            <span class="ptag">Fleet scenario modelling</span>
+            <span class="ptag">Charter clause drafting</span>
+            <span class="ptag">External pool pricing</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="phase-card p2">
+        <div class="phase-card-header">
+          <div class="phase-num">2</div>
+          <div class="phase-title-block">
+            <div class="phase-label">Reporting Year</div>
+            <div class="phase-name">Monitor, Adjust & Lock Before Year-End</div>
+            <div class="phase-timing">Year 0 · Jan 1 – Dec 31</div>
+          </div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-steps">
+            <div class="phase-step"><div class="step-dot">A</div>Update projected CBs as real consumption and fuel mixes come in; flag ships drifting from forecast (e.g., lower biofuel availability)</div>
+            <div class="phase-step"><div class="step-dot">B</div>Adjust commercial decisions mid-year — e.g., increase biofuel blend on a surplus ship to protect target pool shape</div>
+            <div class="phase-step"><div class="step-dot">C</div>Before year-end: confirm minimum surplus needed to offset own deficits; identify surplus available to market externally</div>
+          </div>
+          <div class="phase-tags">
+            <span class="ptag">Live CB tracking</span>
+            <span class="ptag">Fuel blend optimisation</span>
+            <span class="ptag">Pre-year-end lock</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="phase-card p3">
+        <div class="phase-card-header">
+          <div class="phase-num">3</div>
+          <div class="phase-title-block">
+            <div class="phase-label">Verification — Ship CBs</div>
+            <div class="phase-name">Submit Reports & Obtain Verified CBs</div>
+            <div class="phase-timing">Year +1 · Jan 1 – Mar 31 &nbsp;⚡ Two hard deadlines</div>
+          </div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-steps">
+            <div class="phase-step"><div class="step-dot">A</div><strong style="color:var(--white);">31 January:</strong> Submit FuelEU report per ship (MRV data + CB engine) to accredited verifiers</div>
+            <div class="phase-step"><div class="step-dot">B</div><strong style="color:var(--white);">31 March:</strong> Verifiers calculate and record each ship's verified CB in THETIS / FuelEU database</div>
+            <div class="phase-step"><div class="step-dot">C</div>Re-run pooling optimisation using <strong style="color:var(--green);">verified (not forecast)</strong> CBs; identify exact pool composition and allocations</div>
+          </div>
+          <div class="phase-tags">
+            <span class="ptag">Accredited verifier</span>
+            <span class="ptag">THETIS database</span>
+            <span class="ptag">31 Jan deadline</span>
+            <span class="ptag">31 Mar deadline</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 4 -->
+      <div class="phase-card p4">
+        <div class="phase-card-header">
+          <div class="phase-num">4</div>
+          <div class="phase-title-block">
+            <div class="phase-label">Pool Design & Registration</div>
+            <div class="phase-name">Design Allocations & Register in Database</div>
+            <div class="phase-timing">Year +1 · March – April</div>
+          </div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-steps">
+            <div class="phase-step"><div class="step-dot">A</div>Mathematically optimise CB allocations: sum of pool CBs ≥ 0; no ship's deficit increases; no surplus ship ends with a deficit</div>
+            <div class="phase-step"><div class="step-dot">B</div>Decide on external buy/sell: if internal surplus &lt; deficits → buy external surplus; if surplus > needs → sell into external pools</div>
+            <div class="phase-step"><div class="step-dot">C</div>As "starter company", draft pool(s) in the FuelEU database: list vessels, responsible ISM companies, and exact post-pool CB per ship</div>
+            <div class="phase-step"><div class="step-dot">D</div>Obtain multi-party electronic approvals from each ISM company. Verify no ship appears in more than one pool and no borrowing conflicts</div>
+          </div>
+          <div class="phase-tags">
+            <span class="ptag">Starter company role</span>
+            <span class="ptag">ISM multi-party approval</span>
+            <span class="ptag">External pool marketplace</span>
+            <span class="ptag">CB optimisation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 5 -->
+      <div class="phase-card p5">
+        <div class="phase-card-header">
+          <div class="phase-num">5</div>
+          <div class="phase-title-block">
+            <div class="phase-label">Pool Verification & Banking</div>
+            <div class="phase-name">Submit Pool & Record Final CBs</div>
+            <div class="phase-timing">Year +1 · By 30 April &nbsp;⚡ Hard deadline</div>
+          </div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-steps">
+            <div class="phase-step"><div class="step-dot">A</div>Starter company submits pool to chosen verifier (must be the starter's own MRV/FuelEU verifier)</div>
+            <div class="phase-step"><div class="step-dot">B</div>Verifier checks: positive total CB, no worsened deficits, no surplus-to-deficit, consistency with verified ship CBs</div>
+            <div class="phase-step"><div class="step-dot">C</div><strong style="color:var(--white);">By 30 April:</strong> Verifier records definitive pool composition and final allocated CB per ship in FuelEU database</div>
+            <div class="phase-step"><div class="step-dot">D</div>If any ship exits with surplus, arrange separate banking verification step for that surplus CB</div>
+          </div>
+          <div class="phase-tags">
+            <span class="ptag">Pool verifier submission</span>
+            <span class="ptag">30 Apr deadline</span>
+            <span class="ptag">Banking verification</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 6 -->
+      <div class="phase-card p6">
+        <div class="phase-card-header">
+          <div class="phase-num">6</div>
+          <div class="phase-title-block">
+            <div class="phase-label">DoC & Settlement</div>
+            <div class="phase-name">Receive Documents of Compliance & Settle</div>
+            <div class="phase-timing">Year +1 · By 30 June &nbsp;⚡ Hard deadline</div>
+          </div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-steps">
+            <div class="phase-step"><div class="step-dot">A</div><strong style="color:var(--white);">By 30 June:</strong> Under-compliant vessels whose deficits are fully offset via pooling receive FuelEU Documents of Compliance</div>
+            <div class="phase-step"><div class="step-dot">B</div>Verify that each vessel's post-pool CB and documents align with internal records and commercial settlements</div>
+            <div class="phase-step"><div class="step-dot">C</div><strong style="color:var(--white);">Internal settlement:</strong> Allocate FuelEU cost/savings between business units, vessels, or charterers per transfer pricing rules</div>
+            <div class="phase-step"><div class="step-dot">D</div><strong style="color:var(--white);">External settlement:</strong> Settle payments for surplus bought/sold (per tonne CO₂e or bundled with biofuel supply)</div>
+          </div>
+          <div class="phase-tags">
+            <span class="ptag">Document of Compliance</span>
+            <span class="ptag">30 Jun deadline</span>
+            <span class="ptag">Internal transfer pricing</span>
+            <span class="ptag">External CB payments</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 7 -->
+      <div class="phase-card p7">
+        <div class="phase-card-header">
+          <div class="phase-num">7</div>
+          <div class="phase-title-block">
+            <div class="phase-label">Continuous Improvement</div>
+            <div class="phase-name">Back-Test, Refine & Scale</div>
+            <div class="phase-timing">Year +1 onward · Next cycle preparation</div>
+          </div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-steps">
+            <div class="phase-step"><div class="step-dot">A</div>Compare forecast vs verified CBs and pooling outcomes; improve assumptions on fuel availability, emission factors, and operational profiles</div>
+            <div class="phase-step"><div class="step-dot">B</div>Update charterparty wording and pooling agreements: embed rights to nominate, allocate, and monetise surplus</div>
+            <div class="phase-step"><div class="step-dot">C</div>Scale tooling: implement or connect to platforms that can "forecast–invoice–pool" in one system, automating CB forecasts, pooling simulations, and database reporting</div>
+          </div>
+          <div class="phase-tags">
+            <span class="ptag">Forecast back-testing</span>
+            <span class="ptag">Charter clause update</span>
+            <span class="ptag">Automation roadmap</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SURPLUS vs DEFICIT STRATEGY -->
+  <div class="sec">
+    <div class="sec-tag amber">Commercial Strategy</div>
+    <div class="sec-title">Surplus vs Deficit — What to Do with Each</div>
+    <div class="strategy-grid">
+      <div class="strategy-card" style="background:rgba(0,200,122,0.06);border-color:rgba(0,200,122,0.2);">
+        <div class="strategy-icon" style="color:var(--green);">+CB</div>
+        <div class="strategy-title" style="color:var(--green);">If you have SURPLUS</div>
+        <div class="strategy-items">
+          <div class="s-item">Use to offset own fleet's deficit ships first</div>
+          <div class="s-item">Bank surplus for future years (requires separate verification)</div>
+          <div class="s-item">Sell into external pools via a pool organiser / marketplace</div>
+          <div class="s-item">Bundle with biofuel supply as a value-added compliance package</div>
+          <div class="s-item">Price against penalty rate to find external sale threshold</div>
+        </div>
+      </div>
+      <div class="strategy-card" style="background:rgba(224,90,58,0.06);border-color:rgba(224,90,58,0.2);">
+        <div class="strategy-icon" style="color:var(--coral);">−CB</div>
+        <div class="strategy-title" style="color:var(--coral);">If you have DEFICIT</div>
+        <div class="strategy-items">
+          <div class="s-item">First: pool with own surplus ships internally</div>
+          <div class="s-item">Second: buy external surplus from pool marketplace</div>
+          <div class="s-item">Third: switch to lower-intensity fuel to reduce deficit</div>
+          <div class="s-item">Last resort: accept penalty — compare penalty vs purchase cost</div>
+          <div class="s-item">Always: ensure deficit does not worsen post-pool</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decision tree -->
+    <div style="margin-top:16px;">
+      <div style="font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);margin-bottom:10px;">External Pool Decision Logic</div>
+      <div class="decision-tree">
+        <div class="dt-node">
+          <div class="dt-q">Is internal surplus sufficient to offset all own deficits?</div>
+          <div class="dt-answers">
+            <span class="dt-ans yes">Yes</span>
+            <span class="dt-ans no">No</span>
+          </div>
+        </div>
+        <div class="dt-result">YES → No external purchase needed. Evaluate whether to sell residual surplus or bank it.</div>
+        <div class="dt-result">NO → Calculate shortfall. Compare: cost of buying external CB surplus vs cost of fuel switch vs penalty rate. Choose lowest total cost.</div>
+        <div class="dt-node">
+          <div class="dt-q">Is residual surplus worth more than cost of banking?</div>
+          <div class="dt-answers">
+            <span class="dt-ans yes">Sell</span>
+            <span class="dt-ans maybe">Bank</span>
+          </div>
+        </div>
+        <div class="dt-result">SELL → Enter external pool as supplier. Price at a spread above your fuel switching cost floor.</div>
+        <div class="dt-result">BANK → Retain for next year. Requires a separate banking verification step before 30 April.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRE-VERIFICATION CHECKLIST -->
+  <div class="sec" style="border-bottom:none;">
+    <div class="sec-tag purple">Readiness Checklist</div>
+    <div class="sec-title">Pool-Ready Checklist — Before You Go to the Verifier</div>
+    <div class="checklist">
+      <div class="check-item"><div class="check-box done"></div><div class="check-text"><strong>CB formula implemented</strong> with correct Annex II LCV and emission factors for all fuel types bunkered</div></div>
+      <div class="check-item"><div class="check-box done"></div><div class="check-text"><strong>MRV data reconciled</strong> — FuelEU energy dataset matches EU MRV submission; no unexplained gaps</div></div>
+      <div class="check-item"><div class="check-box done"></div><div class="check-text"><strong>RED/PoS documentation</strong> in place for any biofuel or RFNBO claiming actual (not default) emission factors</div></div>
+      <div class="check-item"><div class="check-box done"></div><div class="check-text"><strong>Ship-level CB calculated</strong> and cross-checked for each vessel in the candidate pool</div></div>
+      <div class="check-item"><div class="check-box done"></div><div class="check-text"><strong>Pool aggregate CB ≥ 0</strong> confirmed mathematically before draft submitted</div></div>
+      <div class="check-item"><div class="check-box done"></div><div class="check-text"><strong>No ship appears in more than one pool</strong> for the same CB; no borrowing conflicts</div></div>
+      <div class="check-item"><div class="check-box warn"></div><div class="check-text"><strong>Multi-party ISM approvals</strong> obtained or in progress — all ISM companies have reviewed and confirmed their ship allocations</div></div>
+      <div class="check-item"><div class="check-box warn"></div><div class="check-text"><strong>Commercial settlements drafted</strong> — internal transfer pricing and external CB payment terms agreed before final pool submission</div></div>
+      <div class="check-item"><div class="check-box"></div><div class="check-text"><strong>Banking verification arranged</strong> if any ship exits the pool with residual surplus CB to be carried forward</div></div>
+    </div>
+
+    <div class="accent-info" style="margin-top:16px;">
+      <strong>Key distinction:</strong> Phase 3 gives you <em>verified ship-level CBs</em>. Phase 5 gives you the <em>verified pool</em>. Do not attempt to finalise pool allocations (Phase 4) before Phase 3 verified CBs are in THETIS — forecast CBs and verified CBs can differ materially, and a pool built on forecast numbers may fail regulatory conditions after verification.
+    </div>
+  </div>
+
+  <div class="ornament">· · ·</div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>
+      <div class="footer-brand">CJ Energy Solution <span>/ Chase Ji, PhD, PMP</span></div>
+      <div class="footer-copy">© 2026 CJ Energy Solution. All Rights Reserved. · chaseji.com</div>
+    </div>
+    <div class="footer-links">
+      <a class="footer-link" href="https://chaseji.com">chaseji.com</a>
+      <a class="footer-link">FuelEU Reg.</a>
+      <a class="footer-link">Contact</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

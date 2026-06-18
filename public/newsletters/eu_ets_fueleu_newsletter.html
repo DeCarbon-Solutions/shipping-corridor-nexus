@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EU ETS & FuelEU Maritime — CJ Energy Solution</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:     #07141f;
+    --navy2:    #0b1e2d;
+    --navy3:    #102538;
+    --navy4:    #173046;
+    --blue:     #1a6fdb;
+    --blue-lt:  rgba(26,111,219,0.12);
+    --blue2:    #2489ff;
+    --green:    #00b87a;
+    --green-lt: rgba(0,184,122,0.12);
+    --amber:    #f0a500;
+    --amber-lt: rgba(240,165,0,0.12);
+    --coral:    #e05a3a;
+    --coral-lt: rgba(224,90,58,0.12);
+    --purple:   #7c5cfc;
+    --purple-lt:rgba(124,92,252,0.12);
+    --white:    #ffffff;
+    --w80:      rgba(255,255,255,0.80);
+    --w50:      rgba(255,255,255,0.50);
+    --w20:      rgba(255,255,255,0.20);
+    --w08:      rgba(255,255,255,0.08);
+    --border:   rgba(255,255,255,0.09);
+  }
+
+  body {
+    background: #040e16;
+    font-family: 'Barlow', sans-serif;
+    color: var(--white);
+    padding: 32px 16px;
+    line-height: 1.6;
+  }
+
+  .wrap {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--navy);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    background: #040e16;
+    padding: 8px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
+  .topbar .left { color: var(--w50); }
+  .topbar .right { color: var(--blue2); text-transform: uppercase; }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(140deg, #07141f 0%, #0d2540 55%, #071624 100%);
+    border-bottom: 2px solid var(--blue);
+    padding: 36px 28px 30px;
+  }
+  .masthead-bg {
+    position: absolute;
+    top: 0; right: -60px;
+    width: 380px; height: 100%;
+    opacity: 0.04;
+  }
+  .masthead-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .masthead-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue2);
+    margin-bottom: 10px;
+  }
+  .masthead-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .masthead-title .hl { color: var(--blue2); }
+  .masthead-title .hl2 { color: var(--green); }
+  .masthead-sub {
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--w50);
+    max-width: 360px;
+    line-height: 1.55;
+  }
+  .masthead-right {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .masthead-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--w50);
+    letter-spacing: 0.08em;
+    line-height: 1.9;
+    text-align: right;
+  }
+  .masthead-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--blue2);
+    margin-bottom: 12px;
+  }
+  .masthead-logo span { color: var(--w50); font-weight: 400; }
+
+  /* ── KPI STRIP ── */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--navy2);
+    border-bottom: 1px solid var(--border);
+  }
+  .kpi {
+    padding: 15px 16px;
+    border-right: 1px solid var(--border);
+  }
+  .kpi:last-child { border-right: none; }
+  .kpi-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--w50);
+    margin-bottom: 5px;
+  }
+  .kpi-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--white);
+  }
+  .kpi-val.blue { color: var(--blue2); }
+  .kpi-val.green { color: var(--green); }
+  .kpi-val.amber { color: var(--amber); }
+  .kpi-sub {
+    margin-top: 4px;
+    font-size: 10.5px;
+    font-weight: 300;
+    color: var(--w50);
+    line-height: 1.3;
+  }
+
+  /* ── SECTION UTILITY ── */
+  .sec { padding: 24px 28px; border-bottom: 1px solid var(--border); }
+  .sec-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue2);
+    margin-bottom: 8px;
+  }
+  .sec-tag::before {
+    content: '';
+    width: 16px; height: 1.5px;
+    background: var(--blue2);
+    display: block;
+  }
+  .sec-tag.green { color: var(--green); }
+  .sec-tag.green::before { background: var(--green); }
+  .sec-tag.amber { color: var(--amber); }
+  .sec-tag.amber::before { background: var(--amber); }
+  .sec-tag.purple { color: var(--purple); }
+  .sec-tag.purple::before { background: var(--purple); }
+  .sec-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .sec-body {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--w80);
+    line-height: 1.65;
+  }
+
+  /* ── EXEC SUMMARY ── */
+  .exec-box {
+    margin-top: 16px;
+    padding: 18px 20px;
+    background: var(--blue-lt);
+    border-left: 3px solid var(--blue);
+    border: 1px solid rgba(26,111,219,0.25);
+    border-left: 3px solid var(--blue);
+  }
+  .exec-box p { font-size: 13px; font-weight: 300; color: var(--w80); line-height: 1.7; }
+  .exec-box p + p { margin-top: 10px; }
+  .exec-box strong { font-weight: 600; color: var(--white); }
+
+  /* ── TWO-FRAMEWORK COMPARISON INFOGRAPHIC ── */
+  .framework-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    margin-top: 18px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .fw-card {
+    background: var(--navy3);
+    padding: 20px 18px;
+  }
+  .fw-icon {
+    width: 38px; height: 38px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+  }
+  .fw-icon.blue { background: var(--blue); color: var(--white); }
+  .fw-icon.green { background: var(--green); color: var(--white); }
+  .fw-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 4px;
+  }
+  .fw-name.blue { color: var(--blue2); }
+  .fw-name.green { color: var(--green); }
+  .fw-tagline {
+    font-size: 11.5px;
+    font-weight: 300;
+    color: var(--w50);
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+  .fw-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 7px;
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--w80);
+    line-height: 1.4;
+  }
+  .fw-row::before {
+    content: '→';
+    color: var(--w20);
+    flex-shrink: 0;
+    font-size: 11px;
+    margin-top: 1px;
+  }
+  .fw-row strong { font-weight: 600; color: var(--white); }
+
+  /* ── PHASE-IN INFOGRAPHIC ── */
+  .phase-in {
+    margin-top: 18px;
+  }
+  .phase-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--w50);
+    margin-bottom: 12px;
+  }
+  .phase-bar-wrap {
+    display: flex;
+    gap: 3px;
+    align-items: stretch;
+    height: 48px;
+    margin-bottom: 8px;
+  }
+  .phase-seg {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    border-radius: 2px;
+    position: relative;
+  }
+  .phase-seg.p40 { background: rgba(26,111,219,0.35); color: var(--blue2); }
+  .phase-seg.p70 { background: rgba(26,111,219,0.6); color: #a8cfff; }
+  .phase-seg.p100 { background: var(--blue); color: var(--white); }
+  .phase-labels {
+    display: flex;
+    gap: 3px;
+  }
+  .phase-lbl {
+    flex: 1;
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--w50);
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+  }
+
+  /* ── FUELEU PATHWAY INFOGRAPHIC ── */
+  .pathway-chart {
+    margin-top: 18px;
+    padding: 18px 18px 14px;
+    background: var(--navy3);
+    border: 1px solid var(--border);
+  }
+  .pathway-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--w50);
+    margin-bottom: 14px;
+  }
+  .pathway-rows { display: flex; flex-direction: column; gap: 9px; }
+  .pathway-row { display: flex; align-items: center; gap: 10px; }
+  .pathway-year {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    min-width: 36px;
+  }
+  .pathway-track {
+    flex: 1;
+    height: 20px;
+    background: var(--navy4);
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+  .pathway-fill {
+    height: 100%;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: width 0.3s;
+  }
+  .pathway-intensity {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--w50);
+    min-width: 100px;
+    text-align: right;
+  }
+
+  /* ── COMPARISON TABLE ── */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    margin-top: 16px;
+    border: 1px solid var(--border);
+  }
+  .compare-table th {
+    background: var(--navy4);
+    padding: 10px 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--w50);
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare-table th.blue { color: var(--blue2); }
+  .compare-table th.green { color: var(--green); }
+  .compare-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    font-weight: 300;
+    color: var(--w80);
+    line-height: 1.5;
+  }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table td:first-child {
+    font-weight: 600;
+    color: var(--white);
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .compare-table td.blue-cell { color: #7ab8ff; }
+  .compare-table td.green-cell { color: #5de0b0; }
+
+  /* ── FUEL TYPE CARDS ── */
+  .fuel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .fuel-card {
+    background: var(--navy3);
+    border: 1px solid var(--border);
+    padding: 16px;
+  }
+  .fuel-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+    color: var(--white);
+  }
+  .fuel-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    padding: 2px 7px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    border-radius: 1px;
+  }
+  .badge-caution { background: var(--amber-lt); color: var(--amber); }
+  .badge-watch   { background: var(--blue-lt); color: var(--blue2); }
+  .badge-strong  { background: var(--green-lt); color: var(--green); }
+  .badge-future  { background: var(--purple-lt); color: var(--purple); }
+  .fuel-body {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--w50);
+    line-height: 1.55;
+  }
+
+  /* ── WATCHPOINTS ── */
+  .watch-list { margin-top: 14px; }
+  .watch-item {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .watch-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .watch-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--w20);
+    min-width: 28px;
+    line-height: 1;
+    padding-top: 2px;
+  }
+  .watch-head {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 3px;
+    line-height: 1.3;
+  }
+  .watch-body {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--w50);
+    line-height: 1.55;
+  }
+
+  /* ── CALLOUT STAT ── */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 18px;
+  }
+  .stat-cell {
+    background: var(--navy3);
+    padding: 16px 18px;
+  }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-desc {
+    font-size: 11.5px;
+    font-weight: 300;
+    color: var(--w50);
+    line-height: 1.4;
+  }
+
+  /* ── COMMERCIAL TAKEAWAY ── */
+  .takeaway-box {
+    margin-top: 16px;
+    padding: 20px 20px;
+    background: var(--navy2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green);
+  }
+  .takeaway-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 10px;
+  }
+  .lens-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 12.5px;
+    color: var(--w80);
+  }
+  .lens-icon {
+    width: 22px; height: 22px;
+    background: var(--green-lt);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 11px;
+    color: var(--green);
+    font-weight: 600;
+    font-family: 'DM Mono', monospace;
+  }
+  .lens-text { font-weight: 300; line-height: 1.4; }
+  .lens-text strong { font-weight: 600; color: var(--white); }
+
+  /* ── ORNAMENT / FOOTER ── */
+  .ornament {
+    text-align: center;
+    padding: 12px 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.12);
+    letter-spacing: 0.25em;
+    border-bottom: 1px solid var(--border);
+  }
+  .footer {
+    background: #040e16;
+    padding: 20px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .footer-brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--blue2);
+  }
+  .footer-brand span { color: var(--w50); font-weight: 400; }
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--w20);
+    letter-spacing: 0.04em;
+    margin-top: 3px;
+  }
+  .footer-links {
+    display: flex;
+    gap: 18px;
+    flex-shrink: 0;
+  }
+  .footer-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    cursor: default;
+  }
+  .footer-link:hover { color: var(--blue2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <span class="left">View in browser &nbsp;·&nbsp; Forward to colleague</span>
+    <span class="right">CJ Energy Solution · March 2026</span>
+  </div>
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <svg class="masthead-bg" viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="300" cy="80" r="120" fill="none" stroke="white" stroke-width="40"/>
+      <circle cx="300" cy="80" r="75" fill="none" stroke="white" stroke-width="20"/>
+      <circle cx="300" cy="80" r="35" fill="white"/>
+    </svg>
+    <div class="masthead-inner">
+      <div>
+        <div class="masthead-label">Maritime Compliance Intelligence</div>
+        <div class="masthead-title">
+          <span class="hl">EU ETS</span> &amp;<br>
+          <span class="hl2">FuelEU</span><br>
+          Maritime
+        </div>
+        <div class="masthead-sub">Carbon pricing meets fuel intensity standards — what marine fuel professionals need to know for 2026 and beyond.</div>
+      </div>
+      <div class="masthead-right">
+        <div class="masthead-logo">CJ Energy <span>/ Solution</span></div>
+        <div class="masthead-date">
+          MARCH 2026<br>
+          MARPOL + EU FRAMEWORK<br>
+          CHASEJI.COM
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI STRIP -->
+  <div class="kpi-strip">
+    <div class="kpi">
+      <div class="kpi-label">EU ETS Live Since</div>
+      <div class="kpi-val blue">Jan 2024</div>
+      <div class="kpi-sub">Large ships ≥5,000 GT</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">FuelEU Applies From</div>
+      <div class="kpi-val green">Jan 2025</div>
+      <div class="kpi-sub">WtW GHG intensity basis</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">2026 Surrender Rate</div>
+      <div class="kpi-val amber">70%</div>
+      <div class="kpi-sub">ETS allowances for 2025 emissions</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">2050 FuelEU Target</div>
+      <div class="kpi-val" style="color:var(--coral);">−80%</div>
+      <div class="kpi-sub">GHG intensity vs reference</div>
+    </div>
+  </div>
+
+  <!-- EXEC SUMMARY -->
+  <div class="sec">
+    <div class="sec-tag">Executive Summary</div>
+    <div class="sec-title">Two Levers, One Decarbonisation Direction</div>
+    <div class="exec-box">
+      <p><strong>EU ETS</strong> puts a carbon price on shipping emissions — it changes the <strong>cash cost</strong> of conventional fuels for voyages touching EU ports. <strong>FuelEU Maritime</strong> sets a declining GHG intensity limit on energy used on board — it changes the <strong>compliance value</strong> of the fuel pathway itself.</p>
+      <p>Together they transform procurement from a price-per-tonne decision into a three-part calculation: <strong>fuel price · ETS exposure on the trade lane · FuelEU lifecycle intensity and documentation quality</strong>. The winners will be those who master all three.</p>
+    </div>
+
+    <!-- Framework compare cards -->
+    <div class="framework-compare">
+      <div class="fw-card">
+        <div class="fw-icon blue">ETS</div>
+        <div class="fw-name blue">EU ETS</div>
+        <div class="fw-tagline">Carbon pricing — surrender allowances for verified emissions</div>
+        <div class="fw-row"><strong>Live:</strong> 1 January 2024</div>
+        <div class="fw-row"><strong>Logic:</strong> Carbon price on reported emissions</div>
+        <div class="fw-row"><strong>Unit:</strong> Tonnes CO2e → EUA allowances</div>
+        <div class="fw-row"><strong>Basis:</strong> MRV / tank-to-wake scope</div>
+        <div class="fw-row"><strong>Effect:</strong> Raises delivered fuel cost</div>
+        <div class="fw-row"><strong>CH4/N2O:</strong> Added from 2026</div>
+      </div>
+      <div class="fw-card" style="background:rgba(0,184,122,0.05);">
+        <div class="fw-icon green">FEU</div>
+        <div class="fw-name green">FuelEU Maritime</div>
+        <div class="fw-tagline">Fuel intensity standard — annual average GHG intensity limit</div>
+        <div class="fw-row"><strong>Live:</strong> 1 January 2025</div>
+        <div class="fw-row"><strong>Logic:</strong> Maximum energy intensity standard</div>
+        <div class="fw-row"><strong>Unit:</strong> gCO2e/MJ annual average</div>
+        <div class="fw-row"><strong>Basis:</strong> Well-to-Wake lifecycle</div>
+        <div class="fw-row"><strong>Effect:</strong> Rewards lower-carbon fuels</div>
+        <div class="fw-row"><strong>Ref:</strong> 91.16 gCO2e/MJ baseline</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EU ETS DEEP DIVE -->
+  <div class="sec">
+    <div class="sec-tag">EU ETS Deep-Dive</div>
+    <div class="sec-title">Carbon Pricing — How It Works for Shipping</div>
+    <div class="sec-body">Ships of 5,000 GT and above calling at EU ports must surrender EU Allowances (EUAs) for verified emissions. The scope covers 100% of intra-EU and port emissions, and 50% of extra-EU voyage legs.</div>
+
+    <!-- Phase-in infographic -->
+    <div class="phase-in">
+      <div class="phase-title">ETS Phase-In: % of Emissions to Surrender</div>
+      <div class="phase-bar-wrap">
+        <div class="phase-seg p40">40%</div>
+        <div class="phase-seg p70">70%</div>
+        <div class="phase-seg p100">100%</div>
+      </div>
+      <div class="phase-labels">
+        <div class="phase-lbl">2025<br>(2024 emissions)</div>
+        <div class="phase-lbl">2026<br>(2025 emissions)</div>
+        <div class="phase-lbl">2027+<br>(full exposure)</div>
+      </div>
+    </div>
+
+    <!-- Scope stat row -->
+    <div class="stat-row">
+      <div class="stat-cell">
+        <div class="stat-num" style="color:var(--blue2);">100%</div>
+        <div class="stat-desc">Intra-EU voyages & port emissions in scope</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num" style="color:var(--amber);">50%</div>
+        <div class="stat-desc">Extra-EU voyage legs (start or end outside EU/EEA)</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num" style="color:var(--coral);">2026</div>
+        <div class="stat-desc">CH4 and N2O added to ETS coverage</div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px; padding:14px 16px; background:var(--blue-lt); border-left:3px solid var(--blue); border:1px solid rgba(26,111,219,0.2); border-left:3px solid var(--blue);">
+      <div style="font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue2);margin-bottom:6px;">Reporting Rhythm</div>
+      <div style="font-size:12.5px;font-weight:300;color:var(--w80);line-height:1.65;">Monitoring and reporting runs through the <strong style="font-weight:600;color:var(--white);">MRV system</strong>. First maritime ETS surrender deadline was <strong style="font-weight:600;color:var(--white);">September 2025</strong> for 2024 emissions. Verified company and ship emissions submitted annually — documentation quality now has direct cash consequences.</div>
+    </div>
+  </div>
+
+  <!-- FUELEU DEEP DIVE -->
+  <div class="sec">
+    <div class="sec-tag green">FuelEU Maritime Deep-Dive</div>
+    <div class="sec-title">Fuel Intensity Standard — The Lifecycle Lens</div>
+    <div class="sec-body">FuelEU measures the <strong style="color:var(--white);">annual average GHG intensity</strong> of energy used on board on a well-to-wake basis, covering CO₂, CH₄, and N₂O. Reference value is 91.16 gCO₂e/MJ. The required reduction grows every five years through 2050.</div>
+
+    <!-- FuelEU pathway chart -->
+    <div class="pathway-chart">
+      <div class="pathway-title">GHG Intensity Reduction Pathway — Required vs 91.16 gCO₂e/MJ Reference</div>
+      <div class="pathway-rows">
+        <div class="pathway-row">
+          <div class="pathway-year">2025</div>
+          <div class="pathway-track">
+            <div class="pathway-fill" style="width:2%;background:rgba(0,184,122,0.4);color:var(--green);">2%</div>
+          </div>
+          <div class="pathway-intensity">89.34 gCO₂e/MJ</div>
+        </div>
+        <div class="pathway-row">
+          <div class="pathway-year">2030</div>
+          <div class="pathway-track">
+            <div class="pathway-fill" style="width:6%;background:rgba(0,184,122,0.5);color:var(--green);">6%</div>
+          </div>
+          <div class="pathway-intensity">85.69 gCO₂e/MJ</div>
+        </div>
+        <div class="pathway-row">
+          <div class="pathway-year">2035</div>
+          <div class="pathway-track">
+            <div class="pathway-fill" style="width:14.5%;background:rgba(0,184,122,0.6);color:var(--green);">14.5%</div>
+          </div>
+          <div class="pathway-intensity">77.94 gCO₂e/MJ</div>
+        </div>
+        <div class="pathway-row">
+          <div class="pathway-year">2040</div>
+          <div class="pathway-track">
+            <div class="pathway-fill" style="width:31%;background:rgba(0,184,122,0.72);color:#fff;">31%</div>
+          </div>
+          <div class="pathway-intensity">62.90 gCO₂e/MJ</div>
+        </div>
+        <div class="pathway-row">
+          <div class="pathway-year">2045</div>
+          <div class="pathway-track">
+            <div class="pathway-fill" style="width:62%;background:rgba(0,184,122,0.85);color:#fff;">62%</div>
+          </div>
+          <div class="pathway-intensity">34.64 gCO₂e/MJ</div>
+        </div>
+        <div class="pathway-row">
+          <div class="pathway-year">2050</div>
+          <div class="pathway-track">
+            <div class="pathway-fill" style="width:80%;background:var(--green);color:#fff;">80%</div>
+          </div>
+          <div class="pathway-intensity">18.23 gCO₂e/MJ</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compliance timeline -->
+    <div style="margin-top:14px; display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+      <div style="background:var(--navy3);border:1px solid var(--border);padding:14px 16px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--w50);margin-bottom:8px;">Key Compliance Dates</div>
+        <div style="font-size:12px;font-weight:300;color:var(--w80);line-height:1.8;">
+          <span style="color:var(--green);font-weight:600;">Aug 2024</span> — Monitoring plans due<br>
+          <span style="color:var(--green);font-weight:600;">Jan 2025</span> — First reporting year begins<br>
+          <span style="color:var(--green);font-weight:600;">Jan 2026</span> — First FuelEU report to verifier<br>
+          <span style="color:var(--green);font-weight:600;">2026</span> — Verification period for 2025 data
+        </div>
+      </div>
+      <div style="background:var(--navy3);border:1px solid var(--border);padding:14px 16px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--w50);margin-bottom:8px;">Zero-Emission at Berth</div>
+        <div style="font-size:12px;font-weight:300;color:var(--w80);line-height:1.8;">
+          Applies to <span style="color:var(--white);font-weight:600;">container &amp; passenger ships</span><br>
+          <span style="color:var(--amber);font-weight:600;">Jan 2030</span> — AFIR-covered EU ports<br>
+          <span style="color:var(--amber);font-weight:600;">Jan 2035</span> — All EU ports with OPS<br>
+          Requirement: <span style="color:var(--white);font-weight:600;">OPS or zero-emission tech</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARISON TABLE -->
+  <div class="sec">
+    <div class="sec-tag purple">Framework Comparison</div>
+    <div class="sec-title">EU ETS vs FuelEU — Side by Side</div>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Topic</th>
+          <th class="blue">EU ETS</th>
+          <th class="green">FuelEU Maritime</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Main logic</td>
+          <td class="blue-cell">Carbon pricing</td>
+          <td class="green-cell">Fuel/energy intensity standard</td>
+        </tr>
+        <tr>
+          <td>Main unit</td>
+          <td class="blue-cell">Tonnes CO2e → EUA allowances</td>
+          <td class="green-cell">gCO2e/MJ annual average</td>
+        </tr>
+        <tr>
+          <td>Emissions basis</td>
+          <td class="blue-cell">MRV / ETS scope (TtW)</td>
+          <td class="green-cell">Well-to-Wake lifecycle (WtW)</td>
+        </tr>
+        <tr>
+          <td>Geographic scope</td>
+          <td class="blue-cell">100% intra-EU + ports; 50% extra-EU legs</td>
+          <td class="green-cell">Same general principle for energy on voyages in scope</td>
+        </tr>
+        <tr>
+          <td>Commercial effect</td>
+          <td class="blue-cell">Adds allowance cost to delivered fuel price</td>
+          <td class="green-cell">Creates compliance deficit or premium for low-GHG energy</td>
+        </tr>
+        <tr>
+          <td>Fuel implication</td>
+          <td class="blue-cell">Penalises higher reported emissions</td>
+          <td class="green-cell">Rewards lower lifecycle intensity</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:12px;padding:12px 16px;background:var(--purple-lt);border-left:3px solid var(--purple);">
+      <div style="font-size:12.5px;font-weight:300;color:var(--w80);line-height:1.6;"><strong style="font-weight:600;color:var(--white);">Critical point:</strong> The two systems are complementary, not interchangeable. EU ETS changes the cash cost of emissions; FuelEU changes the compliance value of the fuel pathway itself. A fuel can help under one and underperform under the other depending on TtW vs WtW treatment, methane slip, and documentation quality.</div>
+    </div>
+  </div>
+
+  <!-- FUEL IMPLICATIONS -->
+  <div class="sec">
+    <div class="sec-tag amber">Fuel-Specific Implications</div>
+    <div class="sec-title">How Each Fuel Type Performs Under Both Frameworks</div>
+    <div class="fuel-grid">
+      <div class="fuel-card">
+        <div class="fuel-name">Conventional HFO / MGO</div>
+        <div><span class="fuel-badge badge-caution">ETS Exposure High</span></div>
+        <div class="fuel-body">Operationally simple but faces both ETS allowance costs and a worsening FuelEU position as targets tighten. Manageable short-term, weakening long-term compliance profile.</div>
+      </div>
+      <div class="fuel-card">
+        <div class="fuel-name">LNG</div>
+        <div><span class="fuel-badge badge-watch">Methane Slip Risk</span></div>
+        <div class="fuel-body">Can perform better on ETS in some contexts, but FuelEU outcome depends heavily on methane slip and lifecycle assumptions. Now a documentation-and-engine-technology story as much as a molecule story.</div>
+      </div>
+      <div class="fuel-card">
+        <div class="fuel-name">Biofuels</div>
+        <div><span class="fuel-badge badge-strong">Strong if Certified</span></div>
+        <div class="fuel-body">Commercially powerful when the sustainability chain is properly documented. Proof of Sustainability and robust certification are essential — lifecycle performance, not just volume, drives compliance value.</div>
+      </div>
+      <div class="fuel-card">
+        <div class="fuel-name">E-Methanol / E-Fuels</div>
+        <div><span class="fuel-badge badge-future">Future Compliance</span></div>
+        <div class="fuel-body">Attractive for deeper FuelEU compliance over time. Challenges: availability, price, supply bankability, and consistent WtW documentation. The long-game fuel option.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2026 WATCHPOINTS -->
+  <div class="sec">
+    <div class="sec-tag">2026 Watchpoints</div>
+    <div class="sec-title">What Marine Fuel Experts Should Track</div>
+    <div class="watch-list">
+      <div class="watch-item">
+        <div class="watch-num">01</div>
+        <div>
+          <div class="watch-head">Allowance exposure by route mix</div>
+          <div class="watch-body">Intra-EU services and port-heavy trades carry stronger ETS consequences. Route profiling is now a commercial necessity, not optional analysis.</div>
+        </div>
+      </div>
+      <div class="watch-item">
+        <div class="watch-num">02</div>
+        <div>
+          <div class="watch-head">FuelEU pooling and flexibility use</div>
+          <div class="watch-body">Compliance strategy will increasingly be managed at fleet level, not just ship-by-ship. Pooling agreements and surplus/deficit banking need to be in procurement frameworks now.</div>
+        </div>
+      </div>
+      <div class="watch-item">
+        <div class="watch-num">03</div>
+        <div>
+          <div class="watch-head">Methane-slip treatment</div>
+          <div class="watch-body">Especially material for LNG and dual-fuel fleets. The difference between optimistic and realistic slip assumptions can shift FuelEU compliance position significantly.</div>
+        </div>
+      </div>
+      <div class="watch-item">
+        <div class="watch-num">04</div>
+        <div>
+          <div class="watch-head">Fuel certification quality</div>
+          <div class="watch-body">Poor documentation can destroy the compliance value of an otherwise low-carbon fuel. Certification chain integrity is now a sourcing criterion, not an afterthought.</div>
+        </div>
+      </div>
+      <div class="watch-item">
+        <div class="watch-num">05</div>
+        <div>
+          <div class="watch-head">OPS readiness in ports</div>
+          <div class="watch-body">Container and passenger operators must prepare before the 2030 AFIR deadline. Early port assessments and capex planning should begin now.</div>
+        </div>
+      </div>
+      <div class="watch-item">
+        <div class="watch-num">06</div>
+        <div>
+          <div class="watch-head">EEA implementation details</div>
+          <div class="watch-body">FuelEU application in Norway and Iceland was delayed due to EEA incorporation timing. Route treatment needs checking case by case for trades calling those ports.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMMERCIAL TAKEAWAY -->
+  <div class="sec" style="border-bottom:none;">
+    <div class="sec-tag green">Commercial Takeaway</div>
+    <div class="sec-title">The New Marine Fuel Market Logic</div>
+    <div class="sec-body">The market is no longer about selling a bunker product. It is about selling a <strong style="color:var(--white);">bunker plus emissions profile plus compliance data package</strong>.</div>
+    <div class="takeaway-box">
+      <div class="takeaway-title">Three-Part Procurement Lens</div>
+      <div class="lens-row">
+        <div class="lens-icon">1</div>
+        <div class="lens-text"><strong>Price per tonne or per MWh</strong> — the traditional fuel cost anchor</div>
+      </div>
+      <div class="lens-row">
+        <div class="lens-icon">2</div>
+        <div class="lens-text"><strong>ETS exposure on the trade lane</strong> — route-specific allowance cost</div>
+      </div>
+      <div class="lens-row" style="margin-bottom:0;">
+        <div class="lens-icon">3</div>
+        <div class="lens-text"><strong>FuelEU lifecycle intensity and documentation quality</strong> — the WtW compliance value</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ornament">· · ·</div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>
+      <div class="footer-brand">CJ Energy Solution <span>/ Chase Ji, PhD, PMP</span></div>
+      <div class="footer-copy">© 2026 CJ Energy Solution. All Rights Reserved. &nbsp;·&nbsp; chaseji.com</div>
+    </div>
+    <div class="footer-links">
+      <a class="footer-link" href="https://chaseji.com">chaseji.com</a>
+      <a class="footer-link">LinkedIn</a>
+      <a class="footer-link">Contact</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
