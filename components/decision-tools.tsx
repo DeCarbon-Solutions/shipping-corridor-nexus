@@ -10,6 +10,7 @@ const tools = [
     description: "Optimize fuel pathways under IMO 2030/2040/2050 scenarios. Model enterprise asset portfolio with real-time carbon pricing.",
     url: "https://fuelsupplier.streamlit.app/",
     color: "bg-blue-600",
+    featured: false,
   },
   {
     icon: Route,
@@ -17,6 +18,7 @@ const tools = [
     description: "Calculate and predict IMO GFI cost from 2028 to 2035 to support shipowner/fleet charterer decision making on fleet evolution.",
     url: "https://imo2025.streamlit.app/",
     color: "bg-emerald-600",
+    featured: false,
   },
   {
     icon: Coins,
@@ -24,6 +26,7 @@ const tools = [
     description: "Simulate infrastructure investments for conventional/bio/e-fuels. Quantify NPV-at-Risk from upstream to downstream value chain.",
     url: "https://fuelstrategy.streamlit.app/",
     color: "bg-amber-600",
+    featured: false,
   },
   {
     icon: Globe,
@@ -31,6 +34,7 @@ const tools = [
     description: "Explore green shipping corridors worldwide. Map trade routes, alternative fuel readiness, and port infrastructure to identify decarbonization opportunities across global shipping lanes.",
     url: "https://shipping-corridor-nexus.chaseji.com",
     color: "bg-cyan-600",
+    featured: true,
   },
 ];
 
@@ -51,9 +55,58 @@ export function DecisionTools() {
           </p>
         </div>
 
-        {/* Tools Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {tools.map((tool, index) => (
+        {/* Featured Tool — Shipping Corridor Nexus */}
+        {tools.filter((t) => t.featured).map((tool, index) => (
+          <a
+            key={`featured-${index}`}
+            href={tool.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block mb-8"
+          >
+            <div className="relative bg-card border-2 border-cyan-500/60 rounded-xl overflow-hidden transition-all duration-300 hover:border-cyan-400 hover:shadow-2xl hover:shadow-cyan-500/15">
+              {/* Top accent bar */}
+              <div className="h-1.5 bg-cyan-500" />
+
+              {/* NEW badge */}
+              <span className="absolute top-5 right-5 text-xs font-bold tracking-widest uppercase bg-cyan-500 text-white px-3 py-1 rounded-full">
+                New
+              </span>
+
+              <div className="p-8 md:flex md:items-center md:gap-10">
+                {/* Icon */}
+                <div className="w-16 h-16 rounded-xl bg-cyan-600 flex items-center justify-center shrink-0 mb-6 md:mb-0 shadow-lg shadow-cyan-500/30">
+                  <tool.icon className="w-8 h-8 text-white" />
+                </div>
+
+                {/* Content */}
+                <div className="flex-1">
+                  <p className="text-xs font-semibold tracking-widest uppercase text-cyan-500 mb-1">
+                    Featured Tool
+                  </p>
+                  <h3 className="text-2xl font-bold text-foreground mb-2 text-balance">
+                    {tool.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed max-w-2xl">
+                    {tool.description}
+                  </p>
+                </div>
+
+                {/* CTA */}
+                <div className="mt-6 md:mt-0 shrink-0">
+                  <Button className="bg-cyan-600 hover:bg-cyan-500 text-white font-semibold px-6 py-2.5 gap-2 shadow-md shadow-cyan-500/20 transition-all group-hover:shadow-cyan-500/40">
+                    Explore Now
+                    <ExternalLink className="w-4 h-4" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </a>
+        ))}
+
+        {/* Standard Tools Grid */}
+        <div className="grid md:grid-cols-3 gap-8">
+          {tools.filter((t) => !t.featured).map((tool, index) => (
             <div
               key={index}
               className="group relative bg-card border border-border rounded-lg overflow-hidden transition-all duration-300 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/5"
