@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IMO Emissions Regulation — Marine Fuel Intelligence Briefing</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:    #081929;
+    --navy2:   #0d2235;
+    --navy3:   #122c44;
+    --navy4:   #1a3a54;
+    --teal:    #00c5a3;
+    --teal2:   #00a889;
+    --teal-lt: rgba(0,197,163,0.12);
+    --amber:   #e8a020;
+    --amber-lt:rgba(232,160,32,0.12);
+    --coral:   #e05a3a;
+    --white:   #ffffff;
+    --white80: rgba(255,255,255,0.8);
+    --white50: rgba(255,255,255,0.5);
+    --white20: rgba(255,255,255,0.2);
+    --white08: rgba(255,255,255,0.08);
+    --border:  rgba(255,255,255,0.1);
+  }
+
+  body {
+    background: #06131e;
+    font-family: 'Barlow', sans-serif;
+    color: var(--white);
+    padding: 32px 16px;
+    line-height: 1.6;
+  }
+
+  .wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--navy);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: #06131e;
+    padding: 9px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar-left {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--white50);
+    letter-spacing: 0.06em;
+  }
+  .topbar-right {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--teal);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #081929 0%, #0d2c42 50%, #0a2035 100%);
+    border-bottom: 2px solid var(--teal);
+  }
+  .masthead-ocean {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 60px;
+    opacity: 0.07;
+  }
+  .masthead-inner {
+    padding: 32px 28px 28px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+  }
+  .masthead-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 8px;
+  }
+  .masthead-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 44px;
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .masthead-title span { color: var(--teal); }
+  .masthead-subtitle {
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--white50);
+    max-width: 340px;
+    line-height: 1.5;
+  }
+  .masthead-meta {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .masthead-issue {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 52px;
+    font-weight: 800;
+    color: var(--white08);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .masthead-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--white50);
+    letter-spacing: 0.08em;
+    text-align: right;
+    line-height: 1.8;
+    margin-top: 8px;
+  }
+
+  /* ── KPI STRIP ── */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--border);
+    background: var(--navy2);
+  }
+  .kpi-cell {
+    padding: 16px 18px;
+    border-right: 1px solid var(--border);
+  }
+  .kpi-cell:last-child { border-right: none; }
+  .kpi-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white50);
+    margin-bottom: 6px;
+  }
+  .kpi-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+  .kpi-val.teal { color: var(--teal); }
+  .kpi-val.amber { color: var(--amber); }
+  .kpi-sub {
+    margin-top: 4px;
+    font-size: 10.5px;
+    color: var(--white50);
+    line-height: 1.3;
+    font-weight: 300;
+  }
+
+  /* ── SECTION HEADING ── */
+  .section-head {
+    padding: 22px 28px 0;
+  }
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 10px;
+  }
+  .section-tag::before {
+    content: '';
+    display: block;
+    width: 18px;
+    height: 1.5px;
+    background: var(--teal);
+  }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .section-body {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--white80);
+    line-height: 1.65;
+    padding-bottom: 4px;
+  }
+
+  /* ── FRAMEWORK INTRO ── */
+  .framework-box {
+    margin: 20px 28px;
+    padding: 18px 20px;
+    background: var(--teal-lt);
+    border-left: 3px solid var(--teal);
+    border-right: 1px solid var(--border);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .framework-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--teal);
+    margin-bottom: 8px;
+  }
+  .framework-text {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--white80);
+    line-height: 1.65;
+  }
+  .framework-text strong { font-weight: 600; color: var(--white); }
+
+  /* ── THREE-COLUMN EMISSION BUCKETS ── */
+  .buckets {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin: 0 28px 24px;
+    border: 1px solid var(--border);
+  }
+  .bucket {
+    padding: 20px 16px;
+    border-right: 1px solid var(--border);
+    background: var(--navy3);
+  }
+  .bucket:last-child { border-right: none; }
+  .bucket-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--teal);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bucket-icon svg { width: 20px; height: 20px; fill: var(--navy); }
+  .bucket-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .bucket-desc {
+    font-size: 11.5px;
+    font-weight: 300;
+    color: var(--white50);
+    line-height: 1.55;
+    margin-bottom: 12px;
+  }
+  .bucket-metric {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--teal);
+    letter-spacing: 0.05em;
+    padding: 5px 8px;
+    background: var(--teal-lt);
+    display: inline-block;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline-section {
+    padding: 0 28px 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .timeline-track {
+    position: relative;
+    padding: 20px 0 8px;
+  }
+  .timeline-line {
+    position: absolute;
+    top: 37px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--navy4);
+  }
+  .timeline-line-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--teal2), var(--teal));
+    width: 82%;
+  }
+  .timeline-nodes {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+  }
+  .tnode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+  }
+  .tnode-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--teal);
+    border: 2px solid var(--navy);
+    margin-bottom: 8px;
+    flex-shrink: 0;
+  }
+  .tnode-dot.future {
+    background: var(--navy4);
+    border-color: var(--white20);
+  }
+  .tnode-dot.highlight {
+    width: 16px;
+    height: 16px;
+    background: var(--amber);
+    box-shadow: 0 0 0 3px rgba(232,160,32,0.25);
+  }
+  .tnode-year {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 3px;
+  }
+  .tnode-year.future { color: var(--white50); }
+  .tnode-year.highlight { color: var(--amber); }
+  .tnode-label {
+    font-size: 9.5px;
+    font-weight: 400;
+    color: var(--white50);
+    text-align: center;
+    line-height: 1.35;
+    max-width: 72px;
+  }
+  .tnode-label.future { color: rgba(255,255,255,0.3); }
+  .tnode-label.highlight { color: var(--amber); }
+
+  /* ── DETAILED MILESTONE TABLE ── */
+  .milestone-table {
+    margin: 0 28px 24px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .mt-head {
+    display: grid;
+    grid-template-columns: 90px 1fr 200px;
+    background: var(--navy4);
+    border-bottom: 1px solid var(--border);
+  }
+  .mt-head-cell {
+    padding: 9px 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white50);
+  }
+  .mt-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 200px;
+    border-bottom: 1px solid var(--border);
+    align-items: stretch;
+  }
+  .mt-row:last-child { border-bottom: none; }
+  .mt-row.nox { background: rgba(0,197,163,0.04); }
+  .mt-row.sox { background: rgba(232,160,32,0.04); }
+  .mt-row.ghg { background: rgba(96,165,250,0.04); }
+  .mt-row.new { background: rgba(224,90,58,0.07); }
+  .mt-date {
+    padding: 12px 14px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid var(--border);
+  }
+  .mt-milestone {
+    padding: 12px 14px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid var(--border);
+  }
+  .mt-why {
+    padding: 12px 14px;
+    font-size: 11.5px;
+    font-weight: 300;
+    color: var(--white50);
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    padding: 2px 6px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-right: 6px;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: 2px;
+  }
+  .tag.nox { background: var(--teal-lt); color: var(--teal); }
+  .tag.sox { background: var(--amber-lt); color: var(--amber); }
+  .tag.ghg { background: rgba(96,165,250,0.12); color: #60a5fa; }
+  .tag.new { background: rgba(224,90,58,0.15); color: var(--coral); }
+
+  /* ── NOx TIER TABLE ── */
+  .tier-section {
+    padding: 0 28px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tier-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    border: 1px solid var(--border);
+  }
+  .tier-table th {
+    background: var(--navy4);
+    padding: 9px 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white50);
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .tier-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+    color: var(--white80);
+    font-weight: 300;
+  }
+  .tier-table tr:last-child td { border-bottom: none; }
+  .tier-table tr:hover td { background: var(--white08); }
+  .tier-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--teal);
+  }
+  .tier-limit {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--white);
+  }
+  .tier-scope {
+    font-size: 11px;
+    color: var(--white50);
+  }
+
+  /* ── SOX DATA BLOCK ── */
+  .sox-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    margin: 0 28px 24px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .sox-cell {
+    background: var(--navy3);
+    padding: 16px 18px;
+  }
+  .sox-cell-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white50);
+    margin-bottom: 6px;
+  }
+  .sox-cell-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .sox-cell-val .unit {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white50);
+  }
+  .sox-cell-sub {
+    font-size: 11.5px;
+    font-weight: 300;
+    color: var(--white50);
+    line-height: 1.4;
+  }
+  .sox-cell.highlight-teal .sox-cell-val { color: var(--teal); }
+  .sox-cell.highlight-amber .sox-cell-val { color: var(--amber); }
+
+  /* ── GHG TARGETS ── */
+  .ghg-section {
+    padding: 0 28px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .ghg-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .ghg-card {
+    background: var(--navy3);
+    border: 1px solid var(--border);
+    padding: 16px;
+  }
+  .ghg-year {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--white50);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .ghg-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--teal);
+    margin-bottom: 2px;
+  }
+  .ghg-num.amber { color: var(--amber); }
+  .ghg-num.coral { color: var(--coral); }
+  .ghg-strive {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    color: var(--white50);
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  .ghg-desc {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--white50);
+    line-height: 1.45;
+  }
+
+  /* ── PROGRESS BARS for GHG ── */
+  .progress-item { margin-bottom: 14px; }
+  .progress-item:last-child { margin-bottom: 0; }
+  .prog-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 12px;
+  }
+  .prog-label { color: var(--white80); font-weight: 400; }
+  .prog-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--teal);
+  }
+  .prog-track {
+    height: 3px;
+    background: var(--navy4);
+    overflow: hidden;
+  }
+  .prog-fill {
+    height: 100%;
+    background: var(--teal);
+  }
+  .prog-fill.amber { background: var(--amber); }
+  .prog-fill.coral { background: var(--coral); }
+
+  /* ── REGULATION BRIEF ── */
+  .briefs-section {
+    padding: 0 28px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .brief-item {
+    display: flex;
+    gap: 14px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .brief-item:first-of-type { padding-top: 0; }
+  .brief-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .brief-tag {
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .brief-head {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 3px;
+    line-height: 1.35;
+  }
+  .brief-body {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--white50);
+    line-height: 1.55;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+  }
+  .ornament {
+    text-align: center;
+    padding: 12px 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.15);
+    letter-spacing: 0.3em;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: #06131e;
+    padding: 20px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--teal);
+  }
+  .footer-brand span { color: var(--white50); font-weight: 400; }
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    color: var(--white20);
+  }
+  .footer-links {
+    display: flex;
+    gap: 18px;
+  }
+  .footer-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    cursor: default;
+    transition: color 0.2s;
+  }
+  .footer-link:hover { color: var(--teal); }
+
+  /* padding utility */
+  .pad { padding: 0 28px; }
+  .mb { margin-bottom: 20px; }
+  .mt { margin-top: 20px; }
+
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-left">View in browser &nbsp;·&nbsp; Forward to colleague</div>
+    <div class="topbar-right">MARPOL Annex VI Briefing</div>
+  </div>
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <svg class="masthead-ocean" viewBox="0 0 700 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,30 C70,10 140,50 210,30 C280,10 350,50 420,30 C490,10 560,50 630,30 L700,30 L700,60 L0,60 Z" fill="#00c5a3"/>
+      <path d="M0,40 C80,20 160,55 240,40 C320,25 400,55 480,40 C560,25 640,55 700,40 L700,60 L0,60 Z" fill="#00c5a3" opacity="0.6"/>
+    </svg>
+    <div class="masthead-inner">
+      <div>
+        <div class="masthead-label">Marine Fuel Intelligence Briefing</div>
+        <div class="masthead-title">IMO<br><span>Emissions</span><br>Regulatory<br>Update</div>
+        <div class="masthead-subtitle">A comprehensive briefing on MARPOL Annex VI milestones — NOx, SOx, and GHG/CO2e frameworks for marine diesel engine operators.</div>
+      </div>
+      <div class="masthead-meta">
+        <div class="masthead-date">
+          MARCH 2026<br>
+          MARPOL ANNEX VI
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI STRIP -->
+  <div class="kpi-strip">
+    <div class="kpi-cell">
+      <div class="kpi-label">Global SOx Cap</div>
+      <div class="kpi-val teal">0.50<span style="font-size:14px;font-weight:400;color:rgba(255,255,255,0.4)">%</span></div>
+      <div class="kpi-sub">Outside ECAs since Jan 2020</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">ECA SOx Limit</div>
+      <div class="kpi-val teal">0.10<span style="font-size:14px;font-weight:400;color:rgba(255,255,255,0.4)">%</span></div>
+      <div class="kpi-sub">All designated SOx ECAs</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">2030 GHG Target</div>
+      <div class="kpi-val amber">−20<span style="font-size:14px;font-weight:400;color:rgba(255,255,255,0.4)">%</span></div>
+      <div class="kpi-sub">Min. vs 2008; strive −30%</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">New ECAs Active</div>
+      <div class="kpi-val" style="color:var(--coral)">2</div>
+      <div class="kpi-sub">Arctic + Norwegian Sea, Mar 2026</div>
+    </div>
+  </div>
+
+  <!-- FRAMEWORK INTRO -->
+  <div class="section-head">
+    <div class="section-tag">Framework Overview</div>
+    <div class="section-title">MARPOL Annex VI — The IMO Air Emission Regime</div>
+  </div>
+  <div class="framework-box">
+    <div class="framework-title">Background</div>
+    <div class="framework-text">
+      <strong>MARPOL Annex VI</strong> was adopted in 1997 and entered into force on <strong>19 May 2005</strong>, establishing IMO's binding air-pollution framework for international shipping. It covers <strong>SOx, NOx, particulate matter, ozone-depleting substances, onboard incineration, and VOC emissions from tankers</strong>. For marine diesel main engines, the most operationally critical elements are Regulation 13 (NOx Tiers) and Regulation 14 (sulphur/ECA controls). A mandatory energy-efficiency chapter was added in 2011, covering EEXI and CII under the GHG/CO2e pillar.
+    </div>
+  </div>
+
+  <!-- THREE-COLUMN BUCKETS -->
+  <div style="padding: 20px 28px 0;">
+    <div class="section-tag">Emission Buckets</div>
+    <div class="section-title" style="margin-bottom:14px;">Three Regulatory Pillars</div>
+  </div>
+  <div class="buckets">
+    <div class="bucket">
+      <div class="bucket-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8 2 5 5 5 9c0 2.4 1.1 4.5 2.8 5.9L9 20h6l1.2-5.1C17.9 13.5 19 11.4 19 9c0-4-3-7-7-7z"/><rect x="9" y="20" width="6" height="2" rx="1"/></svg>
+      </div>
+      <div class="bucket-name">NOx</div>
+      <div class="bucket-desc">Engine exhaust emissions. Three tiers based on ship construction date and engine rated speed. Geographic scope expands by ECA designation.</div>
+      <div class="bucket-metric">g/kWh by engine Tier</div>
+    </div>
+    <div class="bucket" style="background: rgba(232,160,32,0.06);">
+      <div class="bucket-icon" style="background:var(--amber);">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3L6 9v3h2v2H6v2h2v5h8v-5h2v-2h-2v-2h2V9l-6-6z M10 14h4v4h-4z"/></svg>
+      </div>
+      <div class="bucket-name" style="color:var(--amber);">SOx / PM</div>
+      <div class="bucket-desc">Fuel sulphur content controls. Global cap progressively tightened. ECAs enforce stricter 0.10% m/m. PM reduction is a co-benefit.</div>
+      <div class="bucket-metric" style="background:var(--amber-lt);color:var(--amber);">Fuel sulphur % m/m</div>
+    </div>
+    <div class="bucket" style="background: rgba(96,165,250,0.05);">
+      <div class="bucket-icon" style="background:#60a5fa;">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><line x1="3" y1="12" x2="21" y2="12" stroke="white" stroke-width="1.5" fill="none"/></svg>
+      </div>
+      <div class="bucket-name" style="color:#60a5fa;">GHG / CO2e</div>
+      <div class="bucket-desc">Annual total GHG, carbon intensity (EEXI/CII), and Well-to-Wake fuel lifecycle emissions. IMO 2023 Strategy sets 2050 net-zero direction.</div>
+      <div class="bucket-metric" style="background:rgba(96,165,250,0.12);color:#60a5fa;">Annual GHG · CII · WtW</div>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline-section">
+    <div class="section-tag">Key Timeline</div>
+    <div class="section-title">IMO Milestone Timeline — 1997 to 2027</div>
+    <div class="timeline-track">
+      <div class="timeline-line"><div class="timeline-line-fill"></div></div>
+      <div class="timeline-nodes">
+        <div class="tnode">
+          <div class="tnode-dot"></div>
+          <div class="tnode-year">1997</div>
+          <div class="tnode-label">Annex VI adopted</div>
+        </div>
+        <div class="tnode">
+          <div class="tnode-dot"></div>
+          <div class="tnode-year">2005</div>
+          <div class="tnode-label">Annex VI in force</div>
+        </div>
+        <div class="tnode">
+          <div class="tnode-dot"></div>
+          <div class="tnode-year">2011</div>
+          <div class="tnode-label">NOx Tier II + EEDI</div>
+        </div>
+        <div class="tnode">
+          <div class="tnode-dot"></div>
+          <div class="tnode-year">2016</div>
+          <div class="tnode-label">Tier III N. America ECA</div>
+        </div>
+        <div class="tnode">
+          <div class="tnode-dot"></div>
+          <div class="tnode-year">2020</div>
+          <div class="tnode-label">Global sulphur 0.50%</div>
+        </div>
+        <div class="tnode">
+          <div class="tnode-dot"></div>
+          <div class="tnode-year">2021</div>
+          <div class="tnode-label">Tier III Baltic/N. Sea</div>
+        </div>
+        <div class="tnode">
+          <div class="tnode-dot"></div>
+          <div class="tnode-year">2025</div>
+          <div class="tnode-label">Med SOx ECA 0.10%</div>
+        </div>
+        <div class="tnode">
+          <div class="tnode-dot highlight"></div>
+          <div class="tnode-year highlight">2026</div>
+          <div class="tnode-label highlight">Arctic + Norwegian ECAs</div>
+        </div>
+        <div class="tnode">
+          <div class="tnode-dot future"></div>
+          <div class="tnode-year future">2027</div>
+          <div class="tnode-label future">New ECA sulphur enforceable</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DETAILED MILESTONE TABLE -->
+  <div style="padding: 22px 28px 0;">
+    <div class="section-tag">Full Milestone Log</div>
+    <div class="section-title" style="margin-bottom:14px;">Complete Annex VI Regulatory Timeline</div>
+  </div>
+  <div class="milestone-table">
+    <div class="mt-head">
+      <div class="mt-head-cell">Date</div>
+      <div class="mt-head-cell">Milestone</div>
+      <div class="mt-head-cell">Significance</div>
+    </div>
+    <div class="mt-row">
+      <div class="mt-date">1997</div>
+      <div class="mt-milestone"><span class="tag nox">NOx</span><span class="tag sox">SOx</span>MARPOL Annex VI adopted</div>
+      <div class="mt-why">Created the IMO air-pollution regime for ships — first binding international instrument covering SOx, NOx, and ODS from vessels.</div>
+    </div>
+    <div class="mt-row">
+      <div class="mt-date">May 2005</div>
+      <div class="mt-milestone"><span class="tag nox">NOx</span><span class="tag sox">SOx</span>Annex VI entered into force</div>
+      <div class="mt-why">Air-emission rules became binding for all Parties, including SOx/NOx limits and prohibition of deliberate ODS emissions.</div>
+    </div>
+    <div class="mt-row nox">
+      <div class="mt-date">Jan 2000</div>
+      <div class="mt-milestone"><span class="tag nox">NOx</span>NOx Tier I baseline date</div>
+      <div class="mt-why">Engines on ships constructed on or after this date must meet Tier I NOx limits. Applies to marine diesel engines over 130 kW.</div>
+    </div>
+    <div class="mt-row nox">
+      <div class="mt-date">Jan 2011</div>
+      <div class="mt-milestone"><span class="tag nox">NOx</span><span class="tag ghg">GHG</span>NOx Tier II + mandatory EEDI chapter</div>
+      <div class="mt-why">New ships need tighter Tier II NOx limits. Mandatory energy-efficiency chapter added EEDI/SEEMP as GHG-efficiency measures.</div>
+    </div>
+    <div class="mt-row nox">
+      <div class="mt-date">Jan 2016</div>
+      <div class="mt-milestone"><span class="tag nox">NOx</span>Tier III — N. American & U.S. Caribbean ECAs</div>
+      <div class="mt-why">Key trigger for EGR or SCR installation on newbuilds trading in those ECAs. Tier III is ~80% reduction vs Tier I at equivalent speed.</div>
+    </div>
+    <div class="mt-row sox">
+      <div class="mt-date">Jan 2020</div>
+      <div class="mt-milestone"><span class="tag sox">SOx</span>Global sulphur cap → 0.50% m/m</div>
+      <div class="mt-why">Most significant SOx milestone since Annex VI. Ships outside ECAs moved from 3.50% to 0.50%, driving mass adoption of VLSFO or scrubbers.</div>
+    </div>
+    <div class="mt-row nox">
+      <div class="mt-date">Jan 2021</div>
+      <div class="mt-milestone"><span class="tag nox">NOx</span>Tier III — Baltic Sea and North Sea ECAs</div>
+      <div class="mt-why">Qualifying ships operating in Baltic and North Sea NECAs became subject to full Tier III NOx requirements on this date.</div>
+    </div>
+    <div class="mt-row sox">
+      <div class="mt-date">May 2025</div>
+      <div class="mt-milestone"><span class="tag sox">SOx</span>Mediterranean SOx ECA — 0.10% limit</div>
+      <div class="mt-why">Expanded ECA coverage to the Mediterranean. Extends the list of IMO-designated areas requiring LSMGO or scrubber compliance.</div>
+    </div>
+    <div class="mt-row new">
+      <div class="mt-date">Mar 2026</div>
+      <div class="mt-milestone"><span class="tag new">NEW</span>Canadian Arctic + Norwegian Sea ECAs in force</div>
+      <div class="mt-why">Amendments entered into force on 1 March 2026 under Annex VI. Both now designated ECAs — further restricts routing in polar regions.</div>
+    </div>
+    <div class="mt-row new">
+      <div class="mt-date">Mar 2027</div>
+      <div class="mt-milestone"><span class="tag new">NEW</span>Sulphur enforcement in new Arctic/Norwegian ECAs</div>
+      <div class="mt-why">Regulation 14.7 exemption period expires. 0.10% m/m sulphur limit becomes enforceable in Canadian Arctic and Norwegian Sea ECAs.</div>
+    </div>
+  </div>
+
+  <!-- NOx TIERS -->
+  <div class="tier-section">
+    <div class="section-tag">NOx Deep-Dive</div>
+    <div class="section-title" style="margin-bottom:6px;">Engine NOx Tier Limits — Regulation 13</div>
+    <div class="section-body" style="margin-bottom:16px;">Applies to installed marine diesel engines over 130 kW, except those used solely for emergency purposes. Limit varies by engine rated speed (n, rpm).</div>
+    <table class="tier-table">
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th>Construction date</th>
+          <th>n &lt; 130 rpm</th>
+          <th>130 ≤ n &lt; 2000 rpm</th>
+          <th>n ≥ 2000 rpm</th>
+          <th>Geographic scope</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tier-name">Tier I</span></td>
+          <td class="tier-scope">On or after 1 Jan 2000</td>
+          <td><span class="tier-limit">17.0 g/kWh</span></td>
+          <td><span class="tier-limit">45·n⁻⁰·²</span></td>
+          <td><span class="tier-limit">9.8 g/kWh</span></td>
+          <td class="tier-scope">Global (outside NOx ECAs)</td>
+        </tr>
+        <tr>
+          <td><span class="tier-name">Tier II</span></td>
+          <td class="tier-scope">On or after 1 Jan 2011</td>
+          <td><span class="tier-limit">14.4 g/kWh</span></td>
+          <td><span class="tier-limit">44·n⁻⁰·²³</span></td>
+          <td><span class="tier-limit">7.7 g/kWh</span></td>
+          <td class="tier-scope">Global — applies outside NOx ECAs where Tier III ships operate</td>
+        </tr>
+        <tr>
+          <td><span class="tier-name" style="color:var(--amber);">Tier III</span></td>
+          <td class="tier-scope">On or after 1 Jan 2016</td>
+          <td><span class="tier-limit" style="color:var(--teal);">3.4 g/kWh</span></td>
+          <td><span class="tier-limit" style="color:var(--teal);">9·n⁻⁰·²</span></td>
+          <td><span class="tier-limit" style="color:var(--teal);">2.0 g/kWh</span></td>
+          <td class="tier-scope" style="color:var(--amber);">Inside designated NOx ECAs only — N. America (2016), Baltic/N. Sea (2021)</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:12px; font-family:'DM Mono',monospace; font-size:10px; color:var(--white20); line-height:1.7;">
+      COMPLIANCE DOCUMENTS: EIAPP Certificate · NOx Technical Code 2008 · Approved Technical File · In-service parameter checks
+    </div>
+  </div>
+
+  <!-- SOx DATA -->
+  <div style="padding: 22px 28px 0;">
+    <div class="section-tag">SOx Deep-Dive</div>
+    <div class="section-title" style="margin-bottom:6px;">Sulphur Controls — Regulation 14</div>
+    <div class="section-body" style="margin-bottom:16px;">Control is based on the sulphur content of fuel oil used on board — in main engines, auxiliary engines, and boilers.</div>
+  </div>
+  <div class="sox-grid">
+    <div class="sox-cell">
+      <div class="sox-cell-label">Previous global cap (pre-2020)</div>
+      <div class="sox-cell-val">3.50 <span class="unit">% m/m</span></div>
+      <div class="sox-cell-sub">In effect since 1 January 2012 outside designated ECAs</div>
+    </div>
+    <div class="sox-cell highlight-teal">
+      <div class="sox-cell-label">Current global cap (2020+)</div>
+      <div class="sox-cell-val">0.50 <span class="unit">% m/m</span></div>
+      <div class="sox-cell-sub">Effective 1 January 2020 — VLSFO or equivalent (scrubber)</div>
+    </div>
+    <div class="sox-cell" style="background:rgba(0,197,163,0.08);">
+      <div class="sox-cell-label">ECA limit (all designated ECAs)</div>
+      <div class="sox-cell-val">0.10 <span class="unit">% m/m</span></div>
+      <div class="sox-cell-sub">Applies inside all SOx ECAs — N. America, Baltic, N. Sea, Med (2025), + new ECAs from 2027</div>
+    </div>
+    <div class="sox-cell">
+      <div class="sox-cell-label">Sulphur reduction (global)</div>
+      <div class="sox-cell-val" style="color:var(--teal);">−86<span class="unit">%</span></div>
+      <div class="sox-cell-sub">From 3.50% to 0.50% represents an 86% cut in permitted sulphur content of fuel oil</div>
+    </div>
+  </div>
+  <div style="margin: 0 28px 24px; padding: 14px 18px; background: var(--navy3); border: 1px solid var(--border);">
+    <div style="font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);margin-bottom:8px;">Compliance Methods</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px;font-weight:300;color:var(--white80);line-height:1.5;">
+      <div>● <strong style="font-weight:600;color:var(--white);">Low-sulphur fuel oil</strong> — Switch to VLSFO (0.50%) or ULSFO/LSMGO (0.10%) when entering ECAs. Most common fleet approach.</div>
+      <div>● <strong style="font-weight:600;color:var(--white);">Exhaust gas cleaning (scrubbers)</strong> — Open or closed-loop systems allow continued use of HSFO. Equivalent compliance method accepted by IMO.</div>
+    </div>
+  </div>
+
+  <!-- GHG TARGETS -->
+  <div class="ghg-section">
+    <div class="section-tag">GHG / CO2e Deep-Dive</div>
+    <div class="section-title" style="margin-bottom:6px;">IMO 2023 GHG Strategy — Checkpoints & Net-Zero</div>
+    <div class="section-body" style="margin-bottom:18px;">Based on 2008 as the baseline year. The strategy encompasses total annual GHG emissions, carbon intensity (CO2 per transport work), and Well-to-Wake lifecycle fuel accounting covering CO2, CH4, and N2O.</div>
+    <div class="ghg-cards">
+      <div class="ghg-card">
+        <div class="ghg-year">2030</div>
+        <div class="ghg-num">−20%</div>
+        <div class="ghg-strive">striving for −30%</div>
+        <div style="margin-bottom:8px;"></div>
+        <div class="ghg-num" style="font-size:28px;">−40%</div>
+        <div class="ghg-strive">carbon intensity vs 2008</div>
+        <div class="ghg-desc">Total annual GHG reduction. Also: zero/near-zero fuels ≥5% of energy use, striving for 10%.</div>
+      </div>
+      <div class="ghg-card">
+        <div class="ghg-year" style="color:var(--amber);">2040</div>
+        <div class="ghg-num amber">−70%</div>
+        <div class="ghg-strive">striving for −80%</div>
+        <div class="ghg-desc" style="margin-top:10px;">Indicative checkpoint for total annual GHG. Fuel transition significantly advanced by this point.</div>
+      </div>
+      <div class="ghg-card">
+        <div class="ghg-year" style="color:var(--coral);">2050</div>
+        <div class="ghg-num coral">Net-zero</div>
+        <div class="ghg-strive">"by or around 2050"</div>
+        <div class="ghg-desc" style="margin-top:10px;">IMO's stated level of ambition. Well-to-Wake accounting means this covers full fuel lifecycle, not just stack emissions.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:18px;">
+      <div style="font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:12px;">GHG Strategy Progress Indicators</div>
+      <div class="progress-item">
+        <div class="prog-row"><span class="prog-label">Carbon intensity reduction (2030 target: −40%)</span><span class="prog-val">Target</span></div>
+        <div class="prog-track"><div class="prog-fill" style="width:40%"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="prog-row"><span class="prog-label">Total GHG reduction by 2030 (minimum: −20%)</span><span class="prog-val">Checkpoint</span></div>
+        <div class="prog-track"><div class="prog-fill amber" style="width:20%"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="prog-row"><span class="prog-label">Zero/near-zero fuel energy share by 2030 (min. 5%)</span><span class="prog-val">Ambition</span></div>
+        <div class="prog-track"><div class="prog-fill" style="width:5%;background:#60a5fa"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="prog-row"><span class="prog-label">Total GHG reduction by 2050 (net-zero ambition)</span><span class="prog-val">Long-term</span></div>
+        <div class="prog-track"><div class="prog-fill coral" style="width:100%"></div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:18px; padding:14px 18px; background:var(--teal-lt); border-left:3px solid var(--teal);">
+      <div style="font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:6px;">LCA Framework Note</div>
+      <div style="font-size:12.5px;font-weight:300;color:var(--white80);line-height:1.6;">IMO's 2024 LCA Guidelines define <strong style="font-weight:600;color:var(--white);">Well-to-Wake = Well-to-Tank + Tank-to-Wake</strong>, covering CO₂, CH₄, and N₂O. IMO explicitly states that ambition checkpoints should account for WtW GHG emissions — so the "CO2e" metric is properly treated as a GHG/WtW bucket, not just stack CO₂.
+      </div>
+    </div>
+  </div>
+
+  <!-- BRIEFS -->
+  <div class="briefs-section">
+    <div style="padding-bottom: 16px; border-bottom: 1px solid var(--border); margin-bottom:4px;">
+      <div class="section-tag">Regulatory Briefs</div>
+      <div class="section-title">What Else Annex VI Covers</div>
+      <div class="section-body">NOx, SOx, and GHG/CO2e are the primary commercial focus, but Annex VI contains four additional regulatory areas that operators must not overlook.</div>
+    </div>
+    <div class="brief-item">
+      <div class="brief-tag"><span class="tag nox">PM</span></div>
+      <div>
+        <div class="brief-head">Particulate Matter in ECAs</div>
+        <div class="brief-body">IMO explicitly includes PM controls within ECA requirements. Low-sulphur fuel compliance delivers PM co-benefits; scrubber operators in open-loop mode face port-state scrutiny over washwater discharge in certain ECAs.</div>
+      </div>
+    </div>
+    <div class="brief-item">
+      <div class="brief-tag"><span class="tag" style="background:rgba(96,165,250,0.12);color:#60a5fa;">ODS</span></div>
+      <div>
+        <div class="brief-head">Ozone-Depleting Substances — Deliberate Emissions Prohibited</div>
+        <div class="brief-body">Annex VI bans deliberate emissions of ozone-depleting substances from ships. Relevant to refrigeration plant and fire-suppression systems that may contain halons or HCFCs. Record-keeping required.</div>
+      </div>
+    </div>
+    <div class="brief-item">
+      <div class="brief-tag"><span class="tag sox">VOC</span></div>
+      <div>
+        <div class="brief-head">VOC Emissions from Tankers</div>
+        <div class="brief-body">Regulation 15 requires tankers in designated VOC ECAs to carry and operate an approved Vapour Emission Control System (VECS). Port states within those areas may specify requirements for loading operations.</div>
+      </div>
+    </div>
+    <div class="brief-item">
+      <div class="brief-tag"><span class="tag new">INCIN</span></div>
+      <div>
+        <div class="brief-head">Shipboard Incineration Regulation</div>
+        <div class="brief-body">Regulation 16 governs the operation of shipboard incinerators. Incineration is prohibited in ports, harbours, and estuaries. Certain waste categories — PCBs, heavy metal residues, refined petroleum products — may never be incinerated at sea.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ornament">· · ·</div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>
+      <div class="footer-brand">Chase Ji, PhD, PMP <span>/ Energy Transition Strategist</span></div>
+      <div style="margin-top:4px; font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.2);letter-spacing:0.04em;">© 2026 Chase Ji. All rights reserved. Data sourced from IMO MARPOL Annex VI, Reg. 13, 14 &amp; 2023 IMO GHG Strategy.</div>
+    </div>
+    <div class="footer-links">
+      <a class="footer-link" href="https://chaseji.com">chaseji.com</a>
+      <a class="footer-link" href="https://www.imo.org">IMO.org</a>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

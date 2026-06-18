@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CJ Energy Solutions — MEPC 84 Intelligence Brief</title>
+<style>
+/* ═══════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════ */
+:root {
+  --ink:      #0D1117;
+  --ink2:     #161B24;
+  --ink3:     #1E2533;
+  --gold:     #C9A84C;
+  --gold2:    #E8C96A;
+  --gold-dim: #8B6E2A;
+  --cream:    #F5EED8;
+  --cream2:   #FDF8EE;
+  --slate:    #8899AA;
+  --steel:    #3D4F63;
+  --white:    #FFFFFF;
+  --red:      #C0392B;
+  --green:    #27AE60;
+  --amber:    #E67E22;
+  --blue:     #2980B9;
+  --text:     #E8DCC8;
+  --text2:    #A89878;
+  --border:   rgba(201,168,76,.22);
+}
+
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px}
+body{
+  font-family: Georgia,'Times New Roman',serif;
+  background: var(--ink);
+  color: var(--text);
+  line-height:1.75;
+  -webkit-print-color-adjust:exact;
+  print-color-adjust:exact;
+}
+
+/* ═══════════════════════════════════════════
+   WRAPPER
+═══════════════════════════════════════════ */
+.page{max-width:860px;margin:0 auto;background:var(--ink2)}
+
+/* ═══════════════════════════════════════════
+   MASTHEAD
+═══════════════════════════════════════════ */
+.masthead{
+  background: linear-gradient(160deg, #0A0F18 0%, #111826 60%, #1A2435 100%);
+  padding:0;
+  position:relative;
+  overflow:hidden;
+  border-bottom:3px solid var(--gold);
+}
+.masthead::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 50%, rgba(201,168,76,.07) 0%, transparent 70%),
+    repeating-linear-gradient(90deg, rgba(201,168,76,.025) 0 1px, transparent 1px 60px);
+  pointer-events:none;
+}
+
+.mast-top{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:28px 52px 20px;
+  border-bottom:1px solid var(--border);
+}
+.mast-logo img{height:56px;width:auto;filter:brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(3deg)}
+.mast-meta{text-align:right}
+.mast-meta .series{
+  font-family:Georgia,serif;font-size:9px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:3px;
+}
+.mast-meta .iss{font-size:13px;color:rgba(255,255,255,.6)}
+
+.mast-hero{padding:38px 52px 46px;position:relative}
+.hero-kicker{
+  font-size:9px;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:14px;
+  font-family:Georgia,serif;
+}
+.hero-hl{
+  font-size:38px;font-weight:bold;
+  color:var(--white);line-height:1.1;margin-bottom:8px;
+  letter-spacing:-.5px;
+}
+.hero-hl em{color:var(--gold);font-style:normal}
+.hero-sub{
+  font-size:15.5px;font-style:italic;
+  color:rgba(255,255,255,.55);margin-bottom:30px;
+  max-width:560px;
+}
+
+.hero-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px}
+.badge{
+  font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 12px;border:1px solid var(--border);
+  color:var(--gold2);background:rgba(201,168,76,.06);
+  border-radius:2px;
+}
+.badge.hot{border-color:rgba(192,57,43,.5);background:rgba(192,57,43,.08);color:#E87070}
+
+.hero-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);margin-top:8px;
+}
+.hstat{
+  background:rgba(10,15,24,.7);
+  padding:16px 18px;
+}
+.hstat .v{
+  display:block;font-size:26px;font-weight:bold;
+  color:var(--gold);line-height:1;margin-bottom:4px;
+}
+.hstat .l{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate)}
+
+/* ═══════════════════════════════════════════
+   EXECUTIVE BRIEF
+═══════════════════════════════════════════ */
+.exec-brief{
+  background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(201,168,76,.03));
+  border-left:4px solid var(--gold);
+  padding:26px 36px;
+  margin:0;
+}
+.exec-brief .eb-label{
+  font-size:9px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:10px;display:block;
+}
+.exec-brief p{font-size:14.5px;line-height:1.8;color:var(--text)}
+.exec-brief strong{color:var(--gold2)}
+
+/* ═══════════════════════════════════════════
+   CONTENT
+═══════════════════════════════════════════ */
+.content{padding:0 52px}
+
+/* ═══════════════════════════════════════════
+   SECTION
+═══════════════════════════════════════════ */
+.section{margin-top:46px}
+.sec-hd{
+  display:flex;align-items:baseline;gap:14px;
+  margin-bottom:20px;padding-bottom:10px;
+  border-bottom:1px solid var(--border);
+}
+.sec-n{
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold-dim);min-width:20px;
+}
+.sec-t{
+  font-size:20px;font-weight:bold;color:var(--white);
+  flex:1;line-height:1.2;
+}
+.section p{font-size:14.5px;line-height:1.82;color:var(--text);margin-bottom:13px}
+.section p strong{color:var(--gold2)}
+
+.sub-hd{
+  font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold);margin:26px 0 10px;
+  padding-left:12px;border-left:2px solid var(--gold-dim);
+  font-family:Georgia,serif;
+}
+
+/* ═══════════════════════════════════════════
+   CALLOUT
+═══════════════════════════════════════════ */
+.callout{
+  background:rgba(201,168,76,.07);
+  border:1px solid rgba(201,168,76,.2);
+  padding:20px 26px;margin:22px 0;
+  border-radius:2px;
+}
+.callout p{font-size:14px;line-height:1.78;color:var(--cream);margin:0}
+.callout strong{color:var(--gold2)}
+
+.callout.red{
+  background:rgba(192,57,43,.08);border-color:rgba(192,57,43,.25);
+}
+.callout.red p{color:#FFCFC8}
+
+/* ═══════════════════════════════════════════
+   DATA TABLE
+═══════════════════════════════════════════ */
+.tbl-wrap{overflow-x:auto;margin:18px 0}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+thead tr{background:rgba(201,168,76,.12)}
+thead th{
+  padding:10px 14px;text-align:left;
+  font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold2);border-bottom:1px solid var(--border);
+  font-family:Georgia,serif;white-space:nowrap;
+}
+tbody tr{border-bottom:1px solid rgba(255,255,255,.04)}
+tbody tr:hover{background:rgba(255,255,255,.02)}
+tbody td{padding:9px 14px;color:var(--text);vertical-align:top}
+tbody td:first-child{color:var(--gold2);font-weight:bold}
+.tbl-cap{font-size:10.5px;color:var(--slate);font-style:italic;margin-top:5px;text-align:right}
+
+/* ═══════════════════════════════════════════
+   DIVIDER
+═══════════════════════════════════════════ */
+.div{border:none;border-top:1px solid var(--border);margin:42px 0 0}
+
+/* ═══════════════════════════════════════════
+   INFOGRAPHIC CONTAINERS
+═══════════════════════════════════════════ */
+.infographic{
+  background:rgba(10,15,24,.7);
+  border:1px solid var(--border);
+  margin:24px 0;padding:24px;
+  border-radius:3px;
+}
+.infographic .ig-title{
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:18px;
+  font-family:Georgia,serif;
+}
+
+/* ═══════════════════════════════════════════
+   OPTION CARDS
+═══════════════════════════════════════════ */
+.option-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:20px 0}
+.opt-card{
+  padding:18px;border-radius:2px;
+  border-top:3px solid;
+}
+.opt-a{border-color:var(--green);background:rgba(39,174,96,.07)}
+.opt-b{border-color:var(--amber);background:rgba(230,126,34,.07)}
+.opt-c{border-color:var(--red);background:rgba(192,57,43,.07)}
+.opt-card .oc-tag{
+  font-size:9px;letter-spacing:.15em;text-transform:uppercase;
+  margin-bottom:8px;display:block;
+}
+.opt-a .oc-tag{color:var(--green)}
+.opt-b .oc-tag{color:var(--amber)}
+.opt-c .oc-tag{color:#E87070}
+.opt-card .oc-title{font-size:14px;font-weight:bold;color:var(--white);margin-bottom:6px}
+.opt-card .oc-who{font-size:11px;color:var(--slate);margin-bottom:9px;font-style:italic}
+.opt-card .oc-body{font-size:12.5px;line-height:1.65;color:var(--text)}
+
+/* ═══════════════════════════════════════════
+   NZF PARAMS TABLE
+═══════════════════════════════════════════ */
+.params-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:12px;margin:18px 0;
+}
+.param-card{
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--border);
+  padding:16px 18px;border-radius:2px;
+}
+.param-card .pk{
+  font-size:9px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--gold-dim);margin-bottom:5px;
+}
+.param-card .pv{
+  font-size:18px;font-weight:bold;color:var(--gold2);line-height:1.2;
+}
+.param-card .pd{font-size:11.5px;color:var(--text2);margin-top:4px;line-height:1.5}
+
+/* ═══════════════════════════════════════════
+   TIMELINE
+═══════════════════════════════════════════ */
+.timeline{position:relative;padding-left:30px;margin:20px 0}
+.timeline::before{
+  content:'';position:absolute;left:8px;top:8px;bottom:8px;
+  width:2px;background:linear-gradient(to bottom,var(--gold),var(--steel));
+}
+.tl-item{position:relative;margin-bottom:20px}
+.tl-item::before{
+  content:'';position:absolute;left:-25px;top:5px;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--gold);border:2px solid var(--ink2);
+  box-shadow:0 0 0 2px var(--gold-dim);
+}
+.tl-item.dim::before{background:var(--steel);box-shadow:0 0 0 2px var(--steel)}
+.tl-date{
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);font-family:Georgia,serif;margin-bottom:2px;
+}
+.tl-text{font-size:13.5px;line-height:1.65;color:var(--text)}
+.tl-text strong{color:var(--gold2)}
+
+/* ═══════════════════════════════════════════
+   BULLET LIST
+═══════════════════════════════════════════ */
+.bl{list-style:none;margin:10px 0}
+.bl li{
+  position:relative;padding-left:18px;
+  font-size:14px;line-height:1.75;color:var(--text);
+  margin-bottom:7px;
+}
+.bl li::before{
+  content:'▸';position:absolute;left:0;
+  color:var(--gold-dim);font-size:10px;top:3px;
+}
+.bl li strong{color:var(--gold2)}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+.footer{
+  background:linear-gradient(180deg,var(--ink2),#080C13);
+  border-top:3px solid var(--gold-dim);
+  padding:32px 52px 28px;
+  margin-top:52px;
+}
+.footer-inner{display:flex;gap:28px;align-items:flex-start;margin-bottom:16px}
+.footer-logo img{height:44px;filter:brightness(0) invert(1);opacity:.5}
+.footer-txt{flex:1;font-size:11.5px;line-height:1.7;color:var(--steel)}
+.footer-txt strong{color:var(--gold-dim);display:block;margin-bottom:3px;font-size:12px}
+.footer-disc{
+  font-size:10px;color:rgba(255,255,255,.18);line-height:1.6;
+  border-top:1px solid var(--border);padding-top:14px;margin-top:4px;
+}
+
+/* ═══════════════════════════════════════════
+   SVG CHART UTILITIES
+═══════════════════════════════════════════ */
+.chart-wrap{width:100%;overflow:hidden}
+svg text{font-family:Georgia,'Times New Roman',serif}
+
+/* ═══════════════════════════════════════════
+   PRINT
+═══════════════════════════════════════════ */
+@media print{
+  body{background:#fff;color:#222;font-size:12px}
+  .page{max-width:100%;box-shadow:none}
+  .masthead{background:#0D1117!important}
+  .section{page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ══════════════════════════════════════
+     MASTHEAD
+══════════════════════════════════════ -->
+<header class="masthead">
+  <div class="mast-top">
+    <div class="mast-logo-text" style="display:flex;flex-direction:column;justify-content:center">
+      <div style="font-family:Georgia,serif;font-size:22px;font-weight:bold;letter-spacing:.04em;line-height:1.1">
+        <span style="color:#B8974A">CJ</span> <span style="color:#E8DCC8">Energy Solutions</span>
+      </div>
+      <div style="font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#8899AA;margin-top:3px">Authored by Chase Ji</div>
+    </div>
+    <div class="mast-meta">
+      <span class="series">IMO Regulatory Intelligence</span>
+      <span class="iss">Issue 6 &nbsp;·&nbsp; April 2026</span>
+    </div>
+  </div>
+  <div class="mast-hero">
+    <div class="hero-kicker">Live Session Coverage — April 27 to May 1, 2026</div>
+    <h1 class="hero-hl">MEPC 84: <em>The Moment<br>of Truth</em> for IMO Decarbonisation</h1>
+    <p class="hero-sub">What the 84th Marine Environment Protection Committee session will trigger — and what it puts at risk — for the global shipping GHG framework through 2030.</p>
+    <div class="hero-badges">
+      <span class="badge">Net-Zero Framework</span>
+      <span class="badge">GFI Targets</span>
+      <span class="badge">NZF Adoption Vote</span>
+      <span class="badge">EU ETS Interaction</span>
+      <span class="badge hot">🔴 US Threatens Withdrawal</span>
+      <span class="badge">CII Phase 2</span>
+      <span class="badge">OCCS Guidelines</span>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><span class="v">57</span><span class="l">GHG Documents Submitted</span></div>
+      <div class="hstat"><span class="v">63–16</span><span class="l">MEPC 83 NZF Vote</span></div>
+      <div class="hstat"><span class="v">57–49</span><span class="l">ES.2 Adjournment Vote</span></div>
+      <div class="hstat"><span class="v">Nov 2026</span><span class="l">Next Adoption Window</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════
+     EXEC BRIEF
+══════════════════════════════════════ -->
+<div class="exec-brief">
+  <span class="eb-label">Executive Brief</span>
+  <p>MEPC 84 (27 April – 1 May 2026, chaired by Dr. Harry Conway) is not an adoption session — but it is the <strong>last regular MEPC before the November 2026 extraordinary session</strong> at which the IMO Net-Zero Framework (NZF) either lives, dies, or is fundamentally redesigned. With the US demanding termination, hydrocarbon states seeking abandonment, Japan proposing a watered-down middle path, and climate-vulnerable SIDS threatening to demand a <em>stronger</em> levy if negotiations reopen, MEPC 84 will filter which track survives — and signal to markets, investors, and regulators whether the IMO framework or the EU's unilateral ETS becomes the de facto global standard.</p>
+</div>
+
+<!-- ══════════════════════════════════════
+     CONTENT
+══════════════════════════════════════ -->
+<div class="content">
+
+<!-- ── SECTION 1: CONTEXT ── -->
+<div class="section">
+  <div class="sec-hd">
+    <span class="sec-n">01</span>
+    <span class="sec-t">Why MEPC 84 Is a Hinge Point</span>
+  </div>
+
+  <p>The 84th session of the Marine Environment Protection Committee sits at the intersection of two failed processes: the <strong>MEPC 83 NZF approval</strong> (April 2025) that was then blocked at the <strong>MEPC/ES.2 extraordinary session</strong> (October 2025). MEPC 84 now serves as the procedural reset — deciding not just what happens to the NZF but whether IMO retains the credibility to govern shipping decarbonisation at all.</p>
+
+  <p>With <strong>57 GHG documents</strong> before the committee — an abnormally heavy load reflecting acute political polarisation — the session precedes ISWG-GHG 21 (20–24 April), whose report feeds directly into deliberations. The key political question on agenda item 14: how and when to resume MEPC/ES.2, and on what terms.</p>
+
+  <!-- INFOGRAPHIC: MEPC timeline -->
+  <div class="infographic">
+    <div class="ig-title">IMO GHG Regulatory Timeline: Key Milestones</div>
+    <svg viewBox="0 0 760 140" xmlns="http://www.w3.org/2000/svg" class="chart-wrap">
+      <!-- spine -->
+      <line x1="40" y1="70" x2="720" y2="70" stroke="#3D4F63" stroke-width="2"/>
+      <!-- year marks -->
+      <g fill="none">
+        <!-- 2023 -->
+        <circle cx="80"  cy="70" r="7" fill="#C9A84C" stroke="#0D1117" stroke-width="2"/>
+        <!-- 2025 Apr -->
+        <circle cx="230" cy="70" r="7" fill="#C9A84C" stroke="#0D1117" stroke-width="2"/>
+        <!-- 2025 Oct -->
+        <circle cx="310" cy="70" r="9" fill="#C0392B" stroke="#0D1117" stroke-width="2"/>
+        <!-- 2026 Apr now -->
+        <circle cx="420" cy="70" r="10" fill="#E8C96A" stroke="#0D1117" stroke-width="3"/>
+        <!-- 2026 Nov -->
+        <circle cx="530" cy="70" r="8" fill="#3D4F63" stroke="#C9A84C" stroke-width="2" stroke-dasharray="3,2"/>
+        <!-- 2028 -->
+        <circle cx="650" cy="70" r="7" fill="#27AE60" stroke="#0D1117" stroke-width="2"/>
+      </g>
+      <!-- labels above -->
+      <g fill="#C9A84C" font-size="10" text-anchor="middle">
+        <text x="80"  y="42">2023 IMO</text>
+        <text x="80"  y="53">GHG Strategy</text>
+        <text x="230" y="42">MEPC 83</text>
+        <text x="230" y="53">NZF Approved</text>
+      </g>
+      <g fill="#E8C96A" font-size="10" text-anchor="middle">
+        <text x="420" y="42">MEPC 84</text>
+        <text x="420" y="53">▼ NOW ▼</text>
+      </g>
+      <!-- labels below -->
+      <g fill="#C0392B" font-size="10" text-anchor="middle">
+        <text x="310" y="93">MEPC/ES.2</text>
+        <text x="310" y="104">Adjourned</text>
+      </g>
+      <g fill="#8899AA" font-size="10" text-anchor="middle">
+        <text x="530" y="93">MEPC/ES.2</text>
+        <text x="530" y="104">Resumed (Nov 2026)</text>
+        <text x="650" y="93">NZF Entry</text>
+        <text x="650" y="104">into Force (~2028)</text>
+      </g>
+      <!-- "IF FAILS" label -->
+      <g fill="#E87070" font-size="9" text-anchor="middle">
+        <text x="530" y="118">If fails → 2030 slip</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="sub-hd">Vote History — The Numbers That Define the Political Landscape</div>
+
+  <!-- SVG vote chart -->
+  <div class="infographic">
+    <div class="ig-title">MEPC Vote Outcomes: MEPC 83 NZF Approval vs ES.2 Adjournment</div>
+    <svg viewBox="0 0 760 180" xmlns="http://www.w3.org/2000/svg" class="chart-wrap">
+      <defs>
+        <linearGradient id="gFor" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#27AE60"/>
+          <stop offset="100%" stop-color="#2ECC71"/>
+        </linearGradient>
+        <linearGradient id="gAgn" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#C0392B"/>
+          <stop offset="100%" stop-color="#E74C3C"/>
+        </linearGradient>
+        <linearGradient id="gAbs" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#3D4F63"/>
+          <stop offset="100%" stop-color="#4A6080"/>
+        </linearGradient>
+      </defs>
+
+      <!-- MEPC 83 label -->
+      <text x="30" y="38" fill="#C9A84C" font-size="11" font-weight="bold">MEPC 83 — NZF Approval (Apr 2025)</text>
+      <!-- MEPC 83 bars -->
+      <!-- For: 63 -->
+      <rect x="30" y="46" width="405" height="22" rx="2" fill="url(#gFor)"/>
+      <text x="440" y="62" fill="#2ECC71" font-size="11">63 For</text>
+      <!-- Against: 16 -->
+      <rect x="30" y="74" width="103" height="22" rx="2" fill="url(#gAgn)"/>
+      <text x="138" y="90" fill="#E74C3C" font-size="11">16 Against</text>
+      <!-- Abs: 0 -->
+
+      <!-- ES.2 label -->
+      <text x="30" y="122" fill="#E8C96A" font-size="11" font-weight="bold">MEPC/ES.2 — Adjournment Vote (Oct 2025)</text>
+      <!-- For adj: 57 -->
+      <rect x="30" y="130" width="366" height="22" rx="2" fill="url(#gAgn)"/>
+      <text x="401" y="146" fill="#E74C3C" font-size="11">57 Adj.</text>
+      <!-- Against adj: 49 -->
+      <rect x="490" y="130" width="215" height="22" rx="2" fill="url(#gFor)"/>
+      <text x="709" y="146" fill="#2ECC71" font-size="11" text-anchor="end">49 Against</text>
+      <!-- Abs: 21 -->
+      <text x="30" y="170" fill="#8899AA" font-size="10">21 abstentions (incl. Greece, Cyprus) · Note: China switched from support → adjournment · Singapore proposed adjournment</text>
+    </svg>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- ── SECTION 2: NZF OPTIONS ── -->
+<div class="section">
+  <div class="sec-hd">
+    <span class="sec-n">02</span>
+    <span class="sec-t">The Three-Way Split: NZF Options Before MEPC 84</span>
+  </div>
+
+  <p>MEPC 84 faces a stark three-option landscape. Crucially, it will not adopt any of these positions — it will determine which family of options proceeds to the November 2026 extraordinary session. The European Parliament's own briefing warns that <strong>"no visible way ahead or convergence is yet ascertained."</strong></p>
+
+  <div class="option-grid">
+    <div class="opt-card opt-a">
+      <span class="oc-tag">Option A — Keep</span>
+      <div class="oc-title">Adopt NZF As Is</div>
+      <div class="oc-who">Brazil, Mexico, Pacific SIDS (Fiji, Kiribati, Nauru, Palau, Solomon Is., Tuvalu, Vanuatu)</div>
+      <div class="oc-body">MEPC 83 compromise should not be reopened. Pacific SIDS warn: re-opening could prompt demands for a <em>stronger</em> flat global carbon levy.</div>
+    </div>
+    <div class="opt-card opt-b">
+      <span class="oc-tag">Option B — Modify</span>
+      <div class="oc-title">Weaken / Redesign</div>
+      <div class="oc-who">Japan (MEPC 84/7/49) · Argentina, Liberia, Panama (MEPC 84/7/38) · "Middle path" coalition</div>
+      <div class="oc-body">Remove mandatory economic component; ease GFI targets; link compliance to fuel availability. Japan: remove Remedial Unit payments while retaining technical architecture.</div>
+    </div>
+    <div class="opt-card opt-c">
+      <span class="oc-tag">Option C — Terminate</span>
+      <div class="oc-title">End the NZF</div>
+      <div class="oc-who">United States (MEPC 84/7/41) · Algeria, Saudi Arabia, Bahrain, Iraq, Kuwait, Russia, Somalia, UAE</div>
+      <div class="oc-body">Explicitly calls for ending the NZF and not resuming MEPC/ES.2. Demands mandatory withdrawal of the EU ETS as condition of any future framework.</div>
+    </div>
+  </div>
+
+  <!-- PROPOSAL COMPARISON SVG CHART -->
+  <div class="infographic">
+    <div class="ig-title">Proposal Comparison: Key NZF Parameters Across Options</div>
+    <svg viewBox="0 0 760 240" xmlns="http://www.w3.org/2000/svg" class="chart-wrap">
+      <!-- Headers -->
+      <rect x="0" y="0" width="760" height="36" fill="rgba(201,168,76,0.1)"/>
+      <text x="10"  y="22" fill="#C9A84C" font-size="10" font-weight="bold">PARAMETER</text>
+      <text x="230" y="22" fill="#27AE60" font-size="10" font-weight="bold">OPTION A (Keep NZF)</text>
+      <text x="390" y="22" fill="#E67E22" font-size="10" font-weight="bold">OPTION B (Japan/Modify)</text>
+      <text x="570" y="22" fill="#C0392B" font-size="10" font-weight="bold">OPTION C (US/Terminate)</text>
+
+      <!-- Row 1 -->
+      <rect x="0" y="36" width="760" height="36" fill="rgba(255,255,255,0.02)"/>
+      <text x="10"  y="59" fill="#A89878" font-size="10">Mandatory RU Payments</text>
+      <text x="230" y="59" fill="#27AE60" font-size="10">✓ Yes ($100–$380/tCO₂eq)</text>
+      <text x="390" y="59" fill="#E67E22" font-size="10">✗ Remove mandatory element</text>
+      <text x="570" y="59" fill="#E87070" font-size="10">✗ No penalties / levies</text>
+
+      <!-- Row 2 -->
+      <rect x="0" y="72" width="760" height="36" fill="rgba(255,255,255,0.0)"/>
+      <text x="10"  y="95" fill="#A89878" font-size="10">2030 Base GFI Target</text>
+      <text x="230" y="95" fill="#27AE60" font-size="10">85.84 gCO₂eq/MJ</text>
+      <text x="390" y="95" fill="#E67E22" font-size="10">86.8 gCO₂eq/MJ (eased)</text>
+      <text x="570" y="95" fill="#E87070" font-size="10">No target</text>
+
+      <!-- Row 3 -->
+      <rect x="0" y="108" width="760" height="36" fill="rgba(255,255,255,0.02)"/>
+      <text x="10"  y="131" fill="#A89878" font-size="10">2035 Base GFI Target</text>
+      <text x="230" y="131" fill="#27AE60" font-size="10">65.31 gCO₂eq/MJ (−30%)</text>
+      <text x="390" y="131" fill="#E67E22" font-size="10">72.9 gCO₂eq/MJ (eased −21%)</text>
+      <text x="570" y="131" fill="#E87070" font-size="10">No target</text>
+
+      <!-- Row 4 -->
+      <rect x="0" y="144" width="760" height="36" fill="rgba(255,255,255,0.0)"/>
+      <text x="10"  y="167" fill="#A89878" font-size="10">ZNZ Reward Mechanism</text>
+      <text x="230" y="167" fill="#27AE60" font-size="10">✓ IMO Net-Zero Fund</text>
+      <text x="390" y="167" fill="#E67E22" font-size="10">? Uncertain / removed RU base</text>
+      <text x="570" y="167" fill="#E87070" font-size="10">✗ No fund</text>
+
+      <!-- Row 5 -->
+      <rect x="0" y="180" width="760" height="36" fill="rgba(255,255,255,0.02)"/>
+      <text x="10"  y="203" fill="#A89878" font-size="10">EU ETS / Regional Regimes</text>
+      <text x="230" y="203" fill="#27AE60" font-size="10">Coexist</text>
+      <text x="390" y="203" fill="#E67E22" font-size="10">Coexist</text>
+      <text x="570" y="203" fill="#E87070" font-size="10">Mandatory withdrawal demanded</text>
+
+      <!-- Row 6 -->
+      <rect x="0" y="216" width="760" height="24" fill="rgba(255,255,255,0.0)"/>
+      <text x="10"  y="232" fill="#A89878" font-size="10">Est. Entry into Force</text>
+      <text x="230" y="232" fill="#27AE60" font-size="10">~1 Mar 2028</text>
+      <text x="390" y="232" fill="#E67E22" font-size="10">2029–2030+</text>
+      <text x="570" y="232" fill="#E87070" font-size="10">Indefinite / never</text>
+
+      <!-- Column dividers -->
+      <line x1="225" y1="0" x2="225" y2="240" stroke="rgba(201,168,76,.15)" stroke-width="1"/>
+      <line x1="385" y1="0" x2="385" y2="240" stroke="rgba(201,168,76,.15)" stroke-width="1"/>
+      <line x1="565" y1="0" x2="565" y2="240" stroke="rgba(201,168,76,.15)" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <div class="callout red">
+    <p><strong>US Position (MEPC 84/7/41):</strong> The most radical submission before the committee. Washington calls for ending the NZF entirely, requiring mandatory withdrawal of the EU ETS, adopting an "energy-all" approach that does not restrict any fuel type, and using the explicit acceptance procedure for any future amendments. Secretary of State Marco Rubio warned: <em>"If the NZF or a substantially similar measure were to be brought back up at the IMO, our coalition will be ready to oppose, and it will be larger."</em></p>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- ── SECTION 3: NZF PARAMETERS ── -->
+<div class="section">
+  <div class="sec-hd">
+    <span class="sec-n">03</span>
+    <span class="sec-t">NZF Technical Architecture: What Is at Stake</span>
+  </div>
+
+  <p>The package approved at MEPC 83 — still the baseline legal text under MARPOL procedures — contains a two-tier compliance structure. The financial stakes for vessel operators are significant and immediate.</p>
+
+  <div class="params-grid">
+    <div class="param-card">
+      <div class="pk">Applicability</div>
+      <div class="pv">5,000 GT+</div>
+      <div class="pd">&gt;85% of international shipping CO₂ emissions; first compliance year 2028</div>
+    </div>
+    <div class="param-card">
+      <div class="pk">2008 Reference GFI</div>
+      <div class="pv">93.3 gCO₂eq/MJ</div>
+      <div class="pd">Benchmark against which all reduction targets are calculated</div>
+    </div>
+    <div class="param-card">
+      <div class="pk">Tier 1 RU Price</div>
+      <div class="pv">$100 / tCO₂eq</div>
+      <div class="pd">Between Base and Direct Compliance targets (2028–2030); mechanism review for 2031+</div>
+    </div>
+    <div class="param-card">
+      <div class="pk">Tier 2 RU Price</div>
+      <div class="pv">$380 / tCO₂eq</div>
+      <div class="pd">For ships exceeding the Base target; paid into IMO Net-Zero Fund</div>
+    </div>
+    <div class="param-card">
+      <div class="pk">ZNZ Fuel Threshold (pre-2035)</div>
+      <div class="pv">≤19 gCO₂eq/MJ</div>
+      <div class="pd">Eligible for financial rewards from the Net-Zero Fund</div>
+    </div>
+    <div class="param-card">
+      <div class="pk">ZNZ Threshold (from 2035)</div>
+      <div class="pv">≤14 gCO₂eq/MJ</div>
+      <div class="pd">Tightened to ensure only genuine zero-carbon fuels earn reward premiums</div>
+    </div>
+  </div>
+
+  <!-- GFI Trajectory chart -->
+  <div class="infographic">
+    <div class="ig-title">GFI Target Trajectories: NZF vs Japan Proposal vs 2008 Baseline</div>
+    <svg viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg" class="chart-wrap">
+      <!-- background grid -->
+      <g stroke="rgba(255,255,255,0.05)" stroke-width="1">
+        <line x1="80" y1="20"  x2="700" y2="20"/>
+        <line x1="80" y1="60"  x2="700" y2="60"/>
+        <line x1="80" y1="100" x2="700" y2="100"/>
+        <line x1="80" y1="140" x2="700" y2="140"/>
+        <line x1="80" y1="180" x2="700" y2="180"/>
+        <line x1="80" y1="220" x2="700" y2="220"/>
+      </g>
+      <!-- Y axis labels (gCO2/MJ) — scale: 93.3 at y=30, 40 at y=220 -->
+      <!-- Scale: y = 30 + (93.3 - val) * (220-30)/(93.3-40) = 30 + (93.3-val)*3.563 -->
+      <g fill="#8899AA" font-size="10" text-anchor="end">
+        <text x="75" y="34">93</text>
+        <text x="75" y="64">84</text>
+        <text x="75" y="104">73</text>
+        <text x="75" y="144">62</text>
+        <text x="75" y="184">51</text>
+        <text x="75" y="224">40</text>
+      </g>
+      <text x="30" y="130" fill="#8899AA" font-size="9" transform="rotate(-90,30,130)" text-anchor="middle">GFI (gCO₂eq/MJ)</text>
+
+      <!-- X axis years: 2008→80, 2028→270, 2030→360, 2032→455, 2035→585, 2040→700 -->
+      <g fill="#8899AA" font-size="10" text-anchor="middle">
+        <text x="80"  y="245">2008</text>
+        <text x="270" y="245">2028</text>
+        <text x="360" y="245">2030</text>
+        <text x="455" y="245">2032</text>
+        <text x="585" y="245">2035</text>
+        <text x="700" y="245">2040</text>
+      </g>
+
+      <!-- Y-val helper: y = 30 + (93.3 - val) * 3.563 -->
+      <!-- 2008=93.3→y=30; 2028 base=88.6→y=47; 2030 base=85.84→y=57; 2035=65.31→y=99; 2040=65% reduction=32.7→y=217 -->
+
+      <!-- Baseline 2008 reference dotted line -->
+      <line x1="80" y1="30" x2="700" y2="30" stroke="#C9A84C" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.4"/>
+      <text x="705" y="34" fill="#C9A84C" font-size="9">2008 ref: 93.3</text>
+
+      <!-- NZF Base target line (green) -->
+      <!-- pts: 2008(80,30)→2028(270,47)→2030(360,57)→2035(585,99)→2040(700,217) -->
+      <polyline points="80,30 270,47 360,57 585,99 700,217"
+        fill="none" stroke="#27AE60" stroke-width="2.5"/>
+      <text x="580" y="94" fill="#27AE60" font-size="10">NZF Base Target</text>
+
+      <!-- NZF Direct Compliance (lighter green) -->
+      <!-- 2028=86.0→y=26? no — Direct Compliance is tighter; approx 2028=75, 2030=73.71, 2035=53.18, 2040 ~32 -->
+      <!-- y vals: 75→(93.3-75)*3.563=65→y=95; 73.71→y=69+30=99; 53.18→y=143; 32→y=219 -->
+      <polyline points="270,77 360,82 585,143 700,219"
+        fill="none" stroke="#2ECC71" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="265" y="72" fill="#2ECC71" font-size="9" text-anchor="end">Direct Compliance</text>
+
+      <!-- Japan Base target (amber) -->
+      <!-- 2030=86.8→y=23.2*3.563+30=52.7→y=53; 2035=72.9→y=(93.3-72.9)*3.563+30=102.7 -->
+      <polyline points="80,30 270,47 360,53 585,103 700,200"
+        fill="none" stroke="#E67E22" stroke-width="2" stroke-dasharray="8,3"/>
+      <text x="590" y="108" fill="#E67E22" font-size="10">Japan Base (eased)</text>
+
+      <!-- Zone between NZF and Japan -->
+      <polygon points="360,53 360,57 585,99 585,103 700,200 700,217"
+        fill="rgba(230,126,34,0.07)" stroke="none"/>
+
+      <!-- ZNZ threshold lines -->
+      <!-- 19 gCO2/MJ: y = 30 + (93.3-19)*3.563 = 30+264.5 = too far down; recalc with scale to 260 -->
+      <!-- Let's use: scale maps 93.3→30, 14→230 so factor=(230-30)/(93.3-14)=200/79.3=2.522 -->
+      <!-- 19: y=30+(93.3-19)*2.522=30+187.3=217  14: y=30+(93.3-14)*2.522=30+200=230 -->
+      <line x1="80" y1="219" x2="700" y2="219" stroke="#C9A84C" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+      <text x="705" y="223" fill="#C9A84C" font-size="8">ZNZ ≤19</text>
+
+      <!-- Legend -->
+      <rect x="82" y="195" width="14" height="3" fill="#27AE60"/>
+      <text x="100" y="199" fill="#8899AA" font-size="9">NZF Base</text>
+      <rect x="82" y="207" width="14" height="2" fill="#2ECC71"/>
+      <text x="100" y="211" fill="#8899AA" font-size="9">NZF Direct Compliance</text>
+      <rect x="180" y="195" width="14" height="3" fill="#E67E22"/>
+      <text x="198" y="199" fill="#8899AA" font-size="9">Japan Proposal (eased)</text>
+    </svg>
+  </div>
+
+  <p>For a vessel burning VLSFO (reference GFI ≈ 91 gCO₂eq/MJ), the NZF as-is implies compliance costs of approximately <strong>$76/tonne of fuel in 2028</strong>, rising to <strong>$653/tonne by 2035</strong>. Japan's eased targets reduce these costs but also reduce the incentive signal for early movers into green fuels.</p>
+</div>
+
+<hr class="div">
+
+<!-- ── SECTION 4: KEY WORKSTREAMS ── -->
+<div class="section">
+  <div class="sec-hd">
+    <span class="sec-n">04</span>
+    <span class="sec-t">Key Technical Workstreams at MEPC 84</span>
+  </div>
+
+  <p>Beyond the political NZF debate, MEPC 84 carries six technically significant workstreams that will shape shipping's decarbonisation toolkit regardless of the NZF's fate.</p>
+
+  <!-- Workstream infographic -->
+  <div class="infographic">
+    <div class="ig-title">MEPC 84 Workstream Priority Map</div>
+    <svg viewBox="0 0 760 220" xmlns="http://www.w3.org/2000/svg" class="chart-wrap">
+      <!-- 6 workstream bubbles -->
+      <!-- Row 1: 3 boxes -->
+      <rect x="10"  y="10" width="225" height="90" rx="3" fill="rgba(201,168,76,0.07)" stroke="rgba(201,168,76,0.25)" stroke-width="1"/>
+      <text x="112" y="34" fill="#C9A84C" font-size="10" font-weight="bold" text-anchor="middle">LCA Framework</text>
+      <text x="112" y="48" fill="#8899AA" font-size="9" text-anchor="middle">Well-to-wake factors for</text>
+      <text x="112" y="60" fill="#8899AA" font-size="9" text-anchor="middle">LNG, biofuels, RFNBOs</text>
+      <text x="112" y="75" fill="#E87070" font-size="9" text-anchor="middle">⚠ LNG/biofuel factors</text>
+      <text x="112" y="87" fill="#E87070" font-size="9" text-anchor="middle">may not be ready</text>
+
+      <rect x="267" y="10" width="225" height="90" rx="3" fill="rgba(39,174,96,0.07)" stroke="rgba(39,174,96,0.2)" stroke-width="1"/>
+      <text x="380" y="34" fill="#2ECC71" font-size="10" font-weight="bold" text-anchor="middle">5th IMO GHG Study</text>
+      <text x="380" y="48" fill="#8899AA" font-size="9" text-anchor="middle">ToR to be finalised</text>
+      <text x="380" y="60" fill="#8899AA" font-size="9" text-anchor="middle">at this session</text>
+      <text x="380" y="75" fill="#C9A84C" font-size="9" text-anchor="middle">Scope: WtW emissions,</text>
+      <text x="380" y="87" fill="#C9A84C" font-size="9" text-anchor="middle">CH₄/N₂O, projections</text>
+
+      <rect x="524" y="10" width="225" height="90" rx="3" fill="rgba(41,128,185,0.07)" stroke="rgba(41,128,185,0.2)" stroke-width="1"/>
+      <text x="636" y="34" fill="#3498DB" font-size="10" font-weight="bold" text-anchor="middle">CH₄ &amp; N₂O Guidelines</text>
+      <text x="636" y="48" fill="#8899AA" font-size="9" text-anchor="middle">NEW: 3 sets of draft</text>
+      <text x="636" y="60" fill="#8899AA" font-size="9" text-anchor="middle">measurement rules</text>
+      <text x="636" y="75" fill="#C9A84C" font-size="9" text-anchor="middle">900+ LNG vessels</text>
+      <text x="636" y="87" fill="#C9A84C" font-size="9" text-anchor="middle">directly affected</text>
+
+      <!-- Row 2 -->
+      <rect x="10"  y="120" width="225" height="90" rx="3" fill="rgba(192,57,43,0.07)" stroke="rgba(192,57,43,0.2)" stroke-width="1"/>
+      <text x="112" y="144" fill="#E87070" font-size="10" font-weight="bold" text-anchor="middle">CII Phase 2 Review</text>
+      <text x="112" y="158" fill="#8899AA" font-size="9" text-anchor="middle">Targets: 11% (2026)</text>
+      <text x="112" y="170" fill="#8899AA" font-size="9" text-anchor="middle">→ 21.5% (2030)</text>
+      <text x="112" y="182" fill="#C9A84C" font-size="9" text-anchor="middle">87-company coalition</text>
+      <text x="112" y="194" fill="#C9A84C" font-size="9" text-anchor="middle">pushing for 30% by 2030</text>
+
+      <rect x="267" y="120" width="225" height="90" rx="3" fill="rgba(155,89,182,0.07)" stroke="rgba(155,89,182,0.2)" stroke-width="1"/>
+      <text x="380" y="144" fill="#9B59B6" font-size="10" font-weight="bold" text-anchor="middle">OCCS Guidelines</text>
+      <text x="380" y="158" fill="#8899AA" font-size="9" text-anchor="middle">Onboard Carbon Capture</text>
+      <text x="380" y="170" fill="#8899AA" font-size="9" text-anchor="middle">survey &amp; certification</text>
+      <text x="380" y="182" fill="#C9A84C" font-size="9" text-anchor="middle">Could unlock compliance</text>
+      <text x="380" y="194" fill="#C9A84C" font-size="9" text-anchor="middle">path for fossil-fuel ships</text>
+
+      <rect x="524" y="120" width="225" height="90" rx="3" fill="rgba(26,163,95,0.07)" stroke="rgba(26,163,95,0.2)" stroke-width="1"/>
+      <text x="636" y="144" fill="#1ABC9C" font-size="10" font-weight="bold" text-anchor="middle">NE Atlantic ECA</text>
+      <text x="636" y="158" fill="#8899AA" font-size="9" text-anchor="middle">Formal adoption expected</text>
+      <text x="636" y="170" fill="#8899AA" font-size="9" text-anchor="middle">NOₓ: Mar 2027</text>
+      <text x="636" y="182" fill="#8899AA" font-size="9" text-anchor="middle">SOₓ/PM: 2028</text>
+      <text x="636" y="194" fill="#C9A84C" font-size="9" text-anchor="middle">Session's likely principal</text>
+    </svg>
+  </div>
+
+  <div class="sub-hd">CII Phase 2 — Reduction Trajectory</div>
+
+  <div class="infographic">
+    <div class="ig-title">CII Annual Reduction Factor: Current vs Proposed Enhancement</div>
+    <svg viewBox="0 0 760 130" xmlns="http://www.w3.org/2000/svg" class="chart-wrap">
+      <!-- bar chart: years 2023–2030 -->
+      <!-- existing adopted values -->
+      <g fill="#3D4F63">
+        <rect x="60"  y="50" width="40" height="30" rx="1"/>
+        <rect x="120" y="42" width="40" height="38" rx="1"/>
+        <rect x="180" y="34" width="40" height="46" rx="1"/>
+        <rect x="240" y="28" width="40" height="52" rx="1"/>
+      </g>
+      <!-- new MEPC 83 factors (higher bars) -->
+      <g fill="#C9A84C" opacity="0.85">
+        <rect x="300" y="62" width="40" height="18" rx="1"/>
+        <rect x="360" y="48" width="40" height="32" rx="1"/>
+        <rect x="420" y="40" width="40" height="40" rx="1"/>
+        <rect x="480" y="28" width="40" height="52" rx="1"/>
+      </g>
+      <!-- proposed 30% target bar -->
+      <rect x="540" y="20" width="40" height="60" rx="1" fill="#27AE60" opacity="0.7"/>
+      <rect x="600" y="10" width="40" height="70" rx="1" fill="#27AE60" opacity="0.4" stroke="#27AE60" stroke-width="1" stroke-dasharray="3,2" fill-opacity="0.2"/>
+
+      <!-- x axis -->
+      <line x1="40" y1="80" x2="660" y2="80" stroke="#3D4F63" stroke-width="1"/>
+      <!-- labels -->
+      <g fill="#8899AA" font-size="9" text-anchor="middle">
+        <text x="80"  y="93">2023</text>
+        <text x="140" y="93">2024</text>
+        <text x="200" y="93">2025</text>
+        <text x="260" y="93">2026</text>
+        <text x="320" y="93">2027</text>
+        <text x="380" y="93">2028</text>
+        <text x="440" y="93">2029</text>
+        <text x="500" y="93">2030</text>
+        <text x="560" y="93">2030</text>
+        <text x="620" y="93">2030</text>
+      </g>
+      <g fill="#8899AA" font-size="8" text-anchor="middle">
+        <text x="80"  y="103">5%</text>
+        <text x="140" y="103">9%</text>
+        <text x="200" y="103">13%</text>
+        <text x="260" y="103">11%</text>
+        <text x="320" y="103">14%</text>
+        <text x="380" y="103">17.5%</text>
+        <text x="440" y="103">19.5%</text>
+        <text x="500" y="103">21.5%</text>
+        <text x="560" y="103">30%</text>
+        <text x="620" y="103">(prop.)</text>
+      </g>
+      <!-- legend -->
+      <rect x="42" y="110" width="12" height="8" fill="#3D4F63" rx="1"/>
+      <text x="58" y="118" fill="#8899AA" font-size="9">Pre-MEPC 83 trajectory</text>
+      <rect x="180" y="110" width="12" height="8" fill="#C9A84C" rx="1"/>
+      <text x="196" y="118" fill="#8899AA" font-size="9">MEPC 83 revised factors</text>
+      <rect x="320" y="110" width="12" height="8" fill="#27AE60" rx="1"/>
+      <text x="336" y="118" fill="#8899AA" font-size="9">87-company coalition target</text>
+    </svg>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- ── SECTION 5: FORWARD ROADMAP ── -->
+<div class="section">
+  <div class="sec-hd">
+    <span class="sec-n">05</span>
+    <span class="sec-t">Post-MEPC 84 Roadmap &amp; Decision Tree</span>
+  </div>
+
+  <p>The sequence post-MEPC 84 is entirely conditional on which path is chosen. The divergence between a functioning NZF adoption and a stalled/terminated framework has profound consequences for industry planning horizons, fleet renewal investment, and the regional regulatory patchwork operators must navigate.</p>
+
+  <!-- Decision tree SVG -->
+  <div class="infographic">
+    <div class="ig-title">MEPC 84 Decision Tree: Paths to November 2026 and Beyond</div>
+    <svg viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg" class="chart-wrap">
+      <!-- Root -->
+      <rect x="280" y="10" width="200" height="40" rx="3" fill="rgba(201,168,76,0.15)" stroke="#C9A84C" stroke-width="1.5"/>
+      <text x="380" y="28" fill="#E8C96A" font-size="11" text-anchor="middle" font-weight="bold">MEPC 84 Outcome</text>
+      <text x="380" y="42" fill="#A89878" font-size="9" text-anchor="middle">April 27–May 1, 2026</text>
+
+      <!-- Three branches down -->
+      <line x1="380" y1="50" x2="380" y2="80" stroke="#3D4F63" stroke-width="1.5"/>
+      <line x1="380" y1="80" x2="120" y2="80" stroke="#3D4F63" stroke-width="1.5"/>
+      <line x1="380" y1="80" x2="640" y2="80" stroke="#3D4F63" stroke-width="1.5"/>
+      <line x1="120"  y1="80" x2="120"  y2="100" stroke="#27AE60" stroke-width="1.5"/>
+      <line x1="380"  y1="80" x2="380"  y2="100" stroke="#E67E22" stroke-width="1.5"/>
+      <line x1="640"  y1="80" x2="640"  y2="100" stroke="#C0392B" stroke-width="1.5"/>
+
+      <!-- Path A: Keep -->
+      <rect x="30"  y="100" width="180" height="50" rx="3" fill="rgba(39,174,96,0.1)" stroke="#27AE60" stroke-width="1"/>
+      <text x="120" y="120" fill="#27AE60" font-size="10" text-anchor="middle" font-weight="bold">PATH A: Keep NZF</text>
+      <text x="120" y="136" fill="#A89878" font-size="9"  text-anchor="middle">November 2026 adoption</text>
+      <text x="120" y="148" fill="#A89878" font-size="9"  text-anchor="middle">EIF ~Mar 2028</text>
+
+      <!-- Path B: Modify -->
+      <rect x="290" y="100" width="180" height="50" rx="3" fill="rgba(230,126,34,0.1)" stroke="#E67E22" stroke-width="1"/>
+      <text x="380" y="120" fill="#E67E22" font-size="10" text-anchor="middle" font-weight="bold">PATH B: Modify</text>
+      <text x="380" y="136" fill="#A89878" font-size="9"  text-anchor="middle">Redesign NZF 2026–2027</text>
+      <text x="380" y="148" fill="#A89878" font-size="9"  text-anchor="middle">EIF 2029–2030+</text>
+
+      <!-- Path C: Terminate -->
+      <rect x="550" y="100" width="180" height="50" rx="3" fill="rgba(192,57,43,0.1)" stroke="#C0392B" stroke-width="1"/>
+      <text x="640" y="120" fill="#E87070" font-size="10" text-anchor="middle" font-weight="bold">PATH C: Terminate</text>
+      <text x="640" y="136" fill="#A89878" font-size="9"  text-anchor="middle">NZF abandoned</text>
+      <text x="640" y="148" fill="#A89878" font-size="9"  text-anchor="middle">No global framework</text>
+
+      <!-- Downstream outcomes -->
+      <line x1="120" y1="150" x2="120" y2="180" stroke="#27AE60" stroke-width="1"/>
+      <line x1="380" y1="150" x2="380" y2="180" stroke="#E67E22" stroke-width="1"/>
+      <line x1="640" y1="150" x2="640" y2="180" stroke="#C0392B" stroke-width="1"/>
+
+      <rect x="30"  y="180" width="180" height="85" rx="3" fill="rgba(39,174,96,0.06)" stroke="rgba(39,174,96,0.3)" stroke-width="1"/>
+      <text x="120" y="200" fill="#27AE60" font-size="9" text-anchor="middle">✓ GFI + pricing live 2028</text>
+      <text x="120" y="215" fill="#27AE60" font-size="9" text-anchor="middle">✓ ZNZ fund rewards fuel</text>
+      <text x="120" y="230" fill="#27AE60" font-size="9" text-anchor="middle">✓ Investor certainty</text>
+      <text x="120" y="245" fill="#27AE60" font-size="9" text-anchor="middle">✓ NZF + EU ETS coexist</text>
+      <text x="120" y="258" fill="#8899AA" font-size="8" text-anchor="middle">IMO retains authority</text>
+
+      <rect x="290" y="180" width="180" height="85" rx="3" fill="rgba(230,126,34,0.06)" stroke="rgba(230,126,34,0.3)" stroke-width="1"/>
+      <text x="380" y="200" fill="#E67E22" font-size="9" text-anchor="middle">~ Weakened incentives</text>
+      <text x="380" y="215" fill="#E67E22" font-size="9" text-anchor="middle">~ First-mover uncertainty</text>
+      <text x="380" y="230" fill="#E67E22" font-size="9" text-anchor="middle">~ LNG lock-in risk</text>
+      <text x="380" y="245" fill="#8899AA" font-size="9" text-anchor="middle">EU ETS continues</text>
+      <text x="380" y="258" fill="#8899AA" font-size="8" text-anchor="middle">Patchwork regime persists</text>
+
+      <rect x="550" y="180" width="180" height="85" rx="3" fill="rgba(192,57,43,0.06)" stroke="rgba(192,57,43,0.3)" stroke-width="1"/>
+      <text x="640" y="200" fill="#E87070" font-size="9" text-anchor="middle">✗ No global carbon signal</text>
+      <text x="640" y="215" fill="#E87070" font-size="9" text-anchor="middle">✗ EU ETS = de facto global</text>
+      <text x="640" y="230" fill="#E87070" font-size="9" text-anchor="middle">✗ Split regime: EU vs RoW</text>
+      <text x="640" y="245" fill="#E87070" font-size="9" text-anchor="middle">✗ 2030 targets missed</text>
+      <text x="640" y="258" fill="#8899AA" font-size="8" text-anchor="middle">IMO credibility damage</text>
+    </svg>
+  </div>
+
+  <div class="sub-hd">Forward Milestones (Path A — Adoption Scenario)</div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">20–24 April 2026</div>
+      <div class="tl-text">ISWG-GHG 21 — Final prep for MEPC 84; report feeds directly into session deliberations.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">27 Apr – 1 May 2026</div>
+      <div class="tl-text"><strong>MEPC 84</strong> — Filters NZF options; finalises 5th GHG Study ToR; initiates CII Phase 2; CH₄/N₂O guidelines adoption; NE Atlantic ECA formal adoption.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Autumn 2026</div>
+      <div class="tl-text"><strong>MEPC 85</strong> — Confirms implementation guidelines; confirms schedule for extraordinary session.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">November 2026</div>
+      <div class="tl-text"><strong>MEPC/ES.2 Resumed</strong> — Adopt (or fundamentally redesign) NZF mid-term measures. Critical window. Failure pushes EIF to 2030 or beyond.</div>
+    </div>
+    <div class="tl-item dim">
+      <div class="tl-date">~1 March 2028</div>
+      <div class="tl-text">Earliest possible <strong>Entry into Force</strong> of NZF measures (16 months after November 2026 adoption). First compliance year begins.</div>
+    </div>
+    <div class="tl-item dim">
+      <div class="tl-date">2027–2028 (MEPC 86–88)</div>
+      <div class="tl-text">Review of the 2023 IMO GHG Strategy — the overarching framework governing 2030 and 2040 checkpoint ambitions.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- ── SECTION 6: REGIONAL CONTEXT ── -->
+<div class="section">
+  <div class="sec-hd">
+    <span class="sec-n">06</span>
+    <span class="sec-t">Regional Regulatory Context: What Operates Now</span>
+  </div>
+
+  <p>Regardless of MEPC 84's outcome, operators are already navigating a live patchwork of regional obligations. The NZF's fate determines whether these regimes are eventually harmonised under a global framework — or whether they become permanent, divergent compliance universes.</p>
+
+  <!-- Regional regime table -->
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Regime</th>
+          <th>Status in 2026</th>
+          <th>Scope</th>
+          <th>Key Obligation</th>
+          <th>NZF Interaction</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>EU ETS</td>
+          <td>100% coverage from 2026</td>
+          <td>Ships ≥5,000 GT on EU routes</td>
+          <td>Buy ETS allowances for 100% of voyage emissions</td>
+          <td>US demands mandatory withdrawal; EU supports coexistence</td>
+        </tr>
+        <tr>
+          <td>FuelEU Maritime</td>
+          <td>Live from 2025</td>
+          <td>Ships ≥5,000 GT at EEA ports</td>
+          <td>Binding WtW GHG intensity limits; pooling mechanism</td>
+          <td>Complementary to NZF GFI targets; pooling may align</td>
+        </tr>
+        <tr>
+          <td>UK ETS</td>
+          <td>Shipping from 1 Jul 2026</td>
+          <td>UK domestic + international legs</td>
+          <td>Phase-in of carbon allowance obligations</td>
+          <td>Adds third regional pricing layer absent NZF</td>
+        </tr>
+        <tr>
+          <td>NZF (if adopted)</td>
+          <td>EIF ~Mar 2028 (earliest)</td>
+          <td>Ships ≥5,000 GT globally</td>
+          <td>GFI targets + Remedial Unit payments</td>
+          <td>Would provide harmonised global ceiling</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="tbl-cap">Table — Regional Compliance Regime Snapshot, 2026</p>
+  </div>
+
+  <div class="callout">
+    <p>The <strong>2026 Strait of Hormuz disruption</strong> has added a further layer of complexity to the compliance calendar. Operators are budgeting for war-risk premiums alongside carbon compliance costs — compressing planning horizons precisely when the long-term regulatory signal is most uncertain.</p>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- ── SECTION 7: IMPLICATIONS ── -->
+<div class="section">
+  <div class="sec-hd">
+    <span class="sec-n">07</span>
+    <span class="sec-t">Implications for Industry &amp; CJ Energy Solutions Clients</span>
+  </div>
+
+  <p>MEPC 84 is simultaneously a political filtering event and a technical drafting milestone. For shipowners, charterers, fuel suppliers, and financiers, the session's outcome shapes investment calculus across the entire 2028–2040 window.</p>
+
+  <ul class="bl">
+    <li><strong>Fleet renewal:</strong> Absence of NZF clarity increases the cost of capital for green-fuel-capable newbuilds. Owners holding methanol, ammonia, or hydrogen-ready vessels will face demand-side uncertainty until the GFI signal is locked in.</li>
+    <li><strong>Fuel procurement strategy:</strong> The LCA framework outcome at MEPC 84 will determine whether bio-LNG and biofuels receive credits that make them economically competitive compliance tools under the NZF — or whether methane-slip and ILUC penalties negate their benefit.</li>
+    <li><strong>Scrubber economics:</strong> If MEPC 84 signals movement toward Option B or C (weakened or no NZF), the VLSFO–HSFO spread dynamic changes. Scrubber investment returns improve if the IMO pricing signal is removed, but worsen if EU ETS alone drives compliance cost.</li>
+    <li><strong>Carbon market exposure:</strong> Under Path C (termination), the EU ETS becomes the de facto global standard for European trades. Operators should model the scenario where EU ETS allowance prices absorb the full decarbonisation cost load — potentially significantly above current forward prices.</li>
+    <li><strong>OCCS and wind propulsion:</strong> Guidelines on Onboard Carbon Capture (OCCS) and EEDI/EEXI methods for wind propulsion could create compliance pathways that don't require immediate fuel switching — relevant for operators managing older fleets through the transition period.</li>
+    <li><strong>LNG fleet operators:</strong> MEPC 84's CH₄ and N₂O measurement guidelines will define how methane slip is measured and credited (or penalised). With 900+ LNG-fuelled vessels in operation and 500+ on order, this is one of the session's most commercially consequential technical outputs.</li>
+  </ul>
+
+  <div class="callout">
+    <p>If the US successfully blocks even procedural progress at MEPC 84, the framework enters <strong>regulatory limbo — and the EU ETS becomes the de facto global standard by default</strong>, creating a split regime between European and rest-of-world trades. This bifurcation scenario, once theoretical, must now be treated as a base case for planning purposes by any operator with significant European trade exposure.</p>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div style="display:flex;flex-direction:column;justify-content:center;min-width:160px">
+      <div style="font-family:Georgia,serif;font-size:16px;font-weight:bold;letter-spacing:.04em;line-height:1.2">
+        <span style="color:#C9A84C">CJ</span> <span style="color:rgba(255,255,255,.7)">Energy Solutions</span>
+      </div>
+      <div style="font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:#3D4F63;margin-top:4px">Authored by Chase Ji</div>
+    </div>
+    <div class="footer-txt">
+      <strong>CJ Energy Solutions — IMO Regulatory Intelligence</strong>
+      Issue 6 &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; MEPC 84 Special Edition<br>
+      Data sourced from IMO official documentation, EU Parliament MEPC 84 briefing, and industry reporting current to mid-April 2026.<br>
+      MEPC 84: 27 April – 1 May 2026, IMO HQ, London. Chair: Dr. Harry Conway.
+    </div>
+  </div>
+  <p class="footer-disc">This newsletter is prepared by CJ Energy Solutions for informational purposes only and does not constitute legal, regulatory, or commercial advice. All positions attributed to States or organisations reflect publicly available IMO submissions and open-source reporting. CJ Energy Solutions accepts no liability for decisions made on the basis of this material. GFI values and compliance cost estimates are indicative only. © 2026 CJ Energy Solutions.</p>
+</footer>
+
+</div><!-- /page -->
+</body>
+</html>
