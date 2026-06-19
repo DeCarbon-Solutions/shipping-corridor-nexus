@@ -102,9 +102,11 @@ const getSimulatedPrices = (): CommodityPrice[] => {
 
 export function EnergyPricesTicker() {
   const [prices, setPrices] = useState<CommodityPrice[]>(getSimulatedPrices());
-  const [lastUpdate, setLastUpdate] = useState(new Date());
+  const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
 
   useEffect(() => {
+    setLastUpdate(new Date());
+
     const interval = setInterval(() => {
       setPrices(getSimulatedPrices());
       setLastUpdate(new Date());
@@ -133,7 +135,7 @@ export function EnergyPricesTicker() {
             <RefreshCw className="w-3 h-3" />
             <span className="font-medium text-foreground">Energy Markets</span>
             <span className="text-primary">|</span>
-            <span>Live: {lastUpdate.toLocaleTimeString()}</span>
+            <span>Live: {lastUpdate ? lastUpdate.toLocaleTimeString() : '--:--:--'}</span>
             <span className="text-primary">|</span>
             <span>March 2026</span>
           </div>
