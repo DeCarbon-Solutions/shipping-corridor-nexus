@@ -1,6 +1,6 @@
 import { Linkedin, Mail, Github, GraduationCap } from "lucide-react";
 
-const SUBSTACK_URL = 'https://cjenergy.substack.com/?r=3mcwnu&utm_campaign=pub-share-checklist';
+const SUBSTACK_URL = 'https://substack.com/@chaseji';
 
 export function Footer() {
   return (
