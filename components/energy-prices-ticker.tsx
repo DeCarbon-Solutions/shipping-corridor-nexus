@@ -101,10 +101,11 @@ const getSimulatedPrices = (): CommodityPrice[] => {
 };
 
 export function EnergyPricesTicker() {
-  const [prices, setPrices] = useState<CommodityPrice[]>(getSimulatedPrices());
+  const [prices, setPrices] = useState<CommodityPrice[] | null>(null);
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
 
   useEffect(() => {
+    setPrices(getSimulatedPrices());
     setLastUpdate(new Date());
 
     const interval = setInterval(() => {
@@ -143,7 +144,7 @@ export function EnergyPricesTicker() {
         
         <div className="relative overflow-hidden">
           <div className="flex gap-8 animate-scroll">
-            {[...prices, ...prices].map((commodity, index) => (
+            {[...(prices ?? []), ...(prices ?? [])].map((commodity, index) => (
               <div 
                 key={`${commodity.symbol}-${index}`}
                 className="flex items-center gap-3 whitespace-nowrap"
