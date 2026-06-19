@@ -101,10 +101,13 @@ const getSimulatedPrices = (): CommodityPrice[] => {
 };
 
 export function EnergyPricesTicker() {
-  const [prices, setPrices] = useState<CommodityPrice[]>(getSimulatedPrices());
-  const [lastUpdate, setLastUpdate] = useState(new Date());
+  const [prices, setPrices] = useState<CommodityPrice[] | null>(null);
+  const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
 
   useEffect(() => {
+    setPrices(getSimulatedPrices());
+    setLastUpdate(new Date());
+
     const interval = setInterval(() => {
       setPrices(getSimulatedPrices());
       setLastUpdate(new Date());
@@ -133,7 +136,7 @@ export function EnergyPricesTicker() {
             <RefreshCw className="w-3 h-3" />
             <span className="font-medium text-foreground">Energy Markets</span>
             <span className="text-primary">|</span>
-            <span>Live: {lastUpdate.toLocaleTimeString()}</span>
+            <span>Live: {lastUpdate ? lastUpdate.toLocaleTimeString() : '--:--:--'}</span>
             <span className="text-primary">|</span>
             <span>March 2026</span>
           </div>
@@ -141,7 +144,7 @@ export function EnergyPricesTicker() {
         
         <div className="relative overflow-hidden">
           <div className="flex gap-8 animate-scroll">
-            {[...prices, ...prices].map((commodity, index) => (
+            {[...(prices ?? []), ...(prices ?? [])].map((commodity, index) => (
               <div 
                 key={`${commodity.symbol}-${index}`}
                 className="flex items-center gap-3 whitespace-nowrap"
